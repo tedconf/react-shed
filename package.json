@@ -1,0 +1,22 @@
+{
+  "name": "react-shed",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "color": "1.0.3",
+    "modularscale": "1.0.2",
+    "nwb": "0.15.5",
+    "react": "15.4.2",
+    "react-dom": "15.4.2",
+    "styled-components": "1.4.3"
+  },
+  "devDependencies": {
+    "nwb": "0.15.5"
+  },
+  "scripts": {
+    "start": "nwb react app.js"
+  },
+  "author": "Vince Speelman",
+  "license": "MIT"
+}
