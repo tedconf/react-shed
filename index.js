@@ -460,6 +460,9 @@ const getPropsForPosValue = (value, theme) => {
 };
 
 const getPropsForColor = (value, theme) => {
+  if (value === 'transparent') {
+    return 'transparent';
+  }
   const alpha = /(.+)(\.\d)/.exec(value);
   if (alpha) {
     return Color(theme[`${alpha[1]}`]).alpha(alpha[2]).string();
