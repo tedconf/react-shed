@@ -1,21 +1,27 @@
 {
   "name": "react-shed",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.0-alpha.1",
+  "description": "Shed.css as a react styled-component",
   "main": "index.js",
-  "dependencies": {
+  "devDependencies": {
+    "react": "~15.4.2",
+    "react-dom": "~15.4.2",
+    "babel-core": "^6.22.1",
     "color": "1.0.3",
     "modularscale": "1.0.2",
     "nwb": "0.15.5",
-    "react": "15.4.2",
-    "react-dom": "15.4.2",
-    "styled-components": "1.4.3"
+    "styled-components": "~1.4.3",
+    "run-s": "^0.0.0"
   },
-  "devDependencies": {
-    "nwb": "0.15.5"
+  "peerDependencies": {
+    "react": "~15.4.2",
+    "react-dom": "~15.4.2",
+    "styled-components": "~1.4.3"
   },
   "scripts": {
-    "start": "nwb react app.js"
+    "start": "nwb serve",
+    "build": "nwb build",
+    "prepublish": "yarn run-s build"
   },
   "author": "Vince Speelman",
   "license": "MIT"

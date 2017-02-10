@@ -3,35 +3,91 @@ import Color from 'color';
 import ms from 'modularscale';
 import styled from 'styled-components';
 
-const sizes = Array.from([...Array(20)]).reduce((acc, curr, i) => ({
+const sizes = (scale = 'major second', number = 20) => Array.from([...Array(number)]).reduce((acc, curr, i) => ({
   ...acc,
-  [`z${i}`]: `${ms((i - 1), 'major second')}rem`,
+  [`z${i}`]: `${ms((i - 1), scale)}rem`,
   z0: 0,
-  [`z.${i}`]: `${(ms((0 - (i)), 'major second'))}rem`,
+  [`z.${i}`]: `${(ms((0 - (i)), scale))}rem`,
 }), {});
-delete sizes['z.0'];
 
-const defaultTheme = {
-  white: 'white',
-  black: 'black',
-  cyan: 'cyan',
-  magenta: 'magenta',
-  yellow: 'yellow',
-  sans: 'sans-serif',
-  mono: 'monospace',
-  serif: 'serif',
-  ...sizes,
+const createTheme = (
+  userSizes = 'major second',
+  colors = {
+    black: '#000000',
+    white: '#ffffff',
+    cyan: 'cyan',
+    magenta: 'magenta',
+    yellow: 'yellow',
+  },
+  fonts = {
+    sans: 'sans-serif',
+    serif: 'serif',
+    mono: 'monospace',
+  },
+) => {
+  const generatedTheme = {};
+
+  if (userSizes && typeof userSizes === 'string') {
+    try {
+      generatedTheme.sizes = sizes(userSizes);
+    } catch (e) {
+      throw new Error(e);
+   }
+  }
+
+  if (userSizes && typeof userSizes === 'object') {
+    const sizesHash = Object.keys(userSizes).reduce((acc, curr, i) => ({
+      ...acc,
+      [`z${curr}`]: userSizes[curr],
+    }), {});
+    if (!sizesHash['z0']) {
+      sizesHash['z0'] = 0;
+    }
+    if (!sizesHash['z.0']) {
+      delete sizesHash['z.0'];
+    }
+    generatedTheme.sizes = sizesHash;
+  }
+
+  if (fonts && typeof fonts === 'object') {
+    generatedTheme.fonts = fonts;
+  }
+
+  if (fonts && typeof fonts !== 'object') {
+    throw new Error(`fonts object must be provided in the format:
+      {
+        fontName: 'font-family css string',
+      }
+    `);
+  }
+
+  if (colors && typeof colors === 'object') {
+    generatedTheme.colors = colors;
+  }
+
+  if (colors && typeof colors !== 'object') {
+    throw new Error(`colors object must be provided in the format:
+      {
+        black: '#000000',
+        cyan: 'cyan',
+      }
+    `);
+  }
+  return generatedTheme;
+  console.log(generatedTheme);
 };
 
+const defaultTheme = createTheme();
+
 const getPropsForMPValue = (prop, value = null, THEME = null) => {
-  if (THEME === null) {
-    throw new Error('can\'t generate values without a THEME');
+  if (THEME.sizes === null) {
+    throw new Error('can\'t generate values without theme sizes');
   }
   let formattedVal = value;
   if (value === 'a') {
     formattedVal = 'auto';
   } else {
-    formattedVal = `${THEME[`z${value}`]}`;
+    formattedVal = `${THEME.sizes[`z${value}`]}`;
   }
   switch (prop) {
     case 'm':
@@ -279,8 +335,8 @@ const getPropsForFlxBValue = (value, theme) => {
     case 'init':
       return 'inherit';
     default:
-      if (theme[`z${value}`]) {
-        return `${theme[`z${value}`]}`;
+      if (theme.sizes[`z${value}`]) {
+        return `${theme.sizes[`z${value}`]}`;
       }
       throw new Error('You must provide a valid value for the flex-basis prop. One of [scale value], a, f, max-c, min-c, fit-c, c, i, init');
   }
@@ -371,7 +427,7 @@ const getPropsForVAValue = (value) => {
     case 'init':
       return 'initial';
     default:
-      throw new Error('You must provide a valid value for the text-decoration prop. One of u, o, b, l-t, n, i, init');
+      throw new Error('You must provide a valid value for the vertical-align prop. One of t, b, m, bl, c, i, init');
   }
 };
 
@@ -396,7 +452,7 @@ const getPropsForTDValue = (value) => {
   }
 };
 
-const getPropsForLSValue = (value, theme) => {
+const getPropsForLSValue = (value) => {
   switch (value) {
     case 'n':
       return 'normal';
@@ -416,22 +472,29 @@ const getPropsForLHValue = (value, theme) => {
     case 'n':
       return 'normal';
     case 't':
-      return theme['z2'].replace(/rem/, '');
+      return theme.sizes['z2']
+        .replace(/rem/, '')
+        .replace(/em/, '');
     case 'l':
-      return theme['z4'].replace(/rem/, '');
+      return theme.sizes['z4']
+        .replace(/rem/, '')
+        .replace(/em/, '');
     case 'i':
       return 'inherit';
     case 'init':
       return 'initial';
     default:
-      if (theme[`z${value}`]) {
-        return theme[`z${value}`].replace(/rem/, '');
+      if (theme.sizes[`z${value}`]) {
+        return theme.sizes[`z${value}`]
+          .replace(/rem/, '')
+          .replace(/em/, '');
+        ;
       }
       throw new Error('You must provide a valid value for the line-height prop. One of [scale value], d, t, l, n, i, init');
   }
 };
 
-const getPropsForPosValue = (value, theme) => {
+const getPropsForPosValue = (value) => {
   switch (value) {
     case 'a':
       return 'position: absolute;';
@@ -459,15 +522,36 @@ const getPropsForPosValue = (value, theme) => {
   }
 };
 
+const getPropsForWSValue = (value) => {
+  switch (value) {
+    case 'n':
+      return 'normal';
+    case 'nw':
+      return 'nowrap';
+    case 'p':
+      return 'pre';
+    case 'p-w':
+      return 'pre-wrap';
+    case 'p-l':
+      return 'pre-line';
+    case 'i':
+      return 'inherit';
+    case 'init':
+      return 'initial';
+    default:
+      throw new Error('You must provide a valid value for the white-space prop. One of n, nw, p, p-w, p-l, i, init');
+  }
+};
+
 const getPropsForColor = (value, theme) => {
   if (value === 'transparent') {
     return 'transparent';
   }
   const alpha = /(.+)(\.\d)/.exec(value);
   if (alpha) {
-    return Color(theme[`${alpha[1]}`]).alpha(alpha[2]).string();
+    return Color(theme.colors[`${alpha[1]}`]).alpha(alpha[2]).string();
   }
-  return theme[value];
+  return theme.colors[value];
 }
 
 const getMarginAndPadding = (props, theme) => {
@@ -665,33 +749,36 @@ const getSize = (value, theme) => {
     case 'full':
       return `100%`
     default:
-      if (theme[`z${value}`]) {
-        return theme[`z${value}`];
+      if (theme.size[`z${value}`]) {
+        return theme.size[`z${value}`];
       }
       throw new Error('You must provide a valid value for the size prop.');
   }
 }
 
+let componentName = 'shed';
+
 const Shed = ({
   component = 'div',
-  theme = defaultTheme,
   ...props,
 }) => {
+  console.log(component);
+  componentName = component;
   const ShedStyled = styled(component)`
-    ${({ ...props }) => getMarginAndPadding(props, theme)}
-    ${({ c }) =>
+    ${({ ...props, theme }) => getMarginAndPadding(props, theme)}
+    ${({ c, theme }) =>
       c
         ? `color: ${getPropsForColor(c, theme)};`
         : null
     }
-    ${({ bg }) =>
+    ${({ bg, theme }) =>
       bg
         ? `background-color: ${getPropsForColor(c, theme)};`
         : null
     }
-    ${({ f }) =>
+    ${({ f, theme }) =>
       f
-        ? `font-size: ${theme[`z${f}`]};`
+        ? `font-size: ${theme.size[`z${f}`]};`
         : null
     }
     ${({ fw }) =>
@@ -699,22 +786,22 @@ const Shed = ({
         ? `font-weight: ${fw};`
         : null
     }
-    ${({ fs }) =>
+    ${({ fs, theme }) =>
       fs
         ? `font-style: ${getPropsForFSValue(fs)};`
         : null
     }
-    ${({ ff }) =>
+    ${({ ff, theme }) =>
       ff
-        ? `font-family: ${theme[`${ff}`]};`
+        ? `font-family: ${theme.fonts[`${ff}`]};`
         : null
     }
-    ${({ ls }) =>
+    ${({ ls, theme }) =>
       ls
         ? `letter-spacing: ${getPropsForLSValue(ls, theme)};`
         : null
     }
-    ${({ lh }) =>
+    ${({ lh, theme }) =>
       lh
         ? `line-height: ${getPropsForLHValue(lh, theme)};`
         : null
@@ -784,7 +871,7 @@ const Shed = ({
         ? `flex-direction: ${getPropsForFlxDValue(flxd)};`
         : null
     }
-    ${({ flxb }) =>
+    ${({ flxb, theme }) =>
       flxb
         ? `flex-basis: ${getPropsForFlxBValue(flxb, theme)};`
         : null
@@ -799,64 +886,73 @@ const Shed = ({
         ? `position: ${getPropsForPosValue(pos)};`
         : null
     }
-    ${({ top }) =>
+    ${({ top, theme }) =>
       top
-        ? `top: ${theme[`z${top}`]};`
+        ? `top: ${theme.size[`z${top}`]};`
         : null
     }
-    ${({ right }) =>
+    ${({ right, theme }) =>
       right
-        ? `right: ${theme[`z${right}`]};`
+        ? `right: ${theme.size[`z${right}`]};`
         : null
     }
-    ${({ bottom }) =>
+    ${({ bottom, theme }) =>
       bottom
-        ? `bottom: ${theme[`z${bottom}`]};`
+        ? `bottom: ${theme.size[`z${bottom}`]};`
         : null
     }
-    ${({ left }) =>
+    ${({ left, theme }) =>
       left
-        ? `left: ${theme[`z${left}`]};`
+        ? `left: ${theme.size[`z${left}`]};`
         : null
     }
-    ${({ o }) =>
+    ${({ o, theme }) =>
       o
         ? `overflow: ${getPropsForOValue(o)};`
         : null
     }
-    ${({ ox }) =>
+    ${({ ox, theme }) =>
       ox
         ? `overflow-x: ${getPropsForOValue(ox)};`
         : null
     }
-    ${({ oy }) =>
+    ${({ oy, theme }) =>
       oy
         ? `overflow-y: ${getPropsForOValue(oy)};`
         : null
     }
-    ${({ zi }) =>
+    ${({ zi, theme }) =>
       zi
         ? `z-index: ${zi};`
         : null
     }
-    ${({ w }) =>
+    ${({ ws }) =>
+      ws
+        ? `white-space: ${getPropsForWSValue(ws)};`
+        : null
+    }
+    ${({ w, theme }) =>
       w
       ? `width: ${getSize(w, theme)};`
       : null
     }
-    ${({ mw }) =>
+    ${({ mw, theme }) =>
       mw
       ?  `max-width: ${getSize(w, theme)};`
       : null
     }
-    ${({ h }) =>
+    ${({ h, theme }) =>
       h
       ? `height: ${getSize(h, theme)};`
       : null
     }
   `;
+
   return <ShedStyled {...props} />;
 };
 
 export default Shed;
-export { defaultTheme };
+export {
+  defaultTheme,
+  createTheme,
+};
