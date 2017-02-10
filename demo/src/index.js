@@ -27,6 +27,7 @@ render(
   <ThemeProvider theme={TED_THEME}>
     <Shed
       c="red"
+      bg="gray-ll"
       ff="sans"
       lh="t"
       pl="2"

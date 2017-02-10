@@ -160,7 +160,7 @@ var getPropsForDValue = function getPropsForDValue(prop) {
       return 'initial';
 
     default:
-      throw new Error('You must provide a valid value for the display prop. One of b, i-b, i, f, i-f, t, t-c, t-r, n, init, not ${value}');
+      throw new Error('You must provide a valid value for the display prop. One of b, i-b, i, f, i-f, t, t-c, t-r, n, init, not ' + value);
   }
 };
 
@@ -177,7 +177,7 @@ var getPropsForFSValue = function getPropsForFSValue(value) {
     case 'init':
       return 'inherit';
     default:
-      throw new Error('You must provide a valid value for the font-style prop. One of n, i, o, i, init, not ${value}');
+      throw new Error('You must provide a valid value for the font-style prop. One of n, i, o, i, init, not ' + value);
   }
 };
 
@@ -205,7 +205,7 @@ var getPropsForACValue = function getPropsForACValue(prop) {
       return 'initial';
 
     default:
-      throw new Error('You must provide a valid value for the align-content prop. One of f-s, f-e, c, s-b, s-e, s-a, i, init, not ${value}');
+      throw new Error('You must provide a valid value for the align-content prop. One of f-s, f-e, c, s-b, s-e, s-a, i, init, not ' + value);
   }
 };
 
@@ -231,7 +231,7 @@ var getPropsForJCValue = function getPropsForJCValue(prop) {
       return 'initial';
 
     default:
-      throw new Error('You must provide a valid value for the justify-content prop. One of f-s, f-e, c, s-b, s-e, s-a, i, init, not ${value}');
+      throw new Error('You must provide a valid value for the justify-content prop. One of f-s, f-e, c, s-b, s-e, s-a, i, init, not ' + value);
   }
 };
 
@@ -255,7 +255,7 @@ var getPropsForAIValue = function getPropsForAIValue(prop) {
       return 'initial';
 
     default:
-      throw new Error('You must provide a valid value for the align-items prop. One of f-s, f-e, c, b, s, i, init, not ${value}');
+      throw new Error('You must provide a valid value for the align-items prop. One of f-s, f-e, c, b, s, i, init, not ' + value);
   }
 };
 
@@ -281,7 +281,7 @@ var getPropsForASValue = function getPropsForASValue(prop) {
       return 'initial';
 
     default:
-      throw new Error('You must provide a valid value for the align-self prop. One of a, f-s, f-e, c, b, s, i, init, not ${value}');
+      throw new Error('You must provide a valid value for the align-self prop. One of a, f-s, f-e, c, b, s, i, init, not ' + value);
   }
 };
 
@@ -301,7 +301,7 @@ var getPropsForFlxWValue = function getPropsForFlxWValue(prop) {
       return 'initial';
 
     default:
-      throw new Error('You must provide a valid value for the flex-wrap prop. One of nw, w, wr, i, init, not ${value}');
+      throw new Error('You must provide a valid value for the flex-wrap prop. One of nw, w, wr, i, init, not ' + value);
   }
 };
 
@@ -323,7 +323,7 @@ var getPropsForFlxDValue = function getPropsForFlxDValue(prop) {
       return 'initial';
 
     default:
-      throw new Error('You must provide a valid value for the flex-direction prop. One of r, rr, c, cr, i, init, not ${value}');
+      throw new Error('You must provide a valid value for the flex-direction prop. One of r, rr, c, cr, i, init, not ' + value);
   }
 };
 
@@ -349,7 +349,7 @@ var getPropsForFlxBValue = function getPropsForFlxBValue(value, theme) {
       if (theme.sizes['z' + value]) {
         return '' + theme.sizes['z' + value];
       }
-      throw new Error('You must provide a valid value for the flex-basis prop. One of [scale value], a, f, max-c, min-c, fit-c, c, i, init, not ${value}');
+      throw new Error('You must provide a valid value for the flex-basis prop. One of [scale value], a, f, max-c, min-c, fit-c, c, i, init, not ' + value);
   }
 };
 
@@ -366,7 +366,7 @@ var getPropsForFlValue = function getPropsForFlValue(value) {
     case 'init':
       return 'inherit';
     default:
-      throw new Error('You must provide a valid value for the float prop. One of l, r, n, i, init, not ${value}');
+      throw new Error('You must provide a valid value for the float prop. One of l, r, n, i, init, not ' + value);
   }
 };
 
@@ -379,7 +379,7 @@ var getPropsForOValue = function getPropsForOValue(value) {
     case 's':
       return 'scroll';
     default:
-      throw new Error('You must provide a valid value for the overflow prop. One of a, h, s, not ${value}');
+      throw new Error('You must provide a valid value for the overflow prop. One of a, h, s, not ' + value);
   }
 };
 
@@ -398,7 +398,7 @@ var getPropsForTTValue = function getPropsForTTValue(value) {
     case 'init':
       return 'inherit';
     default:
-      throw new Error('You must provide a valid value for the text-transform prop. One of u, c, l, n, i, init, not ${value}');
+      throw new Error('You must provide a valid value for the text-transform prop. One of u, c, l, n, i, init, not ' + value);
   }
 };
 
@@ -413,7 +413,7 @@ var getPropsForTAValue = function getPropsForTAValue(value) {
     case 'j':
       return 'justify';
     default:
-      throw new Error('You must provide a valid value for the text-align prop. One of c, l, r, j, not ${value}');
+      throw new Error('You must provide a valid value for the text-align prop. One of c, l, r, j, not ' + value);
   }
 };
 
@@ -434,7 +434,7 @@ var getPropsForVAValue = function getPropsForVAValue(value) {
     case 'init':
       return 'initial';
     default:
-      throw new Error('You must provide a valid value for the vertical-align prop. One of t, b, m, bl, c, i, init, not ${value}');
+      throw new Error('You must provide a valid value for the vertical-align prop. One of t, b, m, bl, c, i, init, not ' + value);
   }
 };
 
@@ -455,7 +455,7 @@ var getPropsForTDValue = function getPropsForTDValue(value) {
     case 'init':
       return 'initial';
     default:
-      throw new Error('You must provide a valid value for the text-decoration prop. One of u, o, b, l-t, n, i, init, not ${value}');
+      throw new Error('You must provide a valid value for the text-decoration prop. One of u, o, b, l-t, n, i, init, not ' + value);
   }
 };
 
@@ -468,7 +468,7 @@ var getPropsForLSValue = function getPropsForLSValue(value) {
     case 'l':
       return '.3em';
     default:
-      throw new Error('You must provide a valid value for the letter-spacing prop. One of n, t, l, not ${value}');
+      throw new Error('You must provide a valid value for the letter-spacing prop. One of n, t, l, not ' + value);
   }
 };
 
@@ -491,7 +491,7 @@ var getPropsForLHValue = function getPropsForLHValue(value, theme) {
         return theme.sizes['z' + value].replace(/rem/, '').replace(/em/, '');
         ;
       }
-      throw new Error('You must provide a valid value for the line-height prop. One of [scale value], d, t, l, n, i, init, not ${value}');
+      throw new Error('You must provide a valid value for the line-height prop. One of [scale value], d, t, l, n, i, init, not ' + value);
   }
 };
 
@@ -514,7 +514,7 @@ var getPropsForPosValue = function getPropsForPosValue(value) {
     case 'init':
       return 'initial';
     default:
-      throw new Error('You must provide a valid value for the position prop. One of a, r, s, stick, c, not ${value}');
+      throw new Error('You must provide a valid value for the position prop. One of a, r, s, stick, c, not ' + value);
   }
 };
 
@@ -535,7 +535,7 @@ var getPropsForWSValue = function getPropsForWSValue(value) {
     case 'init':
       return 'initial';
     default:
-      throw new Error('You must provide a valid value for the white-space prop. One of n, nw, p, p-w, p-l, i, init, not ${value}');
+      throw new Error('You must provide a valid value for the white-space prop. One of n, nw, p, p-w, p-l, i, init, not ' + value);
   }
 };
 
@@ -731,7 +731,7 @@ var getSize = function getSize(value, theme) {
       if (theme.sizes['z' + value]) {
         return theme.sizes['z' + value];
       }
-      throw new Error('You must provide a valid value for the size prop, not ${value}');
+      throw new Error('You must provide a valid value for the size prop, not ' + value);
   }
 };
 
@@ -754,7 +754,7 @@ var Shed = function Shed(_ref) {
   }, function (_ref4) {
     var bg = _ref4.bg,
         theme = _ref4.theme;
-    return bg ? 'background-color: ' + getPropsForColor(c, theme) + ';' : null;
+    return bg ? 'background-color: ' + getPropsForColor(bg, theme) + ';' : null;
   }, function (_ref5) {
     var f = _ref5.f,
         theme = _ref5.theme;

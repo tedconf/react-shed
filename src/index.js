@@ -780,7 +780,7 @@ const Shed = ({
     }
     ${({ bg, theme }) =>
       bg
-        ? `background-color: ${getPropsForColor(c, theme)};`
+        ? `background-color: ${getPropsForColor(bg, theme)};`
         : null
     }
     ${({ f, theme }) =>
