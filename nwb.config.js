@@ -2,6 +2,13 @@ module.exports = {
   type: 'react-component',
   babel: {
     runtime: 'helpers',
+    plugins: [
+      ['styled-components', {
+        ssr: false,
+        displayName: false,
+      }],
+      'shed',
+    ],
   },
   npm: {
     umd: {

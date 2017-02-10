@@ -2,14 +2,20 @@
   "name": "react-shed",
   "version": "1.0.0-alpha.1",
   "description": "Shed.css as a react styled-component",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "files": [
+    "lib",
+    "umd"
+  ],
   "devDependencies": {
-    "react": "~15.4.2",
-    "react-dom": "~15.4.2",
     "babel-core": "^6.22.1",
+    "babel-plugin-shed": "^1.0.0",
+    "babel-plugin-styled-components": "^1.0.0",
     "color": "1.0.3",
     "modularscale": "1.0.2",
     "nwb": "0.15.5",
+    "react": "~15.4.2",
+    "react-dom": "~15.4.2",
     "styled-components": "~1.4.3"
   },
   "peerDependencies": {

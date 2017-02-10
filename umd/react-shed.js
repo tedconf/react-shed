@@ -1,5 +1,5 @@
 /*!
- * react-shed v1.0.0
+ * react-shed v1.0.0-alpha.1
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -1671,12 +1671,12 @@ module.exports = {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_taggedTemplateLiteralLoose__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_taggedTemplateLiteralLoose___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_taggedTemplateLiteralLoose__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_objectWithoutProperties__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_objectWithoutProperties___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_objectWithoutProperties__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_typeof__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_typeof___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_typeof__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_objectWithoutProperties__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_objectWithoutProperties___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_objectWithoutProperties__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_typeof__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_typeof___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_typeof__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_taggedTemplateLiteralLoose__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_taggedTemplateLiteralLoose___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_taggedTemplateLiteralLoose__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_extends__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react__ = __webpack_require__(86);
@@ -1687,8 +1687,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_modularscale___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_modularscale__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_styled_components__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_styled_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_styled_components__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "defaultTheme", function() { return defaultTheme; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Shed; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createTheme", function() { return createTheme; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reset", function() { return reset; });
 
 
 
@@ -1697,7 +1698,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var _jsxFileName = '/Users/vincentspeelman/Projects/shed/react-shed/src/index.js',
     _this = this;
 
-var _templateObject = __WEBPACK_IMPORTED_MODULE_0__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_taggedTemplateLiteralLoose___default()(['\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n  '], ['\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n  ']);
+var _templateObject = __WEBPACK_IMPORTED_MODULE_2__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_taggedTemplateLiteralLoose___default()(['\n  /*! sanitize.css v4.1.0 | CC0 License | github.com/jonathantneal/sanitize.css */\n  *,::after,::before{background-repeat:no-repeat;box-sizing:inherit}::after,::before{text-decoration:inherit;vertical-align:inherit}html{box-sizing:border-box;cursor:default;font-family:sans-serif;line-height:1.5;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section{display:block}body,button,figure,h1,input,optgroup,select,textarea{margin:0}h1{font-size:1em}hr{box-sizing:content-box;height:0;overflow:visible}nav ol,nav ul{list-style:none}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}abbr[title]{border-bottom:none;text-decoration:underline dotted}b,strong{font-weight:bolder}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:100%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}::-moz-selection{background-color:#b3d4fc;color:#000;text-shadow:none}::selection{background-color:#b3d4fc;color:#000;text-shadow:none}audio,canvas,iframe,img,svg,video{vertical-align:middle}audio,canvas,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg{fill:currentColor}svg:not(:root){overflow:hidden}table{border-collapse:collapse}button,input,select,textarea{background-color:transparent;color:inherit;font-size:inherit;line-height:inherit}button,input{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}legend{color:inherit;display:table;max-width:100%;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto;resize:vertical}[type=checkbox],[type=radio],legend{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}[tabindex],a,area,button,input,label,select,summary,textarea{-ms-touch-action:manipulation;touch-action:manipulation}[hidden],template{display:none}[aria-busy=true]{cursor:progress}[aria-controls]{cursor:pointer}[aria-hidden=false][hidden]{clip:rect(0,0,0,0);display:inherit;position:absolute}[aria-hidden=false][hidden]:focus{clip:auto}[aria-disabled]{cursor:default}\n'], ['\n  /*! sanitize.css v4.1.0 | CC0 License | github.com/jonathantneal/sanitize.css */\n  *,::after,::before{background-repeat:no-repeat;box-sizing:inherit}::after,::before{text-decoration:inherit;vertical-align:inherit}html{box-sizing:border-box;cursor:default;font-family:sans-serif;line-height:1.5;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section{display:block}body,button,figure,h1,input,optgroup,select,textarea{margin:0}h1{font-size:1em}hr{box-sizing:content-box;height:0;overflow:visible}nav ol,nav ul{list-style:none}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}abbr[title]{border-bottom:none;text-decoration:underline dotted}b,strong{font-weight:bolder}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:100%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}::-moz-selection{background-color:#b3d4fc;color:#000;text-shadow:none}::selection{background-color:#b3d4fc;color:#000;text-shadow:none}audio,canvas,iframe,img,svg,video{vertical-align:middle}audio,canvas,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg{fill:currentColor}svg:not(:root){overflow:hidden}table{border-collapse:collapse}button,input,select,textarea{background-color:transparent;color:inherit;font-size:inherit;line-height:inherit}button,input{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}legend{color:inherit;display:table;max-width:100%;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto;resize:vertical}[type=checkbox],[type=radio],legend{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}[tabindex],a,area,button,input,label,select,summary,textarea{-ms-touch-action:manipulation;touch-action:manipulation}[hidden],template{display:none}[aria-busy=true]{cursor:progress}[aria-controls]{cursor:pointer}[aria-hidden=false][hidden]{clip:rect(0,0,0,0);display:inherit;position:absolute}[aria-hidden=false][hidden]:focus{clip:auto}[aria-disabled]{cursor:default}\n']);
 
 
 
@@ -1714,36 +1715,40 @@ var sizes = function sizes() {
   }, {});
 };
 
+var reset = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7_styled_components__["injectGlobal"])(_templateObject);
+
 var createTheme = function createTheme() {
-  var userSizes = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'major second';
-  var colors = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {
-    black: '#000000',
-    white: '#ffffff',
-    cyan: 'cyan',
-    magenta: 'magenta',
-    yellow: 'yellow'
-  };
-  var fonts = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {
-    sans: 'sans-serif',
-    serif: 'serif',
-    mono: 'monospace'
+  var userTheme = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+    sizes: 'major second',
+    colors: {
+      black: '#000000',
+      white: '#ffffff',
+      cyan: 'cyan',
+      magenta: 'magenta',
+      yellow: 'yellow'
+    },
+    fonts: {
+      sans: 'sans-serif',
+      serif: 'serif',
+      mono: 'monospace'
+    }
   };
 
   var generatedTheme = {};
 
-  if (userSizes && typeof userSizes === 'string') {
+  if (userTheme.sizes && typeof userTheme.sizes === 'string') {
     try {
-      generatedTheme.sizes = sizes(userSizes);
+      generatedTheme.sizes = sizes(userTheme.sizes);
     } catch (e) {
       throw new Error(e);
     }
   }
 
-  if (userSizes && (typeof userSizes === 'undefined' ? 'undefined' : __WEBPACK_IMPORTED_MODULE_2__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_typeof___default()(userSizes)) === 'object') {
-    var sizesHash = Object.keys(userSizes).reduce(function (acc, curr, i) {
+  if (userTheme.sizes && __WEBPACK_IMPORTED_MODULE_1__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_typeof___default()(userTheme.sizes) === 'object') {
+    var sizesHash = Object.keys(userTheme.sizes).reduce(function (acc, curr, i) {
       var _extends3;
 
-      return __WEBPACK_IMPORTED_MODULE_3__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_extends___default()({}, acc, (_extends3 = {}, _extends3['z' + curr] = userSizes[curr], _extends3));
+      return __WEBPACK_IMPORTED_MODULE_3__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_extends___default()({}, acc, (_extends3 = {}, _extends3['z' + curr] = userTheme.sizes[curr], _extends3));
     }, {});
     if (!sizesHash['z0']) {
       sizesHash['z0'] = 0;
@@ -1754,26 +1759,26 @@ var createTheme = function createTheme() {
     generatedTheme.sizes = sizesHash;
   }
 
-  if (fonts && (typeof fonts === 'undefined' ? 'undefined' : __WEBPACK_IMPORTED_MODULE_2__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_typeof___default()(fonts)) === 'object') {
-    generatedTheme.fonts = fonts;
+  if (userTheme.fonts && __WEBPACK_IMPORTED_MODULE_1__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_typeof___default()(userTheme.fonts) === 'object') {
+    generatedTheme.fonts = userTheme.fonts;
   }
 
-  if (fonts && (typeof fonts === 'undefined' ? 'undefined' : __WEBPACK_IMPORTED_MODULE_2__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_typeof___default()(fonts)) !== 'object') {
+  if (userTheme.fonts && __WEBPACK_IMPORTED_MODULE_1__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_typeof___default()(userTheme.fonts) !== 'object') {
     throw new Error('fonts object must be provided in the format:\n      {\n        fontName: \'font-family css string\',\n      }\n    ');
   }
 
-  if (colors && (typeof colors === 'undefined' ? 'undefined' : __WEBPACK_IMPORTED_MODULE_2__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_typeof___default()(colors)) === 'object') {
-    generatedTheme.colors = colors;
+  if (userTheme.colors && __WEBPACK_IMPORTED_MODULE_1__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_typeof___default()(userTheme.colors) === 'object') {
+    generatedTheme.colors = userTheme.colors;
   }
 
-  if (colors && (typeof colors === 'undefined' ? 'undefined' : __WEBPACK_IMPORTED_MODULE_2__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_typeof___default()(colors)) !== 'object') {
+  if (userTheme.colors && __WEBPACK_IMPORTED_MODULE_1__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_typeof___default()(userTheme.colors) !== 'object') {
     throw new Error('colors object must be provided in the format:\n      {\n        black: \'#000000\',\n        cyan: \'cyan\',\n      }\n    ');
   }
+  if (generatedTheme.sizes['z.0']) {
+    delete generatedTheme.sizes['z.0'];
+  }
   return generatedTheme;
-  console.log(generatedTheme);
 };
-
-var defaultTheme = createTheme();
 
 var getPropsForMPValue = function getPropsForMPValue(prop) {
   var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
@@ -2418,8 +2423,8 @@ var getSize = function getSize(value, theme) {
     case 'full':
       return '100%';
     default:
-      if (theme.size['z' + value]) {
-        return theme.size['z' + value];
+      if (theme.sizes['z' + value]) {
+        return theme.sizes['z' + value];
       }
       throw new Error('You must provide a valid value for the size prop.');
   }
@@ -2428,10 +2433,13 @@ var getSize = function getSize(value, theme) {
 var Shed = function Shed(_ref) {
   var _ref$component = _ref.component,
       component = _ref$component === undefined ? 'div' : _ref$component,
-      props = __WEBPACK_IMPORTED_MODULE_1__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_objectWithoutProperties___default()(_ref, ['component']);
+      _ref$theme = _ref.theme,
+      theme = _ref$theme === undefined ? createTheme() : _ref$theme,
+      props = __WEBPACK_IMPORTED_MODULE_0__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_objectWithoutProperties___default()(_ref, ['component', 'theme']);
 
-  var ShedStyled = __WEBPACK_IMPORTED_MODULE_7_styled_components___default()(component)(_templateObject, function (_ref2) {
-    var props = __WEBPACK_IMPORTED_MODULE_1__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_objectWithoutProperties___default()(_ref2, []),
+  console.log('component theme', theme);
+  var ShedStyled = __WEBPACK_IMPORTED_MODULE_7_styled_components___default()(component)(['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''], function (_ref2) {
+    var props = __WEBPACK_IMPORTED_MODULE_0__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_objectWithoutProperties___default()(_ref2, []),
         theme = _ref2.theme;
 
     return getMarginAndPadding(props, theme);
@@ -2446,7 +2454,7 @@ var Shed = function Shed(_ref) {
   }, function (_ref5) {
     var f = _ref5.f,
         theme = _ref5.theme;
-    return f ? 'font-size: ' + theme.size['z' + f] + ';' : null;
+    return f ? 'font-size: ' + theme.sizes['z' + f] + ';' : null;
   }, function (_ref6) {
     var fw = _ref6.fw;
     return fw ? 'font-weight: ' + fw + ';' : null;
@@ -2518,19 +2526,19 @@ var Shed = function Shed(_ref) {
   }, function (_ref27) {
     var top = _ref27.top,
         theme = _ref27.theme;
-    return top ? 'top: ' + theme.size['z' + top] + ';' : null;
+    return top ? 'top: ' + theme.sizes['z' + top] + ';' : null;
   }, function (_ref28) {
     var right = _ref28.right,
         theme = _ref28.theme;
-    return right ? 'right: ' + theme.size['z' + right] + ';' : null;
+    return right ? 'right: ' + theme.sizes['z' + right] + ';' : null;
   }, function (_ref29) {
     var bottom = _ref29.bottom,
         theme = _ref29.theme;
-    return bottom ? 'bottom: ' + theme.size['z' + bottom] + ';' : null;
+    return bottom ? 'bottom: ' + theme.sizes['z' + bottom] + ';' : null;
   }, function (_ref30) {
     var left = _ref30.left,
         theme = _ref30.theme;
-    return left ? 'left: ' + theme.size['z' + left] + ';' : null;
+    return left ? 'left: ' + theme.sizes['z' + left] + ';' : null;
   }, function (_ref31) {
     var o = _ref31.o,
         theme = _ref31.theme;
@@ -2563,16 +2571,16 @@ var Shed = function Shed(_ref) {
         theme = _ref38.theme;
     return h ? 'height: ' + getSize(h, theme) + ';' : null;
   });
+
   return __WEBPACK_IMPORTED_MODULE_4_react___default.a.createElement(ShedStyled, __WEBPACK_IMPORTED_MODULE_3__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_extends___default()({}, props, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 946
+      lineNumber: 959
     },
     __self: _this
   }));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = Shed;
 
 
 /***/ }),

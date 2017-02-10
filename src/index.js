@@ -1,7 +1,10 @@
 import React from 'react';
 import Color from 'color';
 import ms from 'modularscale';
-import styled from 'styled-components';
+import styled, {
+  injectGlobal,
+  withTheme,
+} from 'styled-components';
 
 const sizes = (scale = 'major second', number = 20) => Array.from([...Array(number)]).reduce((acc, curr, i) => ({
   ...acc,
@@ -10,35 +13,42 @@ const sizes = (scale = 'major second', number = 20) => Array.from([...Array(numb
   [`z.${i}`]: `${(ms((0 - (i)), scale))}rem`,
 }), {});
 
+const reset = injectGlobal`
+  /*! sanitize.css v4.1.0 | CC0 License | github.com/jonathantneal/sanitize.css */
+  *,::after,::before{background-repeat:no-repeat;box-sizing:inherit}::after,::before{text-decoration:inherit;vertical-align:inherit}html{box-sizing:border-box;cursor:default;font-family:sans-serif;line-height:1.5;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section{display:block}body,button,figure,h1,input,optgroup,select,textarea{margin:0}h1{font-size:1em}hr{box-sizing:content-box;height:0;overflow:visible}nav ol,nav ul{list-style:none}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}abbr[title]{border-bottom:none;text-decoration:underline dotted}b,strong{font-weight:bolder}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:100%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}::-moz-selection{background-color:#b3d4fc;color:#000;text-shadow:none}::selection{background-color:#b3d4fc;color:#000;text-shadow:none}audio,canvas,iframe,img,svg,video{vertical-align:middle}audio,canvas,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg{fill:currentColor}svg:not(:root){overflow:hidden}table{border-collapse:collapse}button,input,select,textarea{background-color:transparent;color:inherit;font-size:inherit;line-height:inherit}button,input{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}legend{color:inherit;display:table;max-width:100%;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto;resize:vertical}[type=checkbox],[type=radio],legend{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}[tabindex],a,area,button,input,label,select,summary,textarea{-ms-touch-action:manipulation;touch-action:manipulation}[hidden],template{display:none}[aria-busy=true]{cursor:progress}[aria-controls]{cursor:pointer}[aria-hidden=false][hidden]{clip:rect(0,0,0,0);display:inherit;position:absolute}[aria-hidden=false][hidden]:focus{clip:auto}[aria-disabled]{cursor:default}
+`;
+
 const createTheme = (
-  userSizes = 'major second',
-  colors = {
-    black: '#000000',
-    white: '#ffffff',
-    cyan: 'cyan',
-    magenta: 'magenta',
-    yellow: 'yellow',
-  },
-  fonts = {
-    sans: 'sans-serif',
-    serif: 'serif',
-    mono: 'monospace',
-  },
+  userTheme = {
+    sizes: 'major second',
+    colors: {
+      black: '#000000',
+      white: '#ffffff',
+      cyan: 'cyan',
+      magenta: 'magenta',
+      yellow: 'yellow',
+    },
+    fonts: {
+      sans: 'sans-serif',
+      serif: 'serif',
+      mono: 'monospace',
+    },
+  }
 ) => {
   const generatedTheme = {};
 
-  if (userSizes && typeof userSizes === 'string') {
+  if (userTheme.sizes && typeof userTheme.sizes === 'string') {
     try {
-      generatedTheme.sizes = sizes(userSizes);
+      generatedTheme.sizes = sizes(userTheme.sizes);
     } catch (e) {
       throw new Error(e);
    }
   }
 
-  if (userSizes && typeof userSizes === 'object') {
-    const sizesHash = Object.keys(userSizes).reduce((acc, curr, i) => ({
+  if (userTheme.sizes && typeof userTheme.sizes === 'object') {
+    const sizesHash = Object.keys(userTheme.sizes).reduce((acc, curr, i) => ({
       ...acc,
-      [`z${curr}`]: userSizes[curr],
+      [`z${curr}`]: userTheme.sizes[curr],
     }), {});
     if (!sizesHash['z0']) {
       sizesHash['z0'] = 0;
@@ -49,11 +59,11 @@ const createTheme = (
     generatedTheme.sizes = sizesHash;
   }
 
-  if (fonts && typeof fonts === 'object') {
-    generatedTheme.fonts = fonts;
+  if (userTheme.fonts && typeof userTheme.fonts === 'object') {
+    generatedTheme.fonts = userTheme.fonts;
   }
 
-  if (fonts && typeof fonts !== 'object') {
+  if (userTheme.fonts && typeof userTheme.fonts !== 'object') {
     throw new Error(`fonts object must be provided in the format:
       {
         fontName: 'font-family css string',
@@ -61,11 +71,11 @@ const createTheme = (
     `);
   }
 
-  if (colors && typeof colors === 'object') {
-    generatedTheme.colors = colors;
+  if (userTheme.colors && typeof userTheme.colors === 'object') {
+    generatedTheme.colors = userTheme.colors;
   }
 
-  if (colors && typeof colors !== 'object') {
+  if (userTheme.colors && typeof userTheme.colors !== 'object') {
     throw new Error(`colors object must be provided in the format:
       {
         black: '#000000',
@@ -73,11 +83,11 @@ const createTheme = (
       }
     `);
   }
+  if(generatedTheme.sizes['z.0']) {
+    delete generatedTheme.sizes['z.0'];
+  }
   return generatedTheme;
-  console.log(generatedTheme);
 };
-
-const defaultTheme = createTheme();
 
 const getPropsForMPValue = (prop, value = null, THEME = null) => {
   if (THEME.sizes === null) {
@@ -749,21 +759,18 @@ const getSize = (value, theme) => {
     case 'full':
       return `100%`
     default:
-      if (theme.size[`z${value}`]) {
-        return theme.size[`z${value}`];
+      if (theme.sizes[`z${value}`]) {
+        return theme.sizes[`z${value}`];
       }
       throw new Error('You must provide a valid value for the size prop.');
   }
 }
 
-let componentName = 'shed';
-
 const Shed = ({
   component = 'div',
+  theme = createTheme(),
   ...props,
 }) => {
-  console.log(component);
-  componentName = component;
   const ShedStyled = styled(component)`
     ${({ ...props, theme }) => getMarginAndPadding(props, theme)}
     ${({ c, theme }) =>
@@ -778,7 +785,7 @@ const Shed = ({
     }
     ${({ f, theme }) =>
       f
-        ? `font-size: ${theme.size[`z${f}`]};`
+        ? `font-size: ${theme.sizes[`z${f}`]};`
         : null
     }
     ${({ fw }) =>
@@ -888,22 +895,22 @@ const Shed = ({
     }
     ${({ top, theme }) =>
       top
-        ? `top: ${theme.size[`z${top}`]};`
+        ? `top: ${theme.sizes[`z${top}`]};`
         : null
     }
     ${({ right, theme }) =>
       right
-        ? `right: ${theme.size[`z${right}`]};`
+        ? `right: ${theme.sizes[`z${right}`]};`
         : null
     }
     ${({ bottom, theme }) =>
       bottom
-        ? `bottom: ${theme.size[`z${bottom}`]};`
+        ? `bottom: ${theme.sizes[`z${bottom}`]};`
         : null
     }
     ${({ left, theme }) =>
       left
-        ? `left: ${theme.size[`z${left}`]};`
+        ? `left: ${theme.sizes[`z${left}`]};`
         : null
     }
     ${({ o, theme }) =>
@@ -951,8 +958,8 @@ const Shed = ({
   return <ShedStyled {...props} />;
 };
 
-export default Shed;
 export {
-  defaultTheme,
+  Shed as default,
   createTheme,
+  reset,
 };
