@@ -147,7 +147,7 @@ const getPropsForMPValue = (prop, value = null, THEME = null) => {
   }
 };
 
-const getPropsForDValue = (prop, value = null) => {
+const getPropsForDValue = (value) => {
   switch (value) {
     case 'b':
       return 'block';
@@ -192,7 +192,7 @@ const getPropsForFSValue = (value) => {
   }
 };
 
-const getPropsForACValue = (prop, value = null) => {
+const getPropsForACValue = (value = null) => {
   switch (value) {
     case 'f-s':
       return 'flex-start';
@@ -218,7 +218,7 @@ const getPropsForACValue = (prop, value = null) => {
   }
 };
 
-const getPropsForJCValue = (prop, value = null) => {
+const getPropsForJCValue = (value = null) => {
   switch (value) {
     case 'f-s':
       return 'flex-start';
@@ -242,7 +242,7 @@ const getPropsForJCValue = (prop, value = null) => {
   }
 };
 
-const getPropsForAIValue = (prop, value = null) => {
+const getPropsForAIValue = (value = null) => {
   switch (value) {
     case 'f-s':
       return 'flex-start';
@@ -264,7 +264,7 @@ const getPropsForAIValue = (prop, value = null) => {
   }
 };
 
-const getPropsForASValue = (prop, value = null) => {
+const getPropsForASValue = (value = null) => {
   switch (value) {
     case 'a':
       return 'auto';
@@ -288,7 +288,7 @@ const getPropsForASValue = (prop, value = null) => {
   }
 };
 
-const getPropsForFlxWValue = (prop, value = null) => {
+const getPropsForFlxWValue = (value = null) => {
   switch (value) {
     case 'nw':
       return 'nowrap';
@@ -306,7 +306,7 @@ const getPropsForFlxWValue = (prop, value = null) => {
   }
 };
 
-const getPropsForFlxDValue = (prop, value = null) => {
+const getPropsForFlxDValue = (value = null) => {
   switch (value) {
     case 'r':
       return 'row';

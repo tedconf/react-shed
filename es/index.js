@@ -134,9 +134,7 @@ var getPropsForMPValue = function getPropsForMPValue(prop) {
   }
 };
 
-var getPropsForDValue = function getPropsForDValue(prop) {
-  var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'init';
-
+var getPropsForDValue = function getPropsForDValue(value) {
   switch (value) {
     case 'b':
       return 'block';
@@ -181,8 +179,8 @@ var getPropsForFSValue = function getPropsForFSValue(value) {
   }
 };
 
-var getPropsForACValue = function getPropsForACValue(prop) {
-  var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+var getPropsForACValue = function getPropsForACValue() {
+  var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
   switch (value) {
     case 'f-s':
@@ -209,8 +207,8 @@ var getPropsForACValue = function getPropsForACValue(prop) {
   }
 };
 
-var getPropsForJCValue = function getPropsForJCValue(prop) {
-  var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+var getPropsForJCValue = function getPropsForJCValue() {
+  var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
   switch (value) {
     case 'f-s':
@@ -235,8 +233,8 @@ var getPropsForJCValue = function getPropsForJCValue(prop) {
   }
 };
 
-var getPropsForAIValue = function getPropsForAIValue(prop) {
-  var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+var getPropsForAIValue = function getPropsForAIValue() {
+  var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
   switch (value) {
     case 'f-s':
@@ -259,8 +257,8 @@ var getPropsForAIValue = function getPropsForAIValue(prop) {
   }
 };
 
-var getPropsForASValue = function getPropsForASValue(prop) {
-  var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+var getPropsForASValue = function getPropsForASValue() {
+  var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
   switch (value) {
     case 'a':
@@ -285,8 +283,8 @@ var getPropsForASValue = function getPropsForASValue(prop) {
   }
 };
 
-var getPropsForFlxWValue = function getPropsForFlxWValue(prop) {
-  var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+var getPropsForFlxWValue = function getPropsForFlxWValue() {
+  var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
   switch (value) {
     case 'nw':
@@ -305,8 +303,8 @@ var getPropsForFlxWValue = function getPropsForFlxWValue(prop) {
   }
 };
 
-var getPropsForFlxDValue = function getPropsForFlxDValue(prop) {
-  var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+var getPropsForFlxDValue = function getPropsForFlxDValue() {
+  var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
   switch (value) {
     case 'r':

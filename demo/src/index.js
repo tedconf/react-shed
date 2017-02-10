@@ -26,6 +26,7 @@ const TED_THEME = createTheme({
 render(
   <ThemeProvider theme={TED_THEME}>
     <Shed
+      d="f"
       c="red"
       bg="gray-ll"
       ff="sans"
