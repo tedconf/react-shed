@@ -147,7 +147,7 @@ const getPropsForMPValue = (prop, value = null, THEME = null) => {
   }
 };
 
-const getPropsForDValue = (prop, value = 'init') => {
+const getPropsForDValue = (prop, value = null) => {
   switch (value) {
     case 'b':
       return 'block';

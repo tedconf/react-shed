@@ -135,7 +135,7 @@ var getPropsForMPValue = function getPropsForMPValue(prop) {
 };
 
 var getPropsForDValue = function getPropsForDValue(prop) {
-  var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+  var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'init';
 
   switch (value) {
     case 'b':
