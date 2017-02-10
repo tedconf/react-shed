@@ -10,8 +10,7 @@
     "color": "1.0.3",
     "modularscale": "1.0.2",
     "nwb": "0.15.5",
-    "styled-components": "~1.4.3",
-    "run-s": "^0.0.0"
+    "styled-components": "~1.4.3"
   },
   "peerDependencies": {
     "react": "~15.4.2",
@@ -21,7 +20,7 @@
   "scripts": {
     "start": "nwb serve",
     "build": "nwb build",
-    "prepublish": "yarn run-s build"
+    "prepublish": "yarn build"
   },
   "author": "Vince Speelman",
   "license": "MIT"
