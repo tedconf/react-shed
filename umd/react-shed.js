@@ -1,5 +1,5 @@
 /*!
- * react-shed v1.1.2
+ * react-shed v1.1.3
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
