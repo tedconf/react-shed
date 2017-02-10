@@ -1,5 +1,5 @@
 /*!
- * react-shed v1.0.0-alpha.1
+ * react-shed v1.0.0
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -1855,7 +1855,7 @@ var getPropsForDValue = function getPropsForDValue(prop) {
       return 'initial';
 
     default:
-      throw new Error('You must provide a valid value for the display prop. One of b, i-b, i, f, i-f, t, t-c, t-r, n, init');
+      throw new Error('You must provide a valid value for the display prop. One of b, i-b, i, f, i-f, t, t-c, t-r, n, init, not ${value}');
   }
 };
 
@@ -1872,7 +1872,7 @@ var getPropsForFSValue = function getPropsForFSValue(value) {
     case 'init':
       return 'inherit';
     default:
-      throw new Error('You must provide a valid value for the font-style prop. One of n, i, o, i, init');
+      throw new Error('You must provide a valid value for the font-style prop. One of n, i, o, i, init, not ${value}');
   }
 };
 
@@ -1900,7 +1900,7 @@ var getPropsForACValue = function getPropsForACValue(prop) {
       return 'initial';
 
     default:
-      throw new Error('You must provide a valid value for the align-content prop. One of f-s, f-e, c, s-b, s-e, s-a, i, init');
+      throw new Error('You must provide a valid value for the align-content prop. One of f-s, f-e, c, s-b, s-e, s-a, i, init, not ${value}');
   }
 };
 
@@ -1926,7 +1926,7 @@ var getPropsForJCValue = function getPropsForJCValue(prop) {
       return 'initial';
 
     default:
-      throw new Error('You must provide a valid value for the justify-content prop. One of f-s, f-e, c, s-b, s-e, s-a, i, init');
+      throw new Error('You must provide a valid value for the justify-content prop. One of f-s, f-e, c, s-b, s-e, s-a, i, init, not ${value}');
   }
 };
 
@@ -1950,7 +1950,7 @@ var getPropsForAIValue = function getPropsForAIValue(prop) {
       return 'initial';
 
     default:
-      throw new Error('You must provide a valid value for the align-items prop. One of f-s, f-e, c, b, s, i, init');
+      throw new Error('You must provide a valid value for the align-items prop. One of f-s, f-e, c, b, s, i, init, not ${value}');
   }
 };
 
@@ -1976,7 +1976,7 @@ var getPropsForASValue = function getPropsForASValue(prop) {
       return 'initial';
 
     default:
-      throw new Error('You must provide a valid value for the align-self prop. One of a, f-s, f-e, c, b, s, i, init');
+      throw new Error('You must provide a valid value for the align-self prop. One of a, f-s, f-e, c, b, s, i, init, not ${value}');
   }
 };
 
@@ -1996,7 +1996,7 @@ var getPropsForFlxWValue = function getPropsForFlxWValue(prop) {
       return 'initial';
 
     default:
-      throw new Error('You must provide a valid value for the flex-wrap prop. One of nw, w, wr, i, init');
+      throw new Error('You must provide a valid value for the flex-wrap prop. One of nw, w, wr, i, init, not ${value}');
   }
 };
 
@@ -2018,7 +2018,7 @@ var getPropsForFlxDValue = function getPropsForFlxDValue(prop) {
       return 'initial';
 
     default:
-      throw new Error('You must provide a valid value for the flex-direction prop. One of r, rr, c, cr, i, init');
+      throw new Error('You must provide a valid value for the flex-direction prop. One of r, rr, c, cr, i, init, not ${value}');
   }
 };
 
@@ -2044,7 +2044,7 @@ var getPropsForFlxBValue = function getPropsForFlxBValue(value, theme) {
       if (theme.sizes['z' + value]) {
         return '' + theme.sizes['z' + value];
       }
-      throw new Error('You must provide a valid value for the flex-basis prop. One of [scale value], a, f, max-c, min-c, fit-c, c, i, init');
+      throw new Error('You must provide a valid value for the flex-basis prop. One of [scale value], a, f, max-c, min-c, fit-c, c, i, init, not ${value}');
   }
 };
 
@@ -2061,7 +2061,7 @@ var getPropsForFlValue = function getPropsForFlValue(value) {
     case 'init':
       return 'inherit';
     default:
-      throw new Error('You must provide a valid value for the float prop. One of l, r, n, i, init');
+      throw new Error('You must provide a valid value for the float prop. One of l, r, n, i, init, not ${value}');
   }
 };
 
@@ -2074,7 +2074,7 @@ var getPropsForOValue = function getPropsForOValue(value) {
     case 's':
       return 'scroll';
     default:
-      throw new Error('You must provide a valid value for the overflow prop. One of a, h, s');
+      throw new Error('You must provide a valid value for the overflow prop. One of a, h, s, not ${value}');
   }
 };
 
@@ -2093,7 +2093,7 @@ var getPropsForTTValue = function getPropsForTTValue(value) {
     case 'init':
       return 'inherit';
     default:
-      throw new Error('You must provide a valid value for the text-transform prop. One of u, c, l, n, i, init');
+      throw new Error('You must provide a valid value for the text-transform prop. One of u, c, l, n, i, init, not ${value}');
   }
 };
 
@@ -2108,7 +2108,7 @@ var getPropsForTAValue = function getPropsForTAValue(value) {
     case 'j':
       return 'justify';
     default:
-      throw new Error('You must provide a valid value for the text-align prop. One of c, l, r, j');
+      throw new Error('You must provide a valid value for the text-align prop. One of c, l, r, j, not ${value}');
   }
 };
 
@@ -2129,7 +2129,7 @@ var getPropsForVAValue = function getPropsForVAValue(value) {
     case 'init':
       return 'initial';
     default:
-      throw new Error('You must provide a valid value for the vertical-align prop. One of t, b, m, bl, c, i, init');
+      throw new Error('You must provide a valid value for the vertical-align prop. One of t, b, m, bl, c, i, init, not ${value}');
   }
 };
 
@@ -2150,7 +2150,7 @@ var getPropsForTDValue = function getPropsForTDValue(value) {
     case 'init':
       return 'initial';
     default:
-      throw new Error('You must provide a valid value for the text-decoration prop. One of u, o, b, l-t, n, i, init');
+      throw new Error('You must provide a valid value for the text-decoration prop. One of u, o, b, l-t, n, i, init, not ${value}');
   }
 };
 
@@ -2163,7 +2163,7 @@ var getPropsForLSValue = function getPropsForLSValue(value) {
     case 'l':
       return '.3em';
     default:
-      throw new Error('You must provide a valid value for the letter-spacing prop. One of n, t, l');
+      throw new Error('You must provide a valid value for the letter-spacing prop. One of n, t, l, not ${value}');
   }
 };
 
@@ -2186,7 +2186,7 @@ var getPropsForLHValue = function getPropsForLHValue(value, theme) {
         return theme.sizes['z' + value].replace(/rem/, '').replace(/em/, '');
         ;
       }
-      throw new Error('You must provide a valid value for the line-height prop. One of [scale value], d, t, l, n, i, init');
+      throw new Error('You must provide a valid value for the line-height prop. One of [scale value], d, t, l, n, i, init, not ${value}');
   }
 };
 
@@ -2209,7 +2209,7 @@ var getPropsForPosValue = function getPropsForPosValue(value) {
     case 'init':
       return 'initial';
     default:
-      throw new Error('You must provide a valid value for the position prop. One of a, r, s, stick, c');
+      throw new Error('You must provide a valid value for the position prop. One of a, r, s, stick, c, not ${value}');
   }
 };
 
@@ -2230,7 +2230,7 @@ var getPropsForWSValue = function getPropsForWSValue(value) {
     case 'init':
       return 'initial';
     default:
-      throw new Error('You must provide a valid value for the white-space prop. One of n, nw, p, p-w, p-l, i, init');
+      throw new Error('You must provide a valid value for the white-space prop. One of n, nw, p, p-w, p-l, i, init, not ${value}');
   }
 };
 
@@ -2426,7 +2426,7 @@ var getSize = function getSize(value, theme) {
       if (theme.sizes['z' + value]) {
         return theme.sizes['z' + value];
       }
-      throw new Error('You must provide a valid value for the size prop.');
+      throw new Error('You must provide a valid value for the size prop, not ${value}');
   }
 };
 
@@ -2437,7 +2437,6 @@ var Shed = function Shed(_ref) {
       theme = _ref$theme === undefined ? createTheme() : _ref$theme,
       props = __WEBPACK_IMPORTED_MODULE_0__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_objectWithoutProperties___default()(_ref, ['component', 'theme']);
 
-  console.log('component theme', theme);
   var ShedStyled = __WEBPACK_IMPORTED_MODULE_7_styled_components___default()(component)(['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''], function (_ref2) {
     var props = __WEBPACK_IMPORTED_MODULE_0__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_objectWithoutProperties___default()(_ref2, []),
         theme = _ref2.theme;
@@ -2575,7 +2574,7 @@ var Shed = function Shed(_ref) {
   return __WEBPACK_IMPORTED_MODULE_4_react___default.a.createElement(ShedStyled, __WEBPACK_IMPORTED_MODULE_3__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_extends___default()({}, props, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 959
+      lineNumber: 958
     },
     __self: _this
   }));

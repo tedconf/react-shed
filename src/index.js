@@ -171,7 +171,7 @@ const getPropsForDValue = (prop, value = null) => {
       return 'initial';
 
     default:
-      throw new Error('You must provide a valid value for the display prop. One of b, i-b, i, f, i-f, t, t-c, t-r, n, init');
+      throw new Error('You must provide a valid value for the display prop. One of b, i-b, i, f, i-f, t, t-c, t-r, n, init, not ${value}');
   }
 };
 
@@ -188,7 +188,7 @@ const getPropsForFSValue = (value) => {
     case 'init':
       return 'inherit';
     default:
-      throw new Error('You must provide a valid value for the font-style prop. One of n, i, o, i, init');
+      throw new Error('You must provide a valid value for the font-style prop. One of n, i, o, i, init, not ${value}');
   }
 };
 
@@ -214,7 +214,7 @@ const getPropsForACValue = (prop, value = null) => {
       return 'initial';
 
     default:
-      throw new Error('You must provide a valid value for the align-content prop. One of f-s, f-e, c, s-b, s-e, s-a, i, init');
+      throw new Error('You must provide a valid value for the align-content prop. One of f-s, f-e, c, s-b, s-e, s-a, i, init, not ${value}');
   }
 };
 
@@ -238,7 +238,7 @@ const getPropsForJCValue = (prop, value = null) => {
       return 'initial';
 
     default:
-      throw new Error('You must provide a valid value for the justify-content prop. One of f-s, f-e, c, s-b, s-e, s-a, i, init');
+      throw new Error('You must provide a valid value for the justify-content prop. One of f-s, f-e, c, s-b, s-e, s-a, i, init, not ${value}');
   }
 };
 
@@ -260,7 +260,7 @@ const getPropsForAIValue = (prop, value = null) => {
       return 'initial';
 
     default:
-      throw new Error('You must provide a valid value for the align-items prop. One of f-s, f-e, c, b, s, i, init');
+      throw new Error('You must provide a valid value for the align-items prop. One of f-s, f-e, c, b, s, i, init, not ${value}');
   }
 };
 
@@ -284,7 +284,7 @@ const getPropsForASValue = (prop, value = null) => {
       return 'initial';
 
     default:
-      throw new Error('You must provide a valid value for the align-self prop. One of a, f-s, f-e, c, b, s, i, init');
+      throw new Error('You must provide a valid value for the align-self prop. One of a, f-s, f-e, c, b, s, i, init, not ${value}');
   }
 };
 
@@ -302,7 +302,7 @@ const getPropsForFlxWValue = (prop, value = null) => {
       return 'initial';
 
     default:
-      throw new Error('You must provide a valid value for the flex-wrap prop. One of nw, w, wr, i, init');
+      throw new Error('You must provide a valid value for the flex-wrap prop. One of nw, w, wr, i, init, not ${value}');
   }
 };
 
@@ -322,7 +322,7 @@ const getPropsForFlxDValue = (prop, value = null) => {
       return 'initial';
 
     default:
-      throw new Error('You must provide a valid value for the flex-direction prop. One of r, rr, c, cr, i, init');
+      throw new Error('You must provide a valid value for the flex-direction prop. One of r, rr, c, cr, i, init, not ${value}');
   }
 };
 
@@ -348,7 +348,7 @@ const getPropsForFlxBValue = (value, theme) => {
       if (theme.sizes[`z${value}`]) {
         return `${theme.sizes[`z${value}`]}`;
       }
-      throw new Error('You must provide a valid value for the flex-basis prop. One of [scale value], a, f, max-c, min-c, fit-c, c, i, init');
+      throw new Error('You must provide a valid value for the flex-basis prop. One of [scale value], a, f, max-c, min-c, fit-c, c, i, init, not ${value}');
   }
 };
 
@@ -365,7 +365,7 @@ const getPropsForFlValue = (value) => {
     case 'init':
       return 'inherit';
     default:
-      throw new Error('You must provide a valid value for the float prop. One of l, r, n, i, init');
+      throw new Error('You must provide a valid value for the float prop. One of l, r, n, i, init, not ${value}');
   }
 };
 
@@ -378,7 +378,7 @@ const getPropsForOValue = (value) => {
     case 's':
       return 'scroll';
     default:
-      throw new Error('You must provide a valid value for the overflow prop. One of a, h, s');
+      throw new Error('You must provide a valid value for the overflow prop. One of a, h, s, not ${value}');
   }
 };
 
@@ -397,7 +397,7 @@ const getPropsForTTValue = (value) => {
     case 'init':
       return 'inherit';
     default:
-      throw new Error('You must provide a valid value for the text-transform prop. One of u, c, l, n, i, init');
+      throw new Error('You must provide a valid value for the text-transform prop. One of u, c, l, n, i, init, not ${value}');
   }
 };
 
@@ -412,7 +412,7 @@ const getPropsForTAValue = (value) => {
     case 'j':
       return 'justify';
     default:
-      throw new Error('You must provide a valid value for the text-align prop. One of c, l, r, j');
+      throw new Error('You must provide a valid value for the text-align prop. One of c, l, r, j, not ${value}');
   }
 };
 
@@ -437,7 +437,7 @@ const getPropsForVAValue = (value) => {
     case 'init':
       return 'initial';
     default:
-      throw new Error('You must provide a valid value for the vertical-align prop. One of t, b, m, bl, c, i, init');
+      throw new Error('You must provide a valid value for the vertical-align prop. One of t, b, m, bl, c, i, init, not ${value}');
   }
 };
 
@@ -458,7 +458,7 @@ const getPropsForTDValue = (value) => {
     case 'init':
       return 'initial';
     default:
-      throw new Error('You must provide a valid value for the text-decoration prop. One of u, o, b, l-t, n, i, init');
+      throw new Error('You must provide a valid value for the text-decoration prop. One of u, o, b, l-t, n, i, init, not ${value}');
   }
 };
 
@@ -471,7 +471,7 @@ const getPropsForLSValue = (value) => {
     case 'l':
       return '.3em';
     default:
-      throw new Error('You must provide a valid value for the letter-spacing prop. One of n, t, l');
+      throw new Error('You must provide a valid value for the letter-spacing prop. One of n, t, l, not ${value}');
   }
 };
 
@@ -500,7 +500,7 @@ const getPropsForLHValue = (value, theme) => {
           .replace(/em/, '');
         ;
       }
-      throw new Error('You must provide a valid value for the line-height prop. One of [scale value], d, t, l, n, i, init');
+      throw new Error('You must provide a valid value for the line-height prop. One of [scale value], d, t, l, n, i, init, not ${value}');
   }
 };
 
@@ -528,7 +528,7 @@ const getPropsForPosValue = (value) => {
     case 'init':
       return 'initial';
     default:
-      throw new Error('You must provide a valid value for the position prop. One of a, r, s, stick, c');
+      throw new Error('You must provide a valid value for the position prop. One of a, r, s, stick, c, not ${value}');
   }
 };
 
@@ -549,7 +549,7 @@ const getPropsForWSValue = (value) => {
     case 'init':
       return 'initial';
     default:
-      throw new Error('You must provide a valid value for the white-space prop. One of n, nw, p, p-w, p-l, i, init');
+      throw new Error('You must provide a valid value for the white-space prop. One of n, nw, p, p-w, p-l, i, init, not ${value}');
   }
 };
 
@@ -762,7 +762,7 @@ const getSize = (value, theme) => {
       if (theme.sizes[`z${value}`]) {
         return theme.sizes[`z${value}`];
       }
-      throw new Error('You must provide a valid value for the size prop.');
+      throw new Error('You must provide a valid value for the size prop, not ${value}');
   }
 }
 
