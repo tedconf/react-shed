@@ -20,6 +20,7 @@ const reset = injectGlobal`
 const createTheme = (
   userTheme = {
     sizes: 'major second',
+    steps: 20,
     colors: {
       black: '#000000',
       white: '#ffffff',
@@ -38,7 +39,7 @@ const createTheme = (
 
   if (userTheme.sizes && typeof userTheme.sizes === 'string') {
     try {
-      generatedTheme.sizes = sizes(userTheme.sizes);
+      generatedTheme.sizes = sizes(userTheme.sizes, userTheme.steps);
     } catch (e) {
       throw new Error(e);
    }
