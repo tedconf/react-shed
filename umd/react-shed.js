@@ -1,5 +1,5 @@
 /*!
- * react-shed v1.3.0
+ * react-shed v1.4.0
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -1720,6 +1720,7 @@ var reset = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7_styled_components_
 var createTheme = function createTheme() {
   var userTheme = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
     sizes: 'major second',
+    steps: 20,
     colors: {
       black: '#000000',
       white: '#ffffff',
@@ -1738,7 +1739,7 @@ var createTheme = function createTheme() {
 
   if (userTheme.sizes && typeof userTheme.sizes === 'string') {
     try {
-      generatedTheme.sizes = sizes(userTheme.sizes);
+      generatedTheme.sizes = sizes(userTheme.sizes, userTheme.steps);
     } catch (e) {
       throw new Error(e);
     }
@@ -2236,6 +2237,12 @@ var getPropsForColor = function getPropsForColor(value, theme) {
   if (value === 'transparent') {
     return 'transparent';
   }
+  if (value === 'currentColor') {
+    return 'currentColor';
+  }
+  if (value === 'inherit') {
+    return 'inherit';
+  }
   var alpha = /(.+)(\.\d)/.exec(value);
   if (alpha) {
     return __WEBPACK_IMPORTED_MODULE_5_color___default()(theme.colors['' + alpha[1]]).alpha(alpha[2]).string();
@@ -2608,7 +2615,7 @@ var Shed = function Shed(_ref) {
   return __WEBPACK_IMPORTED_MODULE_4_react___default.a.createElement(ShedStyled, __WEBPACK_IMPORTED_MODULE_3__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_extends___default()({}, props, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1022
+      lineNumber: 1029
     },
     __self: _this
   }));

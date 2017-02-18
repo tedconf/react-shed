@@ -25,6 +25,7 @@ var reset = injectGlobal(_templateObject);
 var createTheme = function createTheme() {
   var userTheme = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
     sizes: 'major second',
+    steps: 20,
     colors: {
       black: '#000000',
       white: '#ffffff',
@@ -43,7 +44,7 @@ var createTheme = function createTheme() {
 
   if (userTheme.sizes && typeof userTheme.sizes === 'string') {
     try {
-      generatedTheme.sizes = sizes(userTheme.sizes);
+      generatedTheme.sizes = sizes(userTheme.sizes, userTheme.steps);
     } catch (e) {
       throw new Error(e);
     }
@@ -540,6 +541,12 @@ var getPropsForWSValue = function getPropsForWSValue(value) {
 var getPropsForColor = function getPropsForColor(value, theme) {
   if (value === 'transparent') {
     return 'transparent';
+  }
+  if (value === 'currentColor') {
+    return 'currentColor';
+  }
+  if (value === 'inherit') {
+    return 'inherit';
   }
   var alpha = /(.+)(\.\d)/.exec(value);
   if (alpha) {
