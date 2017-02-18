@@ -764,6 +764,8 @@ const getSize = (value, theme) => {
       return `${(11/12) * 100}%`
     case 'full':
       return `100%`
+    case 'a':
+      return 'auto'
     default:
       if (theme.sizes[`z${value}`]) {
         return theme.sizes[`z${value}`];

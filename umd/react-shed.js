@@ -1,5 +1,5 @@
 /*!
- * react-shed v1.4.0
+ * react-shed v1.5.0
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -2427,6 +2427,8 @@ var getSize = function getSize(value, theme) {
       return 11 / 12 * 100 + '%';
     case 'full':
       return '100%';
+    case 'a':
+      return 'auto';
     default:
       if (theme.sizes['z' + value]) {
         return theme.sizes['z' + value];
@@ -2615,7 +2617,7 @@ var Shed = function Shed(_ref) {
   return __WEBPACK_IMPORTED_MODULE_4_react___default.a.createElement(ShedStyled, __WEBPACK_IMPORTED_MODULE_3__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_extends___default()({}, props, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1029
+      lineNumber: 1031
     },
     __self: _this
   }));
