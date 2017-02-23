@@ -912,7 +912,7 @@ var Shed = function Shed(_ref) {
   }, function (_ref46) {
     var mw = _ref46.mw,
         theme = _ref46.theme;
-    return mw ? 'max-width: ' + getSize(w, theme) + ';' : null;
+    return mw ? 'max-width: ' + getSize(mw, theme) + ';' : null;
   }, function (_ref47) {
     var h = _ref47.h,
         theme = _ref47.theme;

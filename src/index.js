@@ -1018,7 +1018,7 @@ const Shed = ({
     }
     ${({ mw, theme }) =>
       mw
-      ?  `max-width: ${getSize(w, theme)};`
+      ?  `max-width: ${getSize(mw, theme)};`
       : null
     }
     ${({ h, theme }) =>
