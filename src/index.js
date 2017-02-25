@@ -841,6 +841,11 @@ const Shed = ({
         ? `text-decoration: ${getPropsForTDValue(td)};`
         : null
     }
+    ${({ tdc, theme }) =>
+      tdc
+        ? `text-decoration-color: ${getPropsForColor(tdc, theme)};`
+        : null
+    }
     ${({ d }) =>
       d
         ? `display: ${getPropsForDValue(d)};`

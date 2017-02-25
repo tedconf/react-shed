@@ -749,7 +749,7 @@ var Shed = function Shed(_ref) {
       theme = _ref$theme === undefined ? createTheme() : _ref$theme,
       props = _objectWithoutProperties(_ref, ['component', 'theme']);
 
-  var ShedStyled = styled(component)(['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''], function (_ref2) {
+  var ShedStyled = styled(component)(['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''], function (_ref2) {
     var props = _objectWithoutProperties(_ref2, []),
         theme = _ref2.theme;
 
@@ -798,124 +798,128 @@ var Shed = function Shed(_ref) {
     var td = _ref14.td;
     return td ? 'text-decoration: ' + getPropsForTDValue(td) + ';' : null;
   }, function (_ref15) {
-    var d = _ref15.d;
-    return d ? 'display: ' + getPropsForDValue(d) + ';' : null;
+    var tdc = _ref15.tdc,
+        theme = _ref15.theme;
+    return tdc ? 'text-decoration-color: ' + getPropsForColor(tdc, theme) + ';' : null;
   }, function (_ref16) {
-    var flxg = _ref16.flxg;
-    return flxg ? 'flex-grow: ' + flxg + ';' : null;
+    var d = _ref16.d;
+    return d ? 'display: ' + getPropsForDValue(d) + ';' : null;
   }, function (_ref17) {
-    var flxs = _ref17.flxs;
-    return flxs ? 'flex-shrink: ' + flxs + ';' : null;
+    var flxg = _ref17.flxg;
+    return flxg ? 'flex-grow: ' + flxg + ';' : null;
   }, function (_ref18) {
-    var jc = _ref18.jc;
-    return jc ? 'justify-content: ' + getPropsForJCValue(jc) + ';' : null;
+    var flxs = _ref18.flxs;
+    return flxs ? 'flex-shrink: ' + flxs + ';' : null;
   }, function (_ref19) {
-    var ac = _ref19.ac;
-    return ac ? 'align-content: ' + getPropsForACValue(ac) + ';' : null;
+    var jc = _ref19.jc;
+    return jc ? 'justify-content: ' + getPropsForJCValue(jc) + ';' : null;
   }, function (_ref20) {
-    var ai = _ref20.ai;
-    return ai ? 'align-items: ' + getPropsForAIValue(ai) + ';' : null;
+    var ac = _ref20.ac;
+    return ac ? 'align-content: ' + getPropsForACValue(ac) + ';' : null;
   }, function (_ref21) {
-    var as = _ref21.as;
-    return as ? 'align-self: ' + getPropsForASValue(as) + ';' : null;
+    var ai = _ref21.ai;
+    return ai ? 'align-items: ' + getPropsForAIValue(ai) + ';' : null;
   }, function (_ref22) {
-    var flxw = _ref22.flxw;
-    return flxw ? 'flex-wrap: ' + getPropsForFlxWValue(flxw) + ';' : null;
+    var as = _ref22.as;
+    return as ? 'align-self: ' + getPropsForASValue(as) + ';' : null;
   }, function (_ref23) {
-    var flxd = _ref23.flxd;
-    return flxd ? 'flex-direction: ' + getPropsForFlxDValue(flxd) + ';' : null;
+    var flxw = _ref23.flxw;
+    return flxw ? 'flex-wrap: ' + getPropsForFlxWValue(flxw) + ';' : null;
   }, function (_ref24) {
-    var flxb = _ref24.flxb,
-        theme = _ref24.theme;
-    return flxb ? 'flex-basis: ' + getPropsForFlxBValue(flxb, theme) + ';' : null;
+    var flxd = _ref24.flxd;
+    return flxd ? 'flex-direction: ' + getPropsForFlxDValue(flxd) + ';' : null;
   }, function (_ref25) {
-    var fl = _ref25.fl;
-    return fl ? 'float: ' + getPropsForFlValue(fl) + ';' : null;
+    var flxb = _ref25.flxb,
+        theme = _ref25.theme;
+    return flxb ? 'flex-basis: ' + getPropsForFlxBValue(flxb, theme) + ';' : null;
   }, function (_ref26) {
-    var pos = _ref26.pos;
-    return pos ? 'position: ' + getPropsForPosValue(pos) + ';' : null;
+    var fl = _ref26.fl;
+    return fl ? 'float: ' + getPropsForFlValue(fl) + ';' : null;
   }, function (_ref27) {
-    var top = _ref27.top,
-        theme = _ref27.theme;
-    return top ? 'top: ' + theme.sizes['z' + top] + ';' : null;
+    var pos = _ref27.pos;
+    return pos ? 'position: ' + getPropsForPosValue(pos) + ';' : null;
   }, function (_ref28) {
-    var right = _ref28.right,
+    var top = _ref28.top,
         theme = _ref28.theme;
-    return right ? 'right: ' + theme.sizes['z' + right] + ';' : null;
+    return top ? 'top: ' + theme.sizes['z' + top] + ';' : null;
   }, function (_ref29) {
-    var bottom = _ref29.bottom,
+    var right = _ref29.right,
         theme = _ref29.theme;
-    return bottom ? 'bottom: ' + theme.sizes['z' + bottom] + ';' : null;
+    return right ? 'right: ' + theme.sizes['z' + right] + ';' : null;
   }, function (_ref30) {
-    var left = _ref30.left,
+    var bottom = _ref30.bottom,
         theme = _ref30.theme;
-    return left ? 'left: ' + theme.sizes['z' + left] + ';' : null;
+    return bottom ? 'bottom: ' + theme.sizes['z' + bottom] + ';' : null;
   }, function (_ref31) {
-    var o = _ref31.o,
+    var left = _ref31.left,
         theme = _ref31.theme;
-    return o ? 'overflow: ' + getPropsForOValue(o) + ';' : null;
+    return left ? 'left: ' + theme.sizes['z' + left] + ';' : null;
   }, function (_ref32) {
-    var ox = _ref32.ox,
+    var o = _ref32.o,
         theme = _ref32.theme;
-    return ox ? 'overflow-x: ' + getPropsForOValue(ox) + ';' : null;
+    return o ? 'overflow: ' + getPropsForOValue(o) + ';' : null;
   }, function (_ref33) {
-    var oy = _ref33.oy,
+    var ox = _ref33.ox,
         theme = _ref33.theme;
-    return oy ? 'overflow-y: ' + getPropsForOValue(oy) + ';' : null;
+    return ox ? 'overflow-x: ' + getPropsForOValue(ox) + ';' : null;
   }, function (_ref34) {
-    var zi = _ref34.zi,
+    var oy = _ref34.oy,
         theme = _ref34.theme;
-    return zi ? 'z-index: ' + zi + ';' : null;
+    return oy ? 'overflow-y: ' + getPropsForOValue(oy) + ';' : null;
   }, function (_ref35) {
-    var ws = _ref35.ws;
-    return ws ? 'white-space: ' + getPropsForWSValue(ws) + ';' : null;
+    var zi = _ref35.zi,
+        theme = _ref35.theme;
+    return zi ? 'z-index: ' + zi + ';' : null;
   }, function (_ref36) {
-    var br = _ref36.br,
-        theme = _ref36.theme;
-    return br ? 'border-radius: ' + getSize(br, theme) + ';' : null;
+    var ws = _ref36.ws;
+    return ws ? 'white-space: ' + getPropsForWSValue(ws) + ';' : null;
   }, function (_ref37) {
-    var brl = _ref37.brl,
+    var br = _ref37.br,
         theme = _ref37.theme;
-    return brl ? '\n        border-top-left-radius: ' + getSize(brl, theme) + ';\n        border-bottom-left-radius: ' + getSize(brl, theme) + ';\n      ' : null;
+    return br ? 'border-radius: ' + getSize(br, theme) + ';' : null;
   }, function (_ref38) {
-    var brr = _ref38.brr,
+    var brl = _ref38.brl,
         theme = _ref38.theme;
-    return brr ? '\n        border-top-right-radius: ' + getSize(brr, theme) + ';\n        border-bottom-right-radius: ' + getSize(brr, theme) + ';\n      ' : null;
+    return brl ? '\n        border-top-left-radius: ' + getSize(brl, theme) + ';\n        border-bottom-left-radius: ' + getSize(brl, theme) + ';\n      ' : null;
   }, function (_ref39) {
-    var brt = _ref39.brt,
+    var brr = _ref39.brr,
         theme = _ref39.theme;
-    return brt ? '\n        border-top-left-radius: ' + getSize(brt, theme) + ';\n        border-top-right-radius: ' + getSize(brt, theme) + ';\n      ' : null;
+    return brr ? '\n        border-top-right-radius: ' + getSize(brr, theme) + ';\n        border-bottom-right-radius: ' + getSize(brr, theme) + ';\n      ' : null;
   }, function (_ref40) {
-    var brb = _ref40.brb,
+    var brt = _ref40.brt,
         theme = _ref40.theme;
-    return brb ? '\n        border-bottom-left-radius: ' + getSize(brb, theme) + ';\n        border-bottom-right-radius: ' + getSize(brb, theme) + ';\n      ' : null;
+    return brt ? '\n        border-top-left-radius: ' + getSize(brt, theme) + ';\n        border-top-right-radius: ' + getSize(brt, theme) + ';\n      ' : null;
   }, function (_ref41) {
-    var brtl = _ref41.brtl,
+    var brb = _ref41.brb,
         theme = _ref41.theme;
-    return brtl ? '\n        border-top-left-radius: ' + getSize(brtl, theme) + ';\n      ' : null;
+    return brb ? '\n        border-bottom-left-radius: ' + getSize(brb, theme) + ';\n        border-bottom-right-radius: ' + getSize(brb, theme) + ';\n      ' : null;
   }, function (_ref42) {
-    var brtr = _ref42.brtr,
+    var brtl = _ref42.brtl,
         theme = _ref42.theme;
-    return brtr ? '\n        border-top-right-radius: ' + getSize(brtr, theme) + ';\n      ' : null;
+    return brtl ? '\n        border-top-left-radius: ' + getSize(brtl, theme) + ';\n      ' : null;
   }, function (_ref43) {
-    var brbr = _ref43.brbr,
+    var brtr = _ref43.brtr,
         theme = _ref43.theme;
-    return brbr ? '\n        border-bottom-right-radius: ' + getSize(brbr, theme) + ';\n      ' : null;
+    return brtr ? '\n        border-top-right-radius: ' + getSize(brtr, theme) + ';\n      ' : null;
   }, function (_ref44) {
-    var brbl = _ref44.brbl,
+    var brbr = _ref44.brbr,
         theme = _ref44.theme;
-    return brbl ? '\n        border-bottom-left-radius: ' + getSize(brbl, theme) + ';\n      ' : null;
+    return brbr ? '\n        border-bottom-right-radius: ' + getSize(brbr, theme) + ';\n      ' : null;
   }, function (_ref45) {
-    var w = _ref45.w,
+    var brbl = _ref45.brbl,
         theme = _ref45.theme;
-    return w ? 'width: ' + getSize(w, theme) + ';' : null;
+    return brbl ? '\n        border-bottom-left-radius: ' + getSize(brbl, theme) + ';\n      ' : null;
   }, function (_ref46) {
-    var mw = _ref46.mw,
+    var w = _ref46.w,
         theme = _ref46.theme;
-    return mw ? 'max-width: ' + getSize(mw, theme) + ';' : null;
+    return w ? 'width: ' + getSize(w, theme) + ';' : null;
   }, function (_ref47) {
-    var h = _ref47.h,
+    var mw = _ref47.mw,
         theme = _ref47.theme;
+    return mw ? 'max-width: ' + getSize(mw, theme) + ';' : null;
+  }, function (_ref48) {
+    var h = _ref48.h,
+        theme = _ref48.theme;
     return h ? 'height: ' + getSize(h, theme) + ';' : null;
   });
 
