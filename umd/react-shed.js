@@ -1,5 +1,5 @@
 /*!
- * react-shed v1.6.1
+ * react-shed v1.7.0
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -1711,7 +1711,7 @@ var sizes = function sizes() {
   return Array.from([].concat(Array(number))).reduce(function (acc, curr, i) {
     var _extends2;
 
-    return __WEBPACK_IMPORTED_MODULE_3__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_extends___default()({}, acc, (_extends2 = {}, _extends2['z' + i] = __WEBPACK_IMPORTED_MODULE_6_modularscale___default()(i - 1, scale) + 'rem', _extends2.z0 = 0, _extends2['z.' + (number - i)] = __WEBPACK_IMPORTED_MODULE_6_modularscale___default()(-1 - i, scale) + 'rem', _extends2));
+    return __WEBPACK_IMPORTED_MODULE_3__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_extends___default()({}, acc, (_extends2 = {}, _extends2['z' + i] = __WEBPACK_IMPORTED_MODULE_6_modularscale___default()(i - 1, scale) + 'rem', _extends2.z0 = 0, _extends2['z.' + (number - i)] = __WEBPACK_IMPORTED_MODULE_6_modularscale___default()(i - number, scale) + 'rem', _extends2));
   }, {});
 };
 

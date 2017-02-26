@@ -16,7 +16,7 @@ var sizes = function sizes() {
   return Array.from([].concat(Array(number))).reduce(function (acc, curr, i) {
     var _extends2;
 
-    return _extends({}, acc, (_extends2 = {}, _extends2['z' + i] = ms(i - 1, scale) + 'rem', _extends2.z0 = 0, _extends2['z.' + (number - i)] = ms(-1 - i, scale) + 'rem', _extends2));
+    return _extends({}, acc, (_extends2 = {}, _extends2['z' + i] = ms(i - 1, scale) + 'rem', _extends2.z0 = 0, _extends2['z.' + (number - i)] = ms(i - number, scale) + 'rem', _extends2));
   }, {});
 };
 
