@@ -96,7 +96,11 @@ const getPropsForMPValue = (prop, value = null, THEME = null) => {
   let formattedVal = value;
   if (value === 'a') {
     formattedVal = 'auto';
-  } else {
+	}
+	if (prop === 'mx' && value === 'r') {
+		formattedVal = 'calc(-50vw + 50%)'
+	}
+	else {
     formattedVal = `${THEME.sizes[`z${value}`]}`;
   }
   switch (prop) {
