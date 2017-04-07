@@ -10,7 +10,7 @@ const sizes = (scale = 'major second', number = 20) => Array.from([...Array(numb
   ...acc,
   [`z${i}`]: `${ms((i - 1), scale)}rem`,
   z0: 0,
-	[`z.${number - i}`]: `${ms((i - number), scale)}rem`,
+  [`z.${number - i}`]: `${ms((i - number), scale)}rem`,
 }), {});
 
 const reset = injectGlobal`
@@ -96,11 +96,11 @@ const getPropsForMPValue = (prop, value = null, THEME = null) => {
   let formattedVal = value;
   if (value === 'a') {
     formattedVal = 'auto';
-	}
-	if (prop === 'mx' && value === 'r') {
-		formattedVal = 'calc(-50vw + 50%)'
-	}
-	else {
+  }
+  if (prop === 'mx' && value === 'r') {
+    formattedVal = 'calc(-50vw + 50%)'
+  }
+  else {
     formattedVal = `${THEME.sizes[`z${value}`]}`;
   }
   switch (prop) {
@@ -423,13 +423,13 @@ const getPropsForTAValue = (value) => {
 const getPropsForVAValue = (value) => {
   switch (value) {
     case 't':
-      return 'vertical-align: top';
+      return 'vertical-align: top;';
     case 'b':
-      return 'vertical-align: bottom';
+      return 'vertical-align: bottom;';
     case 'm':
-      return 'vertical-align: middle';
+      return 'vertical-align: middle;';
     case 'bl':
-      return 'vertical-align: baseline';
+      return 'vertical-align: baseline;';
     case 'c':
       return `
         position: relative;
@@ -437,9 +437,9 @@ const getPropsForVAValue = (value) => {
         transform: translateY(-50%);
       `;
     case 'i':
-      return 'inherit';
+      return 'vertical-align: inherit;';
     case 'init':
-      return 'initial';
+      return 'vertical-align: initial;';
     default:
       throw new Error(`You must provide a valid value for the vertical-align prop. One of t, b, m, bl, c, i, init, not ${value}`);
   }
@@ -511,15 +511,15 @@ const getPropsForLHValue = (value, theme) => {
 const getPropsForPosValue = (value) => {
   switch (value) {
     case 'a':
-      return 'position: absolute';
+      return 'position: absolute;';
     case 'r':
-      return 'position: relative';
+      return 'position: relative;';
     case 'f':
-      return 'position: fixed'
+      return 'position: fixed;'
     case 's':
-      return 'position: static'
+      return 'position: static;'
     case 'stick':
-      return 'position: sticky';
+      return 'position: sticky;';
     case 'c':
       return `
         top: 0;
@@ -528,9 +528,9 @@ const getPropsForPosValue = (value) => {
         left: 0;
       `;
     case 'i':
-      return 'position: inherit';
+      return 'position: inherit;';
     case 'init':
-      return 'initial';
+      return 'initial;';
     default:
       throw new Error(`You must provide a valid value for the position prop. One of a, r, s, stick, c, not ${value}`);
   }
@@ -837,7 +837,7 @@ const Shed = ({
     }
     ${({ va }) =>
       va
-        ? `${getPropsForVAValue(va)};`
+        ? `${getPropsForVAValue(va)}`
         : null
     }
     ${({ td }) =>
@@ -905,11 +905,11 @@ const Shed = ({
         ? `float: ${getPropsForFlValue(fl)};`
         : null
     }
-    ${({ pos }) => 
+    ${({ pos }) => (
       pos
-        ? `position: ${getPropsForPosValue(pos)};`
+        ? `${getPropsForPosValue(pos)};`
         : null
-    }
+    )}
     ${({ top, theme }) =>
       top
         ? `top: ${theme.sizes[`z${top}`]};`

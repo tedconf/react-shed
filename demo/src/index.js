@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import Shed, {
   createTheme,
   reset,
-} from '../../lib';
+} from '../../src';
 
 const TED_THEME = createTheme({
   sizes: 'minor third',
@@ -25,15 +25,8 @@ const TED_THEME = createTheme({
 
 render(
   <ThemeProvider theme={TED_THEME}>
-    <Shed
-      d="f"
-      c="red"
-      bg="gray-ll"
-      ff="sans"
-      lh="t"
-      pl="2"
-      mb="1"
-      ls="t"
+    <div.shed
+      pos="a"
     >
       <h1.shed
         f="1"
@@ -42,7 +35,7 @@ render(
         and 1 unit of margin on the bottom with a tight line-height and tight
         letter-spacing.
       </h1.shed>
-    </Shed>
+    </div.shed>
   </ThemeProvider>
   , document.querySelector('#demo')
 );
