@@ -16,7 +16,7 @@ var sizes = function sizes() {
   return Array.from([].concat(Array(number))).reduce(function (acc, curr, i) {
     var _extends2;
 
-    return _extends({}, acc, (_extends2 = {}, _extends2['z' + i] = ms(i - 1, scale) + 'rem', _extends2.z0 = 0, _extends2['z.' + (number - i)] = ms(i - number, scale) + 'rem', _extends2));
+    return _extends({}, acc, (_extends2 = {}, _extends2['z' + i] = ms(i - 1, scale) + 'rem', _extends2.z0 = 0, _extends2['z.' + (number - i)] = ms(i - number, scale) + 'rem', _extends2['z-' + i] = '-' + ms(i - 1, scale) + 'rem', _extends2['z0'] = 0, _extends2['z.-' + (number - i)] = '-' + ms(i - number, scale) + 'rem', _extends2));
   }, {});
 };
 
@@ -422,19 +422,19 @@ var getPropsForTAValue = function getPropsForTAValue(value) {
 var getPropsForVAValue = function getPropsForVAValue(value) {
   switch (value) {
     case 't':
-      return 'vertical-align: top';
+      return 'vertical-align: top;';
     case 'b':
-      return 'vertical-align: bottom';
+      return 'vertical-align: bottom;';
     case 'm':
-      return 'vertical-align: middle';
+      return 'vertical-align: middle;';
     case 'bl':
-      return 'vertical-align: baseline';
+      return 'vertical-align: baseline;';
     case 'c':
       return '\n        position: relative;\n        top: 50%;\n        transform: translateY(-50%);\n      ';
     case 'i':
-      return 'inherit';
+      return 'vertical-align: inherit;';
     case 'init':
-      return 'initial';
+      return 'vertical-align: initial;';
     default:
       throw new Error('You must provide a valid value for the vertical-align prop. One of t, b, m, bl, c, i, init, not ' + value);
   }
@@ -500,21 +500,21 @@ var getPropsForLHValue = function getPropsForLHValue(value, theme) {
 var getPropsForPosValue = function getPropsForPosValue(value) {
   switch (value) {
     case 'a':
-      return 'position: absolute';
+      return 'position: absolute;';
     case 'r':
-      return 'position: relative';
+      return 'position: relative;';
     case 'f':
-      return 'position: fixed';
+      return 'position: fixed;';
     case 's':
-      return 'position: static';
+      return 'position: static;';
     case 'stick':
-      return 'position: sticky';
+      return 'position: sticky;';
     case 'c':
       return '\n        top: 0;\n        right: 0;\n        bottom: 0;\n        left: 0;\n      ';
     case 'i':
-      return 'position: inherit';
+      return 'position: inherit;';
     case 'init':
-      return 'initial';
+      return 'initial;';
     default:
       throw new Error('You must provide a valid value for the position prop. One of a, r, s, stick, c, not ' + value);
   }
@@ -796,7 +796,7 @@ var Shed = function Shed(_ref) {
     return ta ? 'text-align: ' + getPropsForTAValue(ta) + ';' : null;
   }, function (_ref13) {
     var va = _ref13.va;
-    return va ? getPropsForVAValue(va) + ';' : null;
+    return va ? '' + getPropsForVAValue(va) : null;
   }, function (_ref14) {
     var td = _ref14.td;
     return td ? 'text-decoration: ' + getPropsForTDValue(td) + ';' : null;
@@ -840,7 +840,7 @@ var Shed = function Shed(_ref) {
     return fl ? 'float: ' + getPropsForFlValue(fl) + ';' : null;
   }, function (_ref27) {
     var pos = _ref27.pos;
-    return pos ? 'position: ' + getPropsForPosValue(pos) + ';' : null;
+    return pos ? getPropsForPosValue(pos) + ';' : null;
   }, function (_ref28) {
     var top = _ref28.top,
         theme = _ref28.theme;

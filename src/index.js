@@ -11,6 +11,9 @@ const sizes = (scale = 'major second', number = 20) => Array.from([...Array(numb
   [`z${i}`]: `${ms((i - 1), scale)}rem`,
   z0: 0,
   [`z.${number - i}`]: `${ms((i - number), scale)}rem`,
+  [`z-${i}`]: `-${ms((i - 1), scale)}rem`,
+  z0: 0,
+  [`z.-${number - i}`]: `-${ms((i - number), scale)}rem`,
 }), {});
 
 const reset = injectGlobal`
