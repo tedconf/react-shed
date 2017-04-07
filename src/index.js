@@ -423,13 +423,13 @@ const getPropsForTAValue = (value) => {
 const getPropsForVAValue = (value) => {
   switch (value) {
     case 't':
-      return 'vertical-align: top;';
+      return 'vertical-align: top';
     case 'b':
-      return 'vertical-align: bottom;';
+      return 'vertical-align: bottom';
     case 'm':
-      return 'vertical-align: middle;';
+      return 'vertical-align: middle';
     case 'bl':
-      return 'vertical-align: baseline;';
+      return 'vertical-align: baseline';
     case 'c':
       return `
         position: relative;
@@ -511,15 +511,15 @@ const getPropsForLHValue = (value, theme) => {
 const getPropsForPosValue = (value) => {
   switch (value) {
     case 'a':
-      return 'position: absolute;';
+      return 'position: absolute';
     case 'r':
-      return 'position: relative;';
+      return 'position: relative';
     case 'f':
-      return 'position: fixed;'
+      return 'position: fixed'
     case 's':
-      return 'position: static;'
+      return 'position: static'
     case 'stick':
-      return 'position: sticky;';
+      return 'position: sticky';
     case 'c':
       return `
         top: 0;
@@ -837,7 +837,7 @@ const Shed = ({
     }
     ${({ va }) =>
       va
-        ? `${getPropsForVAValue(va)}`
+        ? `${getPropsForVAValue(va)};`
         : null
     }
     ${({ td }) =>
