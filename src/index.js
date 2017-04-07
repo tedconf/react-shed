@@ -93,19 +93,21 @@ const createTheme = (
 };
 
 const getPropsForMPValue = (prop, value = null, THEME = null) => {
+  let formattedVal = value;
   if (THEME.sizes === null) {
     throw new Error('can\'t generate values without theme sizes');
   }
-  let formattedVal = value;
   if (value === 'a') {
     formattedVal = 'auto';
   }
   if (prop === 'mx' && value === 'r') {
     formattedVal = 'calc(-50vw + 50%)'
   }
-  else {
+
+  if (value !== 'a' && prop !== 'mx' && value !== 'r') {
     formattedVal = `${THEME.sizes[`z${value}`]}`;
   }
+
   switch (prop) {
     case 'm':
       return `margin: ${formattedVal};`;

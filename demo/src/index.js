@@ -26,7 +26,7 @@ const TED_THEME = createTheme({
 render(
   <ThemeProvider theme={TED_THEME}>
     <div.shed
-      pos="a"
+      mx="a"
     >
       <h1.shed
         f="1"
