@@ -7,7 +7,7 @@ import styled, {
   withTheme,
 } from 'styled-components';
 
-const strinpUnit = val => val.replace(/(r?em|px|pc|ex|ch|ic|lh|rlh|vh|vw|vi|vb|vmin|vmax|mm|q|cm|in|pt)/, '');
+const stripUnit = val => val.replace(/(r?em|px|pc|ex|ch|ic|lh|rlh|vh|vw|vi|vb|vmin|vmax|mm|q|cm|in|pt)/, '');
 
 const isValid = curry.to(2, (label, val) => {
   if (typeof val !== 'string') {
