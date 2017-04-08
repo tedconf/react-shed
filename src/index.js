@@ -6,6 +6,8 @@ import styled, {
   withTheme,
 } from 'styled-components';
 
+const strinpUnit = val => val.replace(/(r?em|px|pc|ex|ch|ic|lh|rlh|vh|vw|vi|vb|vmin|vmax|mm|q|cm|in|pt)/, '');
+
 const sizes = (scale = 'major second', number = 20) => Array.from([...Array(number)]).reduce((acc, curr, i) => ({
   ...acc,
   [`z${i}`]: `${ms((i - 1), scale)}rem`,
@@ -181,6 +183,34 @@ const getPropsForDValue = (value) => {
 
     default:
       throw new Error(`You must provide a valid value for the display prop. One of b, i-b, i, f, i-f, t, t-c, t-r, n, init, not ${value}`);
+  }
+};
+
+const getPropsForCurValue = (value) => {
+  if (typeof value !== string) {
+    throw new Error(`You must provide a valid value for the cursor prop. A string, not ${value}`);
+  }
+  switch (value) {
+    case 'h':
+      return 'help';
+    case 'n-a':
+      return 'not-allowed';
+    case 'g':
+      return 'grab';
+    case 'gg':
+      return 'grabbing';
+    case 'p':
+      return 'pointer';
+    case 'd':
+      return 'default';
+    case 'a':
+      return 'auto';
+    case 'n':
+      return 'none';
+    case 'init':
+      return 'initial';
+    default:
+      return 'value';
   }
 };
 
@@ -491,22 +521,16 @@ const getPropsForLHValue = (value, theme) => {
     case 'n':
       return 'normal';
     case 't':
-      return theme.sizes['z2']
-        .replace(/rem/, '')
-        .replace(/em/, '');
+      return stripUnit(theme.sizes['z2']);
     case 'l':
-      return theme.sizes['z4']
-        .replace(/rem/, '')
-        .replace(/em/, '');
+      return stripUnit(theme.sizes['z4']);
     case 'i':
       return 'inherit';
     case 'init':
       return 'initial';
     default:
       if (theme.sizes[`z${value}`]) {
-        return theme.sizes[`z${value}`]
-          .replace(/rem/, '')
-          .replace(/em/, '');
+        return stripUnit(theme.sizes[`z${value}`]);
         ;
       }
       throw new Error(`You must provide a valid value for the line-height prop. One of [scale value], d, t, l, n, i, init, not ${value}`);
@@ -606,6 +630,13 @@ const getMarginAndPadding = (props, theme) => {
     });
   }
   return newProps;
+};
+
+const getOpacity = (value = parseInt(value, 10)) => {
+  if (typeof value !== number || value > 1 || value < 0) {
+    throw new Error(`You must provide a valid value for the opacity prop: A number between 0 and 1, or i/init/unset, not ${value}`);
+  }
+  return value;
 };
 
 const getSize = (value, theme) => {
@@ -1038,6 +1069,16 @@ const Shed = ({
     ${({ h, theme }) =>
       h
       ? `height: ${getSize(h, theme)};`
+      : null
+    }
+    ${({ op, theme }) =>
+      op
+      ? `opacity: ${getOpacity(op)};`
+      : null
+    }
+    ${({ cur, theme }) =>
+      cur
+      ? `cursor: ${getPropsForCurValue(cur)};`
       : null
     }
   `;
