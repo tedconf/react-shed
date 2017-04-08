@@ -29,5 +29,8 @@
     "prepublish": "yarn build"
   },
   "author": "Vince Speelman",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "curry": "^1.2.0"
+  }
 }

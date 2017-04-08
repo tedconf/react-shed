@@ -27,6 +27,7 @@ render(
   <ThemeProvider theme={TED_THEME}>
     <div.shed
       mx="a"
+			op=".5"
     >
       <h1.shed
         f="1"

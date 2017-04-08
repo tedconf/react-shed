@@ -1,5 +1,6 @@
 import React from 'react';
 import Color from 'color';
+import curry from 'curry';
 import ms from 'modularscale';
 import styled, {
   injectGlobal,
@@ -7,6 +8,14 @@ import styled, {
 } from 'styled-components';
 
 const strinpUnit = val => val.replace(/(r?em|px|pc|ex|ch|ic|lh|rlh|vh|vw|vi|vb|vmin|vmax|mm|q|cm|in|pt)/, '');
+
+const isValid = curry.to(2, (label, val) => {
+  if (typeof val !== 'string') {
+    if (typeof val !== 'number') {
+      throw new Error(`You must provide a valid value for the ${label} prop: A number or string, not ${JSON.stringify(val)} (${typeof val})`);
+    }
+  }
+});
 
 const sizes = (scale = 'major second', number = 20) => Array.from([...Array(number)]).reduce((acc, curr, i) => ({
   ...acc,
@@ -92,551 +101,6 @@ const createTheme = (
     delete generatedTheme.sizes['z.0'];
   }
   return generatedTheme;
-};
-
-const getPropsForMPValue = (prop, value = null, THEME = null) => {
-  let formattedVal = value;
-  if (THEME.sizes === null) {
-    throw new Error('can\'t generate values without theme sizes');
-  }
-  if (value === 'a') {
-    formattedVal = 'auto';
-  }
-  if (prop === 'mx' && value === 'r') {
-    formattedVal = 'calc(-50vw + 50%)'
-  }
-
-  if (value !== 'a' && prop !== 'mx' && value !== 'r') {
-    formattedVal = `${THEME.sizes[`z${value}`]}`;
-  }
-
-  switch (prop) {
-    case 'm':
-      return `margin: ${formattedVal};`;
-    case 'mx':
-      return (
-        `margin-left: ${formattedVal};
-         margin-right: ${formattedVal};`
-      );
-    case 'my':
-      return (
-        `margin-top: ${formattedVal};
-         margin-bottom: ${formattedVal};`
-      );
-    case 'mt':
-      return `margin-top: ${formattedVal};`;
-    case 'mr':
-      return `margin-right: ${formattedVal};`;
-    case 'mb':
-      return `margin-bottom: ${formattedVal};`;
-    case 'ml':
-      return `margin-left: ${formattedVal};`;
-
-    case 'p':
-      return `padding: ${formattedVal};`;
-    case 'px':
-      return (
-        `padding-left: ${formattedVal};
-         padding-right: ${formattedVal};`
-      );
-    case 'py':
-      return (
-        `padding-top: ${formattedVal};
-         padding-bottom: ${formattedVal};`
-      );
-    case 'pt':
-      return `padding-top: ${formattedVal};`;
-    case 'pr':
-      return `padding-right: ${formattedVal};`;
-    case 'pb':
-      return `padding-bottom: ${formattedVal};`;
-    case 'pl':
-      return `padding-left: ${formattedVal};`;
-
-    default:
-      return null;
-  }
-};
-
-const getPropsForDValue = (value) => {
-  switch (value) {
-    case 'b':
-      return 'block';
-    case 'i-b':
-      return 'inline-block';
-    case 'i':
-      return 'inline';
-    case 'f':
-      return 'flex';
-    case 'i-f':
-      return 'inline-flex';
-    case 't':
-      return 'table';
-    case 't-c':
-      return 'table-cell';
-    case 't-r':
-      return 'table-row';
-    case 'n':
-      return 'none';
-    case 'init':
-      return 'initial';
-
-    default:
-      throw new Error(`You must provide a valid value for the display prop. One of b, i-b, i, f, i-f, t, t-c, t-r, n, init, not ${value}`);
-  }
-};
-
-const getPropsForCurValue = (value) => {
-  if (typeof value !== string) {
-    throw new Error(`You must provide a valid value for the cursor prop. A string, not ${value}`);
-  }
-  switch (value) {
-    case 'h':
-      return 'help';
-    case 'n-a':
-      return 'not-allowed';
-    case 'g':
-      return 'grab';
-    case 'gg':
-      return 'grabbing';
-    case 'p':
-      return 'pointer';
-    case 'd':
-      return 'default';
-    case 'a':
-      return 'auto';
-    case 'n':
-      return 'none';
-    case 'init':
-      return 'initial';
-    default:
-      return 'value';
-  }
-};
-
-const getPropsForFSValue = (value) => {
-  switch (value) {
-    case 'n':
-      return 'normal';
-    case 'i':
-      return 'italic';
-    case 'o':
-      return 'oblique';
-    case 'inh':
-      return 'inherit';
-    case 'init':
-      return 'inherit';
-    default:
-      throw new Error(`You must provide a valid value for the font-style prop. One of n, i, o, i, init, not ${value}`);
-  }
-};
-
-const getPropsForACValue = (value = null) => {
-  switch (value) {
-    case 'f-s':
-      return 'flex-start';
-    case 'f-e':
-      return 'flex-end';
-    case 'c':
-      return 'center';
-    case 's':
-      return 'stretch';
-    case 's-b':
-      return 'space-between';
-    case 's-e':
-      return 'space-evenly';
-    case 's-a':
-      return 'space-around';
-    case 'i':
-      return 'inherit';
-    case 'init':
-      return 'initial';
-
-    default:
-      throw new Error(`You must provide a valid value for the align-content prop. One of f-s, f-e, c, s-b, s-e, s-a, i, init, not ${value}`);
-  }
-};
-
-const getPropsForJCValue = (value = null) => {
-  switch (value) {
-    case 'f-s':
-      return 'flex-start';
-    case 'f-e':
-      return 'flex-end';
-    case 'c':
-      return 'center';
-    case 's-b':
-      return 'space-between';
-    case 's-e':
-      return 'space-evenly';
-    case 's-a':
-      return 'space-around';
-    case 'i':
-      return 'inherit';
-    case 'init':
-      return 'initial';
-
-    default:
-      throw new Error(`You must provide a valid value for the justify-content prop. One of f-s, f-e, c, s-b, s-e, s-a, i, init, not ${value}`);
-  }
-};
-
-const getPropsForAIValue = (value = null) => {
-  switch (value) {
-    case 'f-s':
-      return 'flex-start';
-    case 'f-e':
-      return 'flex-end';
-    case 'c':
-      return 'center';
-    case 'b':
-      return 'baseline';
-    case 's':
-      return 'stretch';
-    case 'i':
-      return 'inherit';
-    case 'init':
-      return 'initial';
-
-    default:
-      throw new Error(`You must provide a valid value for the align-items prop. One of f-s, f-e, c, b, s, i, init, not ${value}`);
-  }
-};
-
-const getPropsForASValue = (value = null) => {
-  switch (value) {
-    case 'a':
-      return 'auto';
-    case 'f-s':
-      return 'flex-start';
-    case 'f-e':
-      return 'flex-end';
-    case 'c':
-      return 'center';
-    case 'b':
-      return 'baseline';
-    case 's':
-      return 'stretch';
-    case 'i':
-      return 'inherit';
-    case 'init':
-      return 'initial';
-
-    default:
-      throw new Error(`You must provide a valid value for the align-self prop. One of a, f-s, f-e, c, b, s, i, init, not ${value}`);
-  }
-};
-
-const getPropsForFlxWValue = (value = null) => {
-  switch (value) {
-    case 'nw':
-      return 'nowrap';
-    case 'w':
-      return 'wrap';
-    case 'wr':
-      return 'wrap-reverse';
-    case 'i':
-      return 'inherit';
-    case 'init':
-      return 'initial';
-
-    default:
-      throw new Error(`You must provide a valid value for the flex-wrap prop. One of nw, w, wr, i, init, not ${value}`);
-  }
-};
-
-const getPropsForFlxDValue = (value = null) => {
-  switch (value) {
-    case 'r':
-      return 'row';
-    case 'rw':
-      return 'row-reverse';
-    case 'c':
-      return 'column';
-    case 'cr':
-      return 'column-reverse';
-    case 'i':
-      return 'inherit';
-    case 'init':
-      return 'initial';
-
-    default:
-      throw new Error(`You must provide a valid value for the flex-direction prop. One of r, rr, c, cr, i, init, not ${value}`);
-  }
-};
-
-const getPropsForFlxBValue = (value, theme) => {
-  switch (value) {
-    case 'a':
-      return 'auto';
-    case 'f':
-      return 'fill';
-    case 'max-c':
-      return 'max-content';
-    case 'min-c':
-      return 'min-content';
-    case 'fit-c':
-      return 'fit-content';
-    case 'c':
-      return 'content';
-    case 'i':
-      return 'inherit';
-    case 'init':
-      return 'inherit';
-    default:
-      if (theme.sizes[`z${value}`]) {
-        return `${theme.sizes[`z${value}`]}`;
-      }
-      throw new Error(`You must provide a valid value for the flex-basis prop. One of [scale value], a, f, max-c, min-c, fit-c, c, i, init, not ${value}`);
-  }
-};
-
-const getPropsForFlValue = (value) => {
-  switch (value) {
-    case 'l':
-      return 'left';
-    case 'r':
-      return 'right';
-    case 'n':
-      return 'none';
-    case 'i':
-      return 'inherit';
-    case 'init':
-      return 'inherit';
-    default:
-      throw new Error(`You must provide a valid value for the float prop. One of l, r, n, i, init, not ${value}`);
-  }
-};
-
-const getPropsForOValue = (value) => {
-  switch (value) {
-    case 'a':
-      return 'auto';
-    case 'h':
-      return 'hidden';
-    case 's':
-      return 'scroll';
-    default:
-      throw new Error(`You must provide a valid value for the overflow prop. One of a, h, s, not ${value}`);
-  }
-};
-
-const getPropsForTTValue = (value) => {
-  switch (value) {
-    case 'u':
-      return 'uppercase';
-    case 'c':
-      return 'capitalize';
-    case 'l':
-      return 'lowercase';
-    case 'n':
-      return 'none';
-    case 'i':
-      return 'inherit';
-    case 'init':
-      return 'inherit';
-    default:
-      throw new Error(`You must provide a valid value for the text-transform prop. One of u, c, l, n, i, init, not ${value}`);
-  }
-};
-
-const getPropsForTAValue = (value) => {
-  switch (value) {
-    case 'c':
-      return 'center';
-    case 'l':
-      return 'left';
-    case 'r':
-      return 'right';
-    case 'j':
-      return 'justify';
-    default:
-      throw new Error(`You must provide a valid value for the text-align prop. One of c, l, r, j, not ${value}`);
-  }
-};
-
-const getPropsForVAValue = (value) => {
-  switch (value) {
-    case 't':
-      return 'vertical-align: top;';
-    case 'b':
-      return 'vertical-align: bottom;';
-    case 'm':
-      return 'vertical-align: middle;';
-    case 'bl':
-      return 'vertical-align: baseline;';
-    case 'c':
-      return `
-        position: relative;
-        top: 50%;
-        transform: translateY(-50%);
-      `;
-    case 'i':
-      return 'vertical-align: inherit;';
-    case 'init':
-      return 'vertical-align: initial;';
-    default:
-      throw new Error(`You must provide a valid value for the vertical-align prop. One of t, b, m, bl, c, i, init, not ${value}`);
-  }
-};
-
-const getPropsForTDValue = (value) => {
-  switch (value) {
-    case 'u':
-      return 'underline';
-    case 'o':
-      return 'overline';
-    case 'b':
-      return 'blink';
-    case 'l-t':
-      return 'line-through';
-    case 'n':
-      return 'none';
-    case 'i':
-      return 'inherit';
-    case 'init':
-      return 'initial';
-    default:
-      throw new Error(`You must provide a valid value for the text-decoration prop. One of u, o, b, l-t, n, i, init, not ${value}`);
-  }
-};
-
-const getPropsForLSValue = (value) => {
-  switch (value) {
-    case 'n':
-      return 'normal';
-    case 't':
-      return '-0.05em';
-    case 'l':
-      return '.3em';
-    default:
-      throw new Error(`You must provide a valid value for the letter-spacing prop. One of n, t, l, not ${value}`);
-  }
-};
-
-const getPropsForLHValue = (value, theme) => {
-  switch (value) {
-    case 'd':
-      return '1';
-    case 'n':
-      return 'normal';
-    case 't':
-      return stripUnit(theme.sizes['z2']);
-    case 'l':
-      return stripUnit(theme.sizes['z4']);
-    case 'i':
-      return 'inherit';
-    case 'init':
-      return 'initial';
-    default:
-      if (theme.sizes[`z${value}`]) {
-        return stripUnit(theme.sizes[`z${value}`]);
-        ;
-      }
-      throw new Error(`You must provide a valid value for the line-height prop. One of [scale value], d, t, l, n, i, init, not ${value}`);
-  }
-};
-
-const getPropsForPosValue = (value) => {
-  switch (value) {
-    case 'a':
-      return 'position: absolute;';
-    case 'r':
-      return 'position: relative;';
-    case 'f':
-      return 'position: fixed;'
-    case 's':
-      return 'position: static;'
-    case 'stick':
-      return 'position: sticky;';
-    case 'c':
-      return `
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-      `;
-    case 'i':
-      return 'position: inherit;';
-    case 'init':
-      return 'initial;';
-    default:
-      throw new Error(`You must provide a valid value for the position prop. One of a, r, s, stick, c, not ${value}`);
-  }
-};
-
-const getPropsForWSValue = (value) => {
-  switch (value) {
-    case 'n':
-      return 'normal';
-    case 'nw':
-      return 'nowrap';
-    case 'p':
-      return 'pre';
-    case 'p-w':
-      return 'pre-wrap';
-    case 'p-l':
-      return 'pre-line';
-    case 'i':
-      return 'inherit';
-    case 'init':
-      return 'initial';
-    default:
-      throw new Error(`You must provide a valid value for the white-space prop. One of n, nw, p, p-w, p-l, i, init, not ${value}`);
-  }
-};
-
-const getPropsForColor = (value, theme) => {
-  if (value === 'transparent') {
-    return 'transparent';
-  }
-  if (value === 'currentColor') {
-    return 'currentColor';
-  }
-  if (value === 'inherit') {
-    return 'inherit';
-  }
-  const alpha = /(.+)(\.\d)/.exec(value);
-  if (alpha) {
-    return Color(theme.colors[`${alpha[1]}`]).alpha(alpha[2]).string();
-  }
-  return theme.colors[value];
-}
-
-const getMarginAndPadding = (props, theme) => {
-  let newProps = '';
-  if (props) {
-    Object.keys(props).forEach((prop) => {
-      if ([
-        'm',
-        'mx',
-        'my',
-        'mt',
-        'mr',
-        'mb',
-        'ml',
-        'p',
-        'px',
-        'py',
-        'pt',
-        'pr',
-        'pb',
-        'pl',
-      ].indexOf(prop) > -1) {
-        newProps = `
-        ${newProps && `${newProps};`}
-        ${getPropsForMPValue(prop, props[prop], theme)};`;
-      }
-    });
-  }
-  return newProps;
-};
-
-const getOpacity = (value = parseInt(value, 10)) => {
-  if (typeof value !== number || value > 1 || value < 0) {
-    throw new Error(`You must provide a valid value for the opacity prop: A number between 0 and 1, or i/init/unset, not ${value}`);
-  }
-  return value;
 };
 
 const getSize = (value, theme) => {
@@ -810,9 +274,577 @@ const getSize = (value, theme) => {
       if (theme.sizes[`z${value}`]) {
         return theme.sizes[`z${value}`];
       }
-      throw new Error(`You must provide a valid value for the size prop, not ${value}`);
+      throw new Error(`You must provide a valid value for the size prop, not ${JSON.stringify(value)}`);
   }
 }
+
+const getPropsForMPValue = (prop, value = null, THEME = null) => {
+  isValid('margin / padding')(value);
+  let formattedVal = value;
+  if (THEME.sizes === null) {
+    throw new Error('can\'t generate values without theme sizes');
+  }
+  if (value === 'a') {
+    formattedVal = 'auto';
+  }
+  if (prop === 'mx' && value === 'r') {
+    formattedVal = 'calc(-50vw + 50%)'
+  }
+
+  if (value !== 'a' && prop !== 'mx' && value !== 'r') {
+    formattedVal = `${THEME.sizes[`z${value}`]}`;
+  }
+
+  switch (prop) {
+    case 'm':
+      return `margin: ${formattedVal};`;
+    case 'mx':
+      return (
+        `margin-left: ${formattedVal};
+         margin-right: ${formattedVal};`
+      );
+    case 'my':
+      return (
+        `margin-top: ${formattedVal};
+         margin-bottom: ${formattedVal};`
+      );
+    case 'mt':
+      return `margin-top: ${formattedVal};`;
+    case 'mr':
+      return `margin-right: ${formattedVal};`;
+    case 'mb':
+      return `margin-bottom: ${formattedVal};`;
+    case 'ml':
+      return `margin-left: ${formattedVal};`;
+
+    case 'p':
+      return `padding: ${formattedVal};`;
+    case 'px':
+      return (
+        `padding-left: ${formattedVal};
+         padding-right: ${formattedVal};`
+      );
+    case 'py':
+      return (
+        `padding-top: ${formattedVal};
+         padding-bottom: ${formattedVal};`
+      );
+    case 'pt':
+      return `padding-top: ${formattedVal};`;
+    case 'pr':
+      return `padding-right: ${formattedVal};`;
+    case 'pb':
+      return `padding-bottom: ${formattedVal};`;
+    case 'pl':
+      return `padding-left: ${formattedVal};`;
+
+    default:
+      return null;
+  }
+};
+
+const getPropsForDValue = (value) => {
+  isValid('display')(value);
+  switch (value) {
+    case 'b':
+      return 'block';
+    case 'i-b':
+      return 'inline-block';
+    case 'i':
+      return 'inline';
+    case 'f':
+      return 'flex';
+    case 'i-f':
+      return 'inline-flex';
+    case 't':
+      return 'table';
+    case 't-c':
+      return 'table-cell';
+    case 't-r':
+      return 'table-row';
+    case 'n':
+      return 'none';
+    case 'init':
+      return 'initial';
+
+    default:
+      throw new Error(`You must provide a valid value for the display prop. One of b, i-b, i, f, i-f, t, t-c, t-r, n, init, not ${JSON.stringify(value)}`);
+  }
+};
+
+const getPropsForCurValue = (value) => {
+  isValid('cursor')(value);
+  switch (value) {
+    case 'h':
+      return 'help';
+    case 'n-a':
+      return 'not-allowed';
+    case 'g':
+      return 'grab';
+    case 'gg':
+      return 'grabbing';
+    case 'p':
+      return 'pointer';
+    case 'd':
+      return 'default';
+    case 'a':
+      return 'auto';
+    case 'n':
+      return 'none';
+    case 'init':
+      return 'initial';
+    default:
+      return 'value';
+  }
+};
+
+const getPropsForFSValue = (value) => {
+  isValid('font-size')(value);
+  switch (value) {
+    case 'n':
+      return 'normal';
+    case 'i':
+      return 'italic';
+    case 'o':
+      return 'oblique';
+    case 'inh':
+      return 'inherit';
+    case 'init':
+      return 'inherit';
+    default:
+      throw new Error(`You must provide a valid value for the font-style prop. One of n, i, o, i, init, not ${JSON.stringify(value)}`);
+  }
+};
+
+const getPropsForACValue = (value = null) => {
+  isValid('align-content')(value);
+  switch (value) {
+    case 'f-s':
+      return 'flex-start';
+    case 'f-e':
+      return 'flex-end';
+    case 'c':
+      return 'center';
+    case 's':
+      return 'stretch';
+    case 's-b':
+      return 'space-between';
+    case 's-e':
+      return 'space-evenly';
+    case 's-a':
+      return 'space-around';
+    case 'i':
+      return 'inherit';
+    case 'init':
+      return 'initial';
+
+    default:
+      throw new Error(`You must provide a valid value for the align-content prop. One of f-s, f-e, c, s-b, s-e, s-a, i, init, not ${JSON.stringify(value)}`);
+  }
+};
+
+const getPropsForJCValue = (value = null) => {
+  isValid('justify-content')(value);
+  switch (value) {
+    case 'f-s':
+      return 'flex-start';
+    case 'f-e':
+      return 'flex-end';
+    case 'c':
+      return 'center';
+    case 's-b':
+      return 'space-between';
+    case 's-e':
+      return 'space-evenly';
+    case 's-a':
+      return 'space-around';
+    case 'i':
+      return 'inherit';
+    case 'init':
+      return 'initial';
+
+    default:
+      throw new Error(`You must provide a valid value for the justify-content prop. One of f-s, f-e, c, s-b, s-e, s-a, i, init, not ${JSON.stringify(value)}`);
+  }
+};
+
+const getPropsForAIValue = (value = null) => {
+  isValid('align-items')(value);
+  switch (value) {
+    case 'f-s':
+      return 'flex-start';
+    case 'f-e':
+      return 'flex-end';
+    case 'c':
+      return 'center';
+    case 'b':
+      return 'baseline';
+    case 's':
+      return 'stretch';
+    case 'i':
+      return 'inherit';
+    case 'init':
+      return 'initial';
+
+    default:
+      throw new Error(`You must provide a valid value for the align-items prop. One of f-s, f-e, c, b, s, i, init, not ${JSON.stringify(value)}`);
+  }
+};
+
+const getPropsForASValue = (value = null) => {
+  isValid('align-self')(value);
+  switch (value) {
+    case 'a':
+      return 'auto';
+    case 'f-s':
+      return 'flex-start';
+    case 'f-e':
+      return 'flex-end';
+    case 'c':
+      return 'center';
+    case 'b':
+      return 'baseline';
+    case 's':
+      return 'stretch';
+    case 'i':
+      return 'inherit';
+    case 'init':
+      return 'initial';
+
+    default:
+      throw new Error(`You must provide a valid value for the align-self prop. One of a, f-s, f-e, c, b, s, i, init, not ${JSON.stringify(value)}`);
+  }
+};
+
+const getPropsForFlxWValue = (value = null) => {
+  isValid('flex-wrap')(value);
+  switch (value) {
+    case 'nw':
+      return 'nowrap';
+    case 'w':
+      return 'wrap';
+    case 'wr':
+      return 'wrap-reverse';
+    case 'i':
+      return 'inherit';
+    case 'init':
+      return 'initial';
+
+    default:
+      throw new Error(`You must provide a valid value for the flex-wrap prop. One of nw, w, wr, i, init, not ${JSON.stringify(value)}`);
+  }
+};
+
+const getPropsForFlxDValue = (value = null) => {
+  isValid('flex-direction')(value);
+  switch (value) {
+    case 'r':
+      return 'row';
+    case 'rw':
+      return 'row-reverse';
+    case 'c':
+      return 'column';
+    case 'cr':
+      return 'column-reverse';
+    case 'i':
+      return 'inherit';
+    case 'init':
+      return 'initial';
+
+    default:
+      throw new Error(`You must provide a valid value for the flex-direction prop. One of r, rr, c, cr, i, init, not ${JSON.stringify(value)}`);
+  }
+};
+
+const getPropsForFlxBValue = (value, theme) => {
+  isValid('flex-basis')(value);
+  switch (value) {
+    case 'a':
+      return 'auto';
+    case 'f':
+      return 'fill';
+    case 'max-c':
+      return 'max-content';
+    case 'min-c':
+      return 'min-content';
+    case 'fit-c':
+      return 'fit-content';
+    case 'c':
+      return 'content';
+    case 'i':
+      return 'inherit';
+    case 'init':
+      return 'inherit';
+    default:
+      getSize(value);
+
+    throw new Error(`You must provide a valid value for the flex-basis prop. One of [scale value], a, f, max-c, min-c, fit-c, c, i, init, not ${JSON.stringify(value)}`);
+  }
+};
+
+const getPropsForFlValue = (value) => {
+  isValid('float')(value);
+  switch (value) {
+    case 'l':
+      return 'left';
+    case 'r':
+      return 'right';
+    case 'n':
+      return 'none';
+    case 'i':
+      return 'inherit';
+    case 'init':
+      return 'inherit';
+    default:
+      throw new Error(`You must provide a valid value for the float prop. One of l, r, n, i, init, not ${JSON.stringify(value)}`);
+  }
+};
+
+const getPropsForOValue = (value) => {
+  isValid('overflow')(value);
+  switch (value) {
+    case 'a':
+      return 'auto';
+    case 'h':
+      return 'hidden';
+    case 's':
+      return 'scroll';
+    case 'v':
+      return 'visible';
+    default:
+      throw new Error(`You must provide a valid value for the overflow prop. One of a, h, s, not ${JSON.stringify(value)}`);
+  }
+};
+
+const getPropsForTTValue = (value) => {
+  isValid('text-transform')(value);
+  switch (value) {
+    case 'u':
+      return 'uppercase';
+    case 'c':
+      return 'capitalize';
+    case 'l':
+      return 'lowercase';
+    case 'n':
+      return 'none';
+    case 'i':
+      return 'inherit';
+    case 'init':
+      return 'inherit';
+    default:
+      throw new Error(`You must provide a valid value for the text-transform prop. One of u, c, l, n, i, init, not ${JSON.stringify(value)}`);
+  }
+};
+
+const getPropsForTAValue = (value) => {
+  isValid('text-align')(value);
+  switch (value) {
+    case 'c':
+      return 'center';
+    case 'l':
+      return 'left';
+    case 'r':
+      return 'right';
+    case 'j':
+      return 'justify';
+    default:
+      throw new Error(`You must provide a valid value for the text-align prop. One of c, l, r, j, not ${JSON.stringify(value)}`);
+  }
+};
+
+const getPropsForVAValue = (value) => {
+  isValid('vertical-align')(value);
+  switch (value) {
+    case 't':
+      return 'vertical-align: top;';
+    case 'b':
+      return 'vertical-align: bottom;';
+    case 'm':
+      return 'vertical-align: middle;';
+    case 'bl':
+      return 'vertical-align: baseline;';
+    case 'c':
+      return `
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+      `;
+    case 'i':
+      return 'vertical-align: inherit;';
+    case 'init':
+      return 'vertical-align: initial;';
+    default:
+      throw new Error(`You must provide a valid value for the vertical-align prop. One of t, b, m, bl, c, i, init, not ${JSON.stringify(value)}`);
+  }
+};
+
+const getPropsForTDValue = (value) => {
+  isValid('text-decoration')(value);
+  switch (value) {
+    case 'u':
+      return 'underline';
+    case 'o':
+      return 'overline';
+    case 'b':
+      return 'blink';
+    case 'l-t':
+      return 'line-through';
+    case 'n':
+      return 'none';
+    case 'i':
+      return 'inherit';
+    case 'init':
+      return 'initial';
+    default:
+      throw new Error(`You must provide a valid value for the text-decoration prop. One of u, o, b, l-t, n, i, init, not ${JSON.stringify(value)}`);
+  }
+};
+
+const getPropsForLSValue = (value) => {
+  isValid('letter-spacing')(value);
+  switch (value) {
+    case 'n':
+      return 'normal';
+    case 't':
+      return '-0.05em';
+    case 'l':
+      return '.3em';
+    default:
+      throw new Error(`You must provide a valid value for the letter-spacing prop. One of n, t, l, not ${JSON.stringify(value)}`);
+  }
+};
+
+const getPropsForLHValue = (value, theme) => {
+  isValid('line-height')(value);
+  switch (value) {
+    case 'd':
+      return '1';
+    case 'n':
+      return 'normal';
+    case 't':
+      return stripUnit(theme.sizes['z2']);
+    case 'l':
+      return stripUnit(theme.sizes['z4']);
+    case 'i':
+      return 'inherit';
+    case 'init':
+      return 'initial';
+    default:
+      if (theme.sizes[`z${value}`]) {
+        return stripUnit(theme.sizes[`z${value}`]);
+        ;
+      }
+      throw new Error(`You must provide a valid value for the line-height prop. One of [scale value], d, t, l, n, i, init, not ${JSON.stringify(value)}`);
+  }
+};
+
+const getPropsForPosValue = (value) => {
+  isValid('position')(value);
+  switch (value) {
+    case 'a':
+      return 'position: absolute;';
+    case 'r':
+      return 'position: relative;';
+    case 'f':
+      return 'position: fixed;'
+    case 's':
+      return 'position: static;'
+    case 'stick':
+      return 'position: sticky;';
+    case 'c':
+      return `
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      `;
+    case 'i':
+      return 'position: inherit;';
+    case 'init':
+      return 'initial;';
+    default:
+      throw new Error(`You must provide a valid value for the position prop. One of a, r, s, stick, c, not ${JSON.stringify(value)}`);
+  }
+};
+
+const getPropsForWSValue = (value) => {
+  isValid('white-space')(value);
+  switch (value) {
+    case 'n':
+      return 'normal';
+    case 'nw':
+      return 'nowrap';
+    case 'p':
+      return 'pre';
+    case 'p-w':
+      return 'pre-wrap';
+    case 'p-l':
+      return 'pre-line';
+    case 'i':
+      return 'inherit';
+    case 'init':
+      return 'initial';
+    default:
+      throw new Error(`You must provide a valid value for the white-space prop. One of n, nw, p, p-w, p-l, i, init, not ${JSON.stringify(value)}`);
+  }
+};
+
+const getPropsForColor = (value, theme) => {
+  isValid('color')(value);
+  if (value === 'transparent') {
+    return 'transparent';
+  }
+  if (value === 'currentColor') {
+    return 'currentColor';
+  }
+  if (value === 'inherit') {
+    return 'inherit';
+  }
+  const alpha = /(.+)(\.\d)/.exec(value);
+  if (alpha) {
+    return Color(theme.colors[`${alpha[1]}`]).alpha(alpha[2]).string();
+  }
+  return theme.colors[value];
+}
+
+const getMarginAndPadding = (props, theme) => {
+  let newProps = '';
+  if (props) {
+    Object.keys(props).forEach((prop) => {
+      if ([
+        'm',
+        'mx',
+        'my',
+        'mt',
+        'mr',
+        'mb',
+        'ml',
+        'p',
+        'px',
+        'py',
+        'pt',
+        'pr',
+        'pb',
+        'pl',
+      ].indexOf(prop) > -1) {
+        newProps = `
+        ${newProps && `${newProps};`}
+        ${getPropsForMPValue(prop, props[prop], theme)};`;
+      }
+    });
+  }
+  return newProps;
+};
+
+const getOpacity = (value) => {
+  isValid('opacity')(value);
+
+  const parsedVal = parseInt(value, 10);
+  if (parsedVal > 1 || parsedVal < 0) {
+    throw new Error(`You must provide a valid value for the opacity prop: A number between 0 and 1, or i/init/unset, not ${JSON.stringify(value)}`);
+  }
+  return value;
+};
 
 const Shed = ({
   component = 'div',
