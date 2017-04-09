@@ -1,5 +1,5 @@
 /*!
- * react-shed v2.3.0
+ * react-shed v2.3.1
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -1708,7 +1708,7 @@ var _templateObject = __WEBPACK_IMPORTED_MODULE_1__Users_vincentspeelman_Project
 
 
 
-var strinpUnit = function strinpUnit(val) {
+var stripUnit = function stripUnit(val) {
   return val.replace(/(r?em|px|pc|ex|ch|ic|lh|rlh|vh|vw|vi|vb|vmin|vmax|mm|q|cm|in|pt)/, '');
 };
 

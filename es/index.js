@@ -11,7 +11,7 @@ import curry from 'curry';
 import ms from 'modularscale';
 import styled, { injectGlobal, withTheme } from 'styled-components';
 
-var strinpUnit = function strinpUnit(val) {
+var stripUnit = function stripUnit(val) {
   return val.replace(/(r?em|px|pc|ex|ch|ic|lh|rlh|vh|vw|vi|vb|vmin|vmax|mm|q|cm|in|pt)/, '');
 };
 

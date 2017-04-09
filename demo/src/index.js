@@ -27,10 +27,11 @@ render(
   <ThemeProvider theme={TED_THEME}>
     <div.shed
       mx="a"
-			op=".5"
+      op=".5"
     >
       <h1.shed
         f="1"
+        mx=".1"
       >
         A header component with the theme color "red", 2 units of left-padding,
         and 1 unit of margin on the bottom with a tight line-height and tight
