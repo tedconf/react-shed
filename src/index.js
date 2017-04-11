@@ -271,7 +271,6 @@ const getSize = (value, theme) => {
     case 'a':
       return 'auto'
     default:
-			console.log('value');
       const formattedVal = typeof value === 'number' && value < 1
         ? value.toString().replace('0.', '.')
         : value;

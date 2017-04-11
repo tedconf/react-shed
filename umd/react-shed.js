@@ -1,5 +1,5 @@
 /*!
- * react-shed v2.4.0
+ * react-shed v2.5.0
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -2088,7 +2088,7 @@ var getPropsForCurValue = function getPropsForCurValue(value) {
 };
 
 var getPropsForFSValue = function getPropsForFSValue(value) {
-  isValid('font-size')(value);
+  isValid('font-style')(value);
   switch (value) {
     case 'n':
       return 'normal';
@@ -2544,7 +2544,7 @@ var Shed = function Shed(_ref) {
   }, function (_ref5) {
     var f = _ref5.f,
         theme = _ref5.theme;
-    return f ? 'font-size: ' + theme.sizes['z' + f] + ';' : null;
+    return f ? 'font-size: ' + getSize(f, theme) + ';' : null;
   }, function (_ref6) {
     var fw = _ref6.fw;
     return fw ? 'font-weight: ' + fw + ';' : null;
