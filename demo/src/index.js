@@ -31,7 +31,7 @@ render(
     >
       <h1.shed
         f="1"
-        mx=".1"
+        mx={0.1}
       >
         A header component with the theme color "red", 2 units of left-padding,
         and 1 unit of margin on the bottom with a tight line-height and tight

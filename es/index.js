@@ -283,14 +283,16 @@ var getPropsForMPValue = function getPropsForMPValue(prop) {
   if (THEME.sizes === null) {
     throw new Error('can\'t generate values without theme sizes');
   }
-  if (value === 'a') {
-    formattedVal = 'auto';
-  }
+
   if (prop === 'mx' && value === 'r') {
     formattedVal = 'calc(-50vw + 50%)';
   }
 
-  if (value !== 'a' && prop !== 'mx' && value !== 'r') {
+  if (value === 'a') {
+    formattedVal = 'auto';
+  }
+
+  if (value !== 'a' && value !== 'r') {
     formattedVal = '' + THEME.sizes['z' + value];
   }
 

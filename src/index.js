@@ -271,8 +271,13 @@ const getSize = (value, theme) => {
     case 'a':
       return 'auto'
     default:
-      if (theme.sizes[`z${value}`]) {
-        return theme.sizes[`z${value}`];
+			console.log('value');
+      const formattedVal = typeof value === 'number' && value < 1
+        ? value.toString().replace('0.', '.')
+        : value;
+
+      if (theme.sizes[`z${formattedVal}`]) {
+        return theme.sizes[`z${formattedVal}`];
       }
       throw new Error(`You must provide a valid value for the size prop, not ${JSON.stringify(value)}`);
   }
@@ -294,7 +299,7 @@ const getPropsForMPValue = (prop, value = null, THEME = null) => {
   }
 
   if (value !== 'a' && value !== 'r') {
-    formattedVal = `${THEME.sizes[`z${value}`]}`;
+    formattedVal = getSize(value, THEME);
   }
 
   switch (prop) {
@@ -578,7 +583,7 @@ const getPropsForFlxBValue = (value, theme) => {
     case 'init':
       return 'inherit';
     default:
-      getSize(value);
+      getSize(value, theme);
 
     throw new Error(`You must provide a valid value for the flex-basis prop. One of [scale value], a, f, max-c, min-c, fit-c, c, i, init, not ${JSON.stringify(value)}`);
   }
@@ -982,22 +987,22 @@ const Shed = ({
     )}
     ${({ top, theme }) =>
       top
-        ? `top: ${theme.sizes[`z${top}`]};`
+        ? `top: ${getSize(top, theme)};`
         : null
     }
     ${({ right, theme }) =>
       right
-        ? `right: ${theme.sizes[`z${right}`]};`
+        ? `right: ${getSize(right, theme)};`
         : null
     }
     ${({ bottom, theme }) =>
       bottom
-        ? `bottom: ${theme.sizes[`z${bottom}`]};`
+        ? `bottom: ${getSize(bottom, theme)};`
         : null
     }
     ${({ left, theme }) =>
       left
-        ? `left: ${theme.sizes[`z${left}`]};`
+        ? `left: ${getSize(left, theme)};`
         : null
     }
     ${({ o, theme }) =>

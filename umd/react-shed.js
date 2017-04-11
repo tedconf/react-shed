@@ -1,5 +1,5 @@
 /*!
- * react-shed v2.3.1
+ * react-shed v2.3.2
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -1980,14 +1980,16 @@ var getPropsForMPValue = function getPropsForMPValue(prop) {
   if (THEME.sizes === null) {
     throw new Error('can\'t generate values without theme sizes');
   }
-  if (value === 'a') {
-    formattedVal = 'auto';
-  }
+
   if (prop === 'mx' && value === 'r') {
     formattedVal = 'calc(-50vw + 50%)';
   }
 
-  if (value !== 'a' && prop !== 'mx' && value !== 'r') {
+  if (value === 'a') {
+    formattedVal = 'auto';
+  }
+
+  if (value !== 'a' && value !== 'r') {
     formattedVal = '' + THEME.sizes['z' + value];
   }
 
@@ -2708,7 +2710,7 @@ var Shed = function Shed(_ref) {
   return __WEBPACK_IMPORTED_MODULE_4_react___default.a.createElement(ShedStyled, __WEBPACK_IMPORTED_MODULE_2__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_extends___default()({}, props, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1118
+      lineNumber: 1120
     },
     __self: _this
   }));
