@@ -267,7 +267,6 @@ var getSize = function getSize(value, theme) {
     case 'a':
       return 'auto';
     default:
-      console.log('value');
       var formattedVal = typeof value === 'number' && value < 1 ? value.toString().replace('0.', '.') : value;
 
       if (theme.sizes['z' + formattedVal]) {

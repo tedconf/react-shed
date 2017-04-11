@@ -271,11 +271,13 @@ const getSize = (value, theme) => {
     case 'a':
       return 'auto'
     default:
-      const formattedVal = typeof value === 'number' && value < 1
-        ? value.toString().replace('0.', '.')
-        : value;
+      const formattedVal = typeof value === 'number'
+        ? value < 1
+          ? value.toString().replace('0.', '.')
+          : value
+        : parseInt(value, 10);
 
-      if (theme.sizes[`z${formattedVal}`]) {
+      if (theme.sizes[`z${formattedVal}`].toString()) {
         return theme.sizes[`z${formattedVal}`];
       }
       throw new Error(`You must provide a valid value for the size prop, not ${JSON.stringify(value)}`);
