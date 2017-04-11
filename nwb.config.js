@@ -3,10 +3,6 @@ module.exports = {
   babel: {
     runtime: 'helpers',
     plugins: [
-      ['styled-components', {
-        ssr: false,
-        displayName: false,
-      }],
       'shed',
     ],
   },
