@@ -406,7 +406,7 @@ const getPropsForCurValue = (value) => {
 };
 
 const getPropsForFSValue = (value) => {
-  isValid('font-size')(value);
+  isValid('font-style')(value);
   switch (value) {
     case 'n':
       return 'normal';
@@ -872,7 +872,7 @@ const Shed = ({
     }
     ${({ f, theme }) =>
       f
-        ? `font-size: ${theme.sizes[`z${f}`]};`
+        ? `font-size: ${getSize(f, theme)};`
         : null
     }
     ${({ fw }) =>

@@ -1,5 +1,5 @@
 /*!
- * react-shed v2.3.2
+ * react-shed v2.4.0
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -1964,8 +1964,11 @@ var getSize = function getSize(value, theme) {
     case 'a':
       return 'auto';
     default:
-      if (theme.sizes['z' + value]) {
-        return theme.sizes['z' + value];
+      console.log('value');
+      var formattedVal = typeof value === 'number' && value < 1 ? value.toString().replace('0.', '.') : value;
+
+      if (theme.sizes['z' + formattedVal]) {
+        return theme.sizes['z' + formattedVal];
       }
       throw new Error('You must provide a valid value for the size prop, not ' + JSON.stringify(value));
   }
@@ -1990,7 +1993,7 @@ var getPropsForMPValue = function getPropsForMPValue(prop) {
   }
 
   if (value !== 'a' && value !== 'r') {
-    formattedVal = '' + THEME.sizes['z' + value];
+    formattedVal = getSize(value, THEME);
   }
 
   switch (prop) {
@@ -2274,7 +2277,7 @@ var getPropsForFlxBValue = function getPropsForFlxBValue(value, theme) {
     case 'init':
       return 'inherit';
     default:
-      getSize(value);
+      getSize(value, theme);
 
       throw new Error('You must provide a valid value for the flex-basis prop. One of [scale value], a, f, max-c, min-c, fit-c, c, i, init, not ' + JSON.stringify(value));
   }
@@ -2617,19 +2620,19 @@ var Shed = function Shed(_ref) {
   }, function (_ref28) {
     var top = _ref28.top,
         theme = _ref28.theme;
-    return top ? 'top: ' + theme.sizes['z' + top] + ';' : null;
+    return top ? 'top: ' + getSize(top, theme) + ';' : null;
   }, function (_ref29) {
     var right = _ref29.right,
         theme = _ref29.theme;
-    return right ? 'right: ' + theme.sizes['z' + right] + ';' : null;
+    return right ? 'right: ' + getSize(right, theme) + ';' : null;
   }, function (_ref30) {
     var bottom = _ref30.bottom,
         theme = _ref30.theme;
-    return bottom ? 'bottom: ' + theme.sizes['z' + bottom] + ';' : null;
+    return bottom ? 'bottom: ' + getSize(bottom, theme) + ';' : null;
   }, function (_ref31) {
     var left = _ref31.left,
         theme = _ref31.theme;
-    return left ? 'left: ' + theme.sizes['z' + left] + ';' : null;
+    return left ? 'left: ' + getSize(left, theme) + ';' : null;
   }, function (_ref32) {
     var o = _ref32.o,
         theme = _ref32.theme;
@@ -2710,7 +2713,7 @@ var Shed = function Shed(_ref) {
   return __WEBPACK_IMPORTED_MODULE_4_react___default.a.createElement(ShedStyled, __WEBPACK_IMPORTED_MODULE_2__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_extends___default()({}, props, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1120
+      lineNumber: 1125
     },
     __self: _this
   }));
