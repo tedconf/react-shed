@@ -271,11 +271,10 @@ const getSize = (value, theme) => {
     case 'a':
       return 'auto'
     default:
-      const formattedVal = typeof value === 'number'
-        ? value < 1
+      const formattedVal = (typeof value === 'number' || typeof value === 'string') &&
+        parseFloat(value, 10) < 1
           ? value.toString().replace('0.', '.')
-          : value
-        : parseInt(value, 10);
+          : parseFloat(value, 10).toString();
 
       if (theme.sizes[`z${formattedVal}`].toString()) {
         return theme.sizes[`z${formattedVal}`];
