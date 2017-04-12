@@ -275,7 +275,6 @@ const getSize = (value, theme) => {
         parseFloat(value, 10) < 1
           ? value.toString().replace('0.', '.')
           : parseFloat(value, 10).toString();
-			console.log(theme.sizes, formattedVal.toString());
 
       if (theme.sizes[`z${formattedVal}`].toString()) {
         return theme.sizes[`z${formattedVal}`];

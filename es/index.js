@@ -30,7 +30,7 @@ var sizes = function sizes() {
   return Array.from([].concat(Array(number))).reduce(function (acc, curr, i) {
     var _extends2;
 
-    return _extends({}, acc, (_extends2 = {}, _extends2['z' + i] = ms(i - 1, scale) + 'rem', _extends2.z0 = 0, _extends2['z.' + (number - i)] = ms(i - number, scale) + 'rem', _extends2['z-' + i] = '-' + ms(i - 1, scale) + 'rem', _extends2['z0'] = 0, _extends2['z.-' + (number - i)] = '-' + ms(i - number, scale) + 'rem', _extends2));
+    return _extends({}, acc, (_extends2 = {}, _extends2['z' + i] = ms(i - 1, scale) + 'rem', _extends2.z0 = 0, _extends2['z.' + (number - i)] = ms(i - number, scale) + 'rem', _extends2['z-' + i] = '-' + ms(i - 1, scale) + 'rem', _extends2['z0'] = 0, _extends2['z-.' + (number - i)] = '-' + ms(i - number, scale) + 'rem', _extends2));
   }, {});
 };
 
@@ -269,6 +269,7 @@ var getSize = function getSize(value, theme) {
       return 'auto';
     default:
       var formattedVal = (typeof value === 'number' || typeof value === 'string') && parseFloat(value, 10) < 1 ? value.toString().replace('0.', '.') : parseFloat(value, 10).toString();
+      console.log(theme.sizes, formattedVal.toString());
 
       if (theme.sizes['z' + formattedVal].toString()) {
         return theme.sizes['z' + formattedVal];

@@ -1,5 +1,5 @@
 /*!
- * react-shed v2.6.1
+ * react-shed v2.6.2
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -1727,7 +1727,7 @@ var sizes = function sizes() {
   return Array.from([].concat(Array(number))).reduce(function (acc, curr, i) {
     var _extends2;
 
-    return __WEBPACK_IMPORTED_MODULE_2__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_extends___default()({}, acc, (_extends2 = {}, _extends2['z' + i] = __WEBPACK_IMPORTED_MODULE_7_modularscale___default()(i - 1, scale) + 'rem', _extends2.z0 = 0, _extends2['z.' + (number - i)] = __WEBPACK_IMPORTED_MODULE_7_modularscale___default()(i - number, scale) + 'rem', _extends2['z-' + i] = '-' + __WEBPACK_IMPORTED_MODULE_7_modularscale___default()(i - 1, scale) + 'rem', _extends2['z0'] = 0, _extends2['z.-' + (number - i)] = '-' + __WEBPACK_IMPORTED_MODULE_7_modularscale___default()(i - number, scale) + 'rem', _extends2));
+    return __WEBPACK_IMPORTED_MODULE_2__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_extends___default()({}, acc, (_extends2 = {}, _extends2['z' + i] = __WEBPACK_IMPORTED_MODULE_7_modularscale___default()(i - 1, scale) + 'rem', _extends2.z0 = 0, _extends2['z.' + (number - i)] = __WEBPACK_IMPORTED_MODULE_7_modularscale___default()(i - number, scale) + 'rem', _extends2['z-' + i] = '-' + __WEBPACK_IMPORTED_MODULE_7_modularscale___default()(i - 1, scale) + 'rem', _extends2['z0'] = 0, _extends2['z-.' + (number - i)] = '-' + __WEBPACK_IMPORTED_MODULE_7_modularscale___default()(i - number, scale) + 'rem', _extends2));
   }, {});
 };
 
@@ -1966,6 +1966,7 @@ var getSize = function getSize(value, theme) {
       return 'auto';
     default:
       var formattedVal = (typeof value === 'number' || typeof value === 'string') && parseFloat(value, 10) < 1 ? value.toString().replace('0.', '.') : parseFloat(value, 10).toString();
+      console.log(theme.sizes, formattedVal.toString());
 
       if (theme.sizes['z' + formattedVal].toString()) {
         return theme.sizes['z' + formattedVal];
@@ -2713,7 +2714,7 @@ var Shed = function Shed(_ref) {
   return __WEBPACK_IMPORTED_MODULE_4_react___default.a.createElement(ShedStyled, __WEBPACK_IMPORTED_MODULE_2__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_extends___default()({}, props, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1125
+      lineNumber: 1126
     },
     __self: _this
   }));
