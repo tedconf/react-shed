@@ -24,7 +24,7 @@ const sizes = (scale = 'major second', number = 20) => Array.from([...Array(numb
   [`z.${number - i}`]: `${ms((i - number), scale)}rem`,
   [`z-${i}`]: `-${ms((i - 1), scale)}rem`,
   z0: 0,
-  [`z.-${number - i}`]: `-${ms((i - number), scale)}rem`,
+  [`z-.${number - i}`]: `-${ms((i - number), scale)}rem`,
 }), {});
 
 const reset = injectGlobal`
@@ -275,6 +275,7 @@ const getSize = (value, theme) => {
         parseFloat(value, 10) < 1
           ? value.toString().replace('0.', '.')
           : parseFloat(value, 10).toString();
+			console.log(theme.sizes, formattedVal.toString());
 
       if (theme.sizes[`z${formattedVal}`].toString()) {
         return theme.sizes[`z${formattedVal}`];

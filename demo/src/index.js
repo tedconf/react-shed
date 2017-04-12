@@ -29,6 +29,7 @@ render(
       mx="a"
       op=".5"
 			left="0"
+			mt="-.8"
     >
       <h1.shed
         f="1"
