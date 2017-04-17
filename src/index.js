@@ -104,6 +104,9 @@ const createTheme = (
 };
 
 const getSize = (value, theme) => {
+  if (value && value.match && value.match(/^\d+v(min|max|h|w)$/)) {
+    return value;
+  }
   switch (value) {
     case '1of12':
       return `${(1/12) * 100}%`

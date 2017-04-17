@@ -28,11 +28,10 @@ render(
     <div.shed
       mx="a"
       op=".5"
-			left="0"
-			mt="-.8"
+      left="0"
     >
       <h1.shed
-        f="1"
+        f="40vh"
         mx={0.1}
       >
         A header component with the theme color "red", 2 units of left-padding,
