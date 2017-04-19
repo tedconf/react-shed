@@ -1,5 +1,5 @@
 /*!
- * react-shed v2.6.3
+ * react-shed v2.7.0
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -1798,6 +1798,9 @@ var createTheme = function createTheme() {
 };
 
 var getSize = function getSize(value, theme) {
+  if (value && value.match && value.match(/^\d+v(min|max|h|w)$/)) {
+    return value;
+  }
   switch (value) {
     case '1of12':
       return 1 / 12 * 100 + '%';
@@ -2713,7 +2716,7 @@ var Shed = function Shed(_ref) {
   return __WEBPACK_IMPORTED_MODULE_4_react___default.a.createElement(ShedStyled, __WEBPACK_IMPORTED_MODULE_2__Users_vincentspeelman_Projects_shed_react_shed_node_modules_babel_runtime_helpers_extends___default()({}, props, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1125
+      lineNumber: 1128
     },
     __self: _this
   }));
