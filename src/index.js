@@ -97,9 +97,11 @@ const createTheme = (
       }
     `);
   }
+
   if(generatedTheme.sizes['z.0']) {
     delete generatedTheme.sizes['z.0'];
   }
+
   return generatedTheme;
 };
 
@@ -350,6 +352,37 @@ const getPropsForMPValue = (prop, value = null, THEME = null) => {
 
     default:
       return null;
+  }
+};
+
+const getPropsForLSTValue = (value) => {
+  isValid('list-style-type')(value);
+  switch (value) {
+    case 'd':
+      return 'disc';
+    case 'c':
+      return 'circle';
+    case 's':
+      return 'square';
+    case 'd':
+      return 'decimal';
+    case 'g':
+      return 'georgian';
+    case 'cjk-i':
+      return 'cjk-ideographic';
+    case 'k':
+      return 'kannada';
+    case 'inherit':
+      return 'inherit';
+    case 'initial':
+      return 'initial';
+    case 'unset':
+      return 'unset';
+    case 'n':
+      return 'none';
+
+    default:
+      return value;
   }
 };
 
@@ -1121,6 +1154,11 @@ const Shed = ({
     ${({ cur, theme }) =>
       cur
       ? `cursor: ${getPropsForCurValue(cur)};`
+      : null
+    }
+    ${({ lst, theme }) =>
+      lst
+      ? `list-style-type: ${getPropsForLSTValue(lst)};`
       : null
     }
   `;
