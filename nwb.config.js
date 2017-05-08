@@ -6,6 +6,11 @@ module.exports = {
       'shed',
     ],
   },
+  webpack: {
+    extra: {
+      devtool: 'inline-source-map', // 'source-map', //cheap-eval-source-map
+    }
+  },
   npm: {
     umd: {
       global: 'Shed',

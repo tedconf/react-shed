@@ -3,14 +3,14 @@ import _taggedTemplateLiteralLoose from 'babel-runtime/helpers/taggedTemplateLit
 import _extends from 'babel-runtime/helpers/extends';
 import _typeof from 'babel-runtime/helpers/typeof';
 
-var _templateObject = _taggedTemplateLiteralLoose(['\n  *,::after,::before{background-repeat:no-repeat;box-sizing:inherit}::after,::before{text-decoration:inherit;vertical-align:inherit}html{box-sizing:border-box;cursor:default;font-family:sans-serif;line-height:1.5;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section{display:block}body,button,figure,h1,input,optgroup,select,textarea{margin:0}h1{font-size:1em}hr{box-sizing:content-box;height:0;overflow:visible}nav ol,nav ul{list-style:none}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}abbr[title]{border-bottom:none;text-decoration:underline dotted}b,strong{font-weight:bolder}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:100%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}::-moz-selection{background-color:#b3d4fc;color:#000;text-shadow:none}::selection{background-color:#b3d4fc;color:#000;text-shadow:none}audio,canvas,iframe,img,svg,video{vertical-align:middle}audio,canvas,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg{fill:currentColor}svg:not(:root){overflow:hidden}table{border-collapse:collapse}button,input,select,textarea{background-color:transparent;color:inherit;font-size:inherit;line-height:inherit;border:0;padding:0}button,input{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}legend{color:inherit;display:table;max-width:100%;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto;resize:vertical}[type=checkbox],[type=radio],legend{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}[tabindex],a,area,button,input,label,select,summary,textarea{-ms-touch-action:manipulation;touch-action:manipulation}[hidden],template{display:none}[aria-busy=true]{cursor:progress}[aria-controls]{cursor:pointer}[aria-hidden=false][hidden]{clip:rect(0,0,0,0);display:inherit;position:absolute}[aria-hidden=false][hidden]:focus{clip:auto}[aria-disabled]{cursor:default}\n'], ['\n  *,::after,::before{background-repeat:no-repeat;box-sizing:inherit}::after,::before{text-decoration:inherit;vertical-align:inherit}html{box-sizing:border-box;cursor:default;font-family:sans-serif;line-height:1.5;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section{display:block}body,button,figure,h1,input,optgroup,select,textarea{margin:0}h1{font-size:1em}hr{box-sizing:content-box;height:0;overflow:visible}nav ol,nav ul{list-style:none}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}abbr[title]{border-bottom:none;text-decoration:underline dotted}b,strong{font-weight:bolder}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:100%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}::-moz-selection{background-color:#b3d4fc;color:#000;text-shadow:none}::selection{background-color:#b3d4fc;color:#000;text-shadow:none}audio,canvas,iframe,img,svg,video{vertical-align:middle}audio,canvas,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg{fill:currentColor}svg:not(:root){overflow:hidden}table{border-collapse:collapse}button,input,select,textarea{background-color:transparent;color:inherit;font-size:inherit;line-height:inherit;border:0;padding:0}button,input{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}legend{color:inherit;display:table;max-width:100%;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto;resize:vertical}[type=checkbox],[type=radio],legend{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}[tabindex],a,area,button,input,label,select,summary,textarea{-ms-touch-action:manipulation;touch-action:manipulation}[hidden],template{display:none}[aria-busy=true]{cursor:progress}[aria-controls]{cursor:pointer}[aria-hidden=false][hidden]{clip:rect(0,0,0,0);display:inherit;position:absolute}[aria-hidden=false][hidden]:focus{clip:auto}[aria-disabled]{cursor:default}\n']),
-    _templateObject2 = _taggedTemplateLiteralLoose(['\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n  '], ['\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n    ', '\n  ']);
+var _templateObject = _taggedTemplateLiteralLoose(['\n  *,::after,::before{background-repeat:no-repeat;box-sizing:inherit}::after,::before{text-decoration:inherit;vertical-align:inherit}html{box-sizing:border-box;cursor:default;font-family:sans-serif;line-height:1.5;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section{display:block}body,button,figure,h1,input,optgroup,select,textarea{margin:0}h1{font-size:1em}hr{box-sizing:content-box;height:0;overflow:visible}nav ol,nav ul{list-style:none}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}abbr[title]{border-bottom:none;text-decoration:underline dotted}b,strong{font-weight:bolder}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:100%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}::-moz-selection{background-color:#b3d4fc;color:#000;text-shadow:none}::selection{background-color:#b3d4fc;color:#000;text-shadow:none}audio,canvas,iframe,img,svg,video{vertical-align:middle}audio,canvas,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg{fill:currentColor}svg:not(:root){overflow:hidden}table{border-collapse:collapse}button,input,select,textarea{background-color:transparent;color:inherit;font-size:inherit;line-height:inherit;border:0;padding:0}button,input{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}legend{color:inherit;display:table;max-width:100%;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto;resize:vertical}[type=checkbox],[type=radio],legend{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}[tabindex],a,area,button,input,label,select,summary,textarea{-ms-touch-action:manipulation;touch-action:manipulation}[hidden],template{display:none}[aria-busy=true]{cursor:progress}[aria-controls]{cursor:pointer}[aria-hidden=false][hidden]{clip:rect(0,0,0,0);display:inherit;position:absolute}[aria-hidden=false][hidden]:focus{clip:auto}[aria-disabled]{cursor:default}\n'], ['\n  *,::after,::before{background-repeat:no-repeat;box-sizing:inherit}::after,::before{text-decoration:inherit;vertical-align:inherit}html{box-sizing:border-box;cursor:default;font-family:sans-serif;line-height:1.5;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section{display:block}body,button,figure,h1,input,optgroup,select,textarea{margin:0}h1{font-size:1em}hr{box-sizing:content-box;height:0;overflow:visible}nav ol,nav ul{list-style:none}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}abbr[title]{border-bottom:none;text-decoration:underline dotted}b,strong{font-weight:bolder}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:100%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}::-moz-selection{background-color:#b3d4fc;color:#000;text-shadow:none}::selection{background-color:#b3d4fc;color:#000;text-shadow:none}audio,canvas,iframe,img,svg,video{vertical-align:middle}audio,canvas,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg{fill:currentColor}svg:not(:root){overflow:hidden}table{border-collapse:collapse}button,input,select,textarea{background-color:transparent;color:inherit;font-size:inherit;line-height:inherit;border:0;padding:0}button,input{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}legend{color:inherit;display:table;max-width:100%;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto;resize:vertical}[type=checkbox],[type=radio],legend{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}[tabindex],a,area,button,input,label,select,summary,textarea{-ms-touch-action:manipulation;touch-action:manipulation}[hidden],template{display:none}[aria-busy=true]{cursor:progress}[aria-controls]{cursor:pointer}[aria-hidden=false][hidden]{clip:rect(0,0,0,0);display:inherit;position:absolute}[aria-hidden=false][hidden]:focus{clip:auto}[aria-disabled]{cursor:default}\n']);
 
 import React from 'react';
 import Color from 'color';
 import curry from 'curry';
 import ms from 'modularscale';
-import styled, { injectGlobal, withTheme } from 'styled-components';
+import styled, { injectGlobal } from 'styled-components';
+import glamorous from 'glamorous';
 
 var stripUnit = function stripUnit(val) {
   return val.replace(/(r?em|px|pc|ex|ch|ic|lh|rlh|vh|vw|vi|vb|vmin|vmax|mm|q|cm|in|pt)/, '');
@@ -306,41 +306,73 @@ var getPropsForMPValue = function getPropsForMPValue(prop) {
 
   switch (prop) {
     case 'm':
-      return 'margin: ' + formattedVal + ';';
+      return {
+        margin: formattedVal
+      };
     case 'mx':
-      return 'margin-left: ' + formattedVal + ';\n         margin-right: ' + formattedVal + ';';
+      return {
+        marginLeft: formattedVal,
+        marginRight: formattedVal
+      };
     case 'my':
-      return 'margin-top: ' + formattedVal + ';\n         margin-bottom: ' + formattedVal + ';';
+      return {
+        marginTop: formattedVal,
+        marginBottom: formattedVal
+      };
     case 'mt':
-      return 'margin-top: ' + formattedVal + ';';
+      return {
+        marginTop: formattedVal
+      };
     case 'mr':
-      return 'margin-right: ' + formattedVal + ';';
+      return {
+        marginRight: formattedVal
+      };
     case 'mb':
-      return 'margin-bottom: ' + formattedVal + ';';
+      return {
+        marginBottom: formattedVal
+      };
     case 'ml':
-      return 'margin-left: ' + formattedVal + ';';
+      return {
+        marginLeft: formattedVal
+      };
 
     case 'p':
-      return 'padding: ' + formattedVal + ';';
+      return {
+        padding: formattedVal
+      };
     case 'px':
-      return 'padding-left: ' + formattedVal + ';\n         padding-right: ' + formattedVal + ';';
+      return {
+        paddingLeft: formattedVal,
+        paddingRight: formattedVal
+      };
     case 'py':
-      return 'padding-top: ' + formattedVal + ';\n         padding-bottom: ' + formattedVal + ';';
+      return {
+        paddingTop: formattedVal,
+        paddingBottom: formattedVal
+      };
     case 'pt':
-      return 'padding-top: ' + formattedVal + ';';
+      return {
+        paddingTop: formattedVal
+      };
     case 'pr':
-      return 'padding-right: ' + formattedVal + ';';
+      return {
+        paddingRight: formattedVal
+      };
     case 'pb':
-      return 'padding-bottom: ' + formattedVal + ';';
+      return {
+        paddingBottom: formattedVal
+      };
     case 'pl':
-      return 'padding-left: ' + formattedVal + ';';
+      return {
+        paddingLeft: formattedVal
+      };
 
     default:
       return null;
   }
 };
 
-var getPropsForLSTValue = function getPropsForLSTValue(value) {
+var getPropsForLSTValue = function getPropsForLSTValue(value, theme) {
   isValid('list-style-type')(value);
   switch (value) {
     case 'd':
@@ -696,19 +728,35 @@ var getPropsForVAValue = function getPropsForVAValue(value) {
   isValid('vertical-align')(value);
   switch (value) {
     case 't':
-      return 'vertical-align: top;';
+      return {
+        verticalAlign: 'top'
+      };
     case 'b':
-      return 'vertical-align: bottom;';
+      return {
+        verticalAlign: 'bottom'
+      };
     case 'm':
-      return 'vertical-align: middle;';
+      return {
+        verticalAlign: 'middle'
+      };
     case 'bl':
-      return 'vertical-align: baseline;';
+      return {
+        verticalAlign: 'baseline'
+      };
     case 'c':
-      return '\n        position: relative;\n        top: 50%;\n        transform: translateY(-50%);\n      ';
+      return {
+        position: 'relative',
+        top: '50%',
+        transform: 'translateY(-50%)'
+      };
     case 'i':
-      return 'vertical-align: inherit;';
+      return {
+        verticalAlign: 'inherit'
+      };
     case 'init':
-      return 'vertical-align: initial;';
+      return {
+        verticalAlign: 'initial'
+      };
     default:
       throw new Error('You must provide a valid value for the vertical-align prop. One of t, b, m, bl, c, i, init, not ' + JSON.stringify(value));
   }
@@ -736,7 +784,7 @@ var getPropsForTDValue = function getPropsForTDValue(value) {
   }
 };
 
-var getPropsForLSValue = function getPropsForLSValue(value) {
+var getPropsForLSValue = function getPropsForLSValue(value, theme) {
   isValid('letter-spacing')(value);
   switch (value) {
     case 'n':
@@ -746,6 +794,9 @@ var getPropsForLSValue = function getPropsForLSValue(value) {
     case 'l':
       return '.3em';
     default:
+      if (theme.sizes['z' + value]) {
+        return stripUnit(theme.sizes['z' + value]);
+      }
       throw new Error('You must provide a valid value for the letter-spacing prop. One of n, t, l, not ' + JSON.stringify(value));
   }
 };
@@ -768,7 +819,6 @@ var getPropsForLHValue = function getPropsForLHValue(value, theme) {
     default:
       if (theme.sizes['z' + value]) {
         return stripUnit(theme.sizes['z' + value]);
-        ;
       }
       throw new Error('You must provide a valid value for the line-height prop. One of [scale value], d, t, l, n, i, init, not ' + JSON.stringify(value));
   }
@@ -778,23 +828,28 @@ var getPropsForPosValue = function getPropsForPosValue(value) {
   isValid('position')(value);
   switch (value) {
     case 'a':
-      return 'position: absolute;';
+      return { position: 'absolute' };
     case 'r':
-      return 'position: relative;';
+      return { position: 'relative' };
     case 'f':
-      return 'position: fixed;';
+      return { position: 'fixed' };
     case 's':
-      return 'position: static;';
+      return { position: 'static' };
     case 'stick':
-      return 'position: sticky;';
+      return { position: 'sticky' };
     case 'c':
-      return '\n        top: 0;\n        right: 0;\n        bottom: 0;\n        left: 0;\n      ';
+      return {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0
+      };
     case 'i':
-      return 'position: inherit;';
+      return { position: 'inherit' };
     case 'init':
-      return 'initial;';
+      return { position: 'initial' };
     default:
-      throw new Error('You must provide a valid value for the position prop. One of a, r, s, stick, c, not ' + JSON.stringify(value));
+      throw new Error('You must provide a valid value for the position prop. One of a, r, s, stick, c, i, init, not ' + JSON.stringify(value));
   }
 };
 
@@ -860,199 +915,137 @@ var getOpacity = function getOpacity(value) {
   return value;
 };
 
-var Shed = function Shed(_ref) {
-  var _ref$component = _ref.component,
-      component = _ref$component === undefined ? 'div' : _ref$component,
-      _ref$theme = _ref.theme,
-      theme = _ref$theme === undefined ? createTheme() : _ref$theme,
-      props = _objectWithoutProperties(_ref, ['component', 'theme']);
+var UnstyledComp = function UnstyledComp(_ref) {
+  var props = _objectWithoutProperties(_ref, []);
 
-  var ShedStyled = styled(component)(_templateObject2, function (_ref2) {
-    var props = _objectWithoutProperties(_ref2, []),
-        theme = _ref2.theme;
+  return React.createElement('div', props);
+};
 
-    return getMarginAndPadding(props, theme);
-  }, function (_ref3) {
-    var c = _ref3.c,
-        theme = _ref3.theme;
-    return c ? 'color: ' + getPropsForColor(c, theme) + ';' : null;
-  }, function (_ref4) {
-    var bg = _ref4.bg,
-        theme = _ref4.theme;
-    return bg ? 'background-color: ' + getPropsForColor(bg, theme) + ';' : null;
-  }, function (_ref5) {
-    var f = _ref5.f,
-        theme = _ref5.theme;
-    return f ? 'font-size: ' + getSize(f, theme) + ';' : null;
-  }, function (_ref6) {
-    var fw = _ref6.fw;
-    return fw ? 'font-weight: ' + fw + ';' : null;
-  }, function (_ref7) {
-    var fs = _ref7.fs,
-        theme = _ref7.theme;
-    return fs ? 'font-style: ' + getPropsForFSValue(fs) + ';' : null;
-  }, function (_ref8) {
-    var ff = _ref8.ff,
-        theme = _ref8.theme;
-    return ff ? 'font-family: ' + theme.fonts['' + ff] + ';' : null;
-  }, function (_ref9) {
-    var ls = _ref9.ls,
-        theme = _ref9.theme;
-    return ls ? 'letter-spacing: ' + getPropsForLSValue(ls, theme) + ';' : null;
-  }, function (_ref10) {
-    var lh = _ref10.lh,
-        theme = _ref10.theme;
-    return lh ? 'line-height: ' + getPropsForLHValue(lh, theme) + ';' : null;
-  }, function (_ref11) {
-    var tt = _ref11.tt;
-    return tt ? 'text-transform: ' + getPropsForTTValue(tt) + ';' : null;
-  }, function (_ref12) {
-    var ta = _ref12.ta;
-    return ta ? 'text-align: ' + getPropsForTAValue(ta) + ';' : null;
-  }, function (_ref13) {
-    var va = _ref13.va;
-    return va ? '' + getPropsForVAValue(va) : null;
-  }, function (_ref14) {
-    var td = _ref14.td;
-    return td ? 'text-decoration: ' + getPropsForTDValue(td) + ';' : null;
-  }, function (_ref15) {
-    var tdc = _ref15.tdc,
-        theme = _ref15.theme;
-    return tdc ? 'text-decoration-color: ' + getPropsForColor(tdc, theme) + ';' : null;
-  }, function (_ref16) {
-    var d = _ref16.d;
-    return d ? 'display: ' + getPropsForDValue(d) + ';' : null;
-  }, function (_ref17) {
-    var flxg = _ref17.flxg;
-    return flxg ? 'flex-grow: ' + flxg + ';' : null;
-  }, function (_ref18) {
-    var flxs = _ref18.flxs;
-    return flxs ? 'flex-shrink: ' + flxs + ';' : null;
-  }, function (_ref19) {
-    var jc = _ref19.jc;
-    return jc ? 'justify-content: ' + getPropsForJCValue(jc) + ';' : null;
-  }, function (_ref20) {
-    var ac = _ref20.ac;
-    return ac ? 'align-content: ' + getPropsForACValue(ac) + ';' : null;
-  }, function (_ref21) {
-    var ai = _ref21.ai;
-    return ai ? 'align-items: ' + getPropsForAIValue(ai) + ';' : null;
-  }, function (_ref22) {
-    var as = _ref22.as;
-    return as ? 'align-self: ' + getPropsForASValue(as) + ';' : null;
-  }, function (_ref23) {
-    var flxw = _ref23.flxw;
-    return flxw ? 'flex-wrap: ' + getPropsForFlxWValue(flxw) + ';' : null;
-  }, function (_ref24) {
-    var flxd = _ref24.flxd;
-    return flxd ? 'flex-direction: ' + getPropsForFlxDValue(flxd) + ';' : null;
-  }, function (_ref25) {
-    var flxb = _ref25.flxb,
-        theme = _ref25.theme;
-    return flxb ? 'flex-basis: ' + getPropsForFlxBValue(flxb, theme) + ';' : null;
-  }, function (_ref26) {
-    var fl = _ref26.fl;
-    return fl ? 'float: ' + getPropsForFlValue(fl) + ';' : null;
-  }, function (_ref27) {
-    var pos = _ref27.pos;
-    return pos ? getPropsForPosValue(pos) + ';' : null;
-  }, function (_ref28) {
-    var top = _ref28.top,
-        theme = _ref28.theme;
-    return top ? 'top: ' + getSize(top, theme) + ';' : null;
-  }, function (_ref29) {
-    var right = _ref29.right,
-        theme = _ref29.theme;
-    return right ? 'right: ' + getSize(right, theme) + ';' : null;
-  }, function (_ref30) {
-    var bottom = _ref30.bottom,
-        theme = _ref30.theme;
-    return bottom ? 'bottom: ' + getSize(bottom, theme) + ';' : null;
-  }, function (_ref31) {
-    var left = _ref31.left,
-        theme = _ref31.theme;
-    return left ? 'left: ' + getSize(left, theme) + ';' : null;
-  }, function (_ref32) {
-    var o = _ref32.o,
-        theme = _ref32.theme;
-    return o ? 'overflow: ' + getPropsForOValue(o) + ';' : null;
-  }, function (_ref33) {
-    var ox = _ref33.ox,
-        theme = _ref33.theme;
-    return ox ? 'overflow-x: ' + getPropsForOValue(ox) + ';' : null;
-  }, function (_ref34) {
-    var oy = _ref34.oy,
-        theme = _ref34.theme;
-    return oy ? 'overflow-y: ' + getPropsForOValue(oy) + ';' : null;
-  }, function (_ref35) {
-    var zi = _ref35.zi,
-        theme = _ref35.theme;
-    return zi ? 'z-index: ' + zi + ';' : null;
-  }, function (_ref36) {
-    var ws = _ref36.ws;
-    return ws ? 'white-space: ' + getPropsForWSValue(ws) + ';' : null;
-  }, function (_ref37) {
-    var br = _ref37.br,
-        theme = _ref37.theme;
-    return br ? 'border-radius: ' + getSize(br, theme) + ';' : null;
-  }, function (_ref38) {
-    var brl = _ref38.brl,
-        theme = _ref38.theme;
-    return brl ? '\n        border-top-left-radius: ' + getSize(brl, theme) + ';\n        border-bottom-left-radius: ' + getSize(brl, theme) + ';\n      ' : null;
-  }, function (_ref39) {
-    var brr = _ref39.brr,
-        theme = _ref39.theme;
-    return brr ? '\n        border-top-right-radius: ' + getSize(brr, theme) + ';\n        border-bottom-right-radius: ' + getSize(brr, theme) + ';\n      ' : null;
-  }, function (_ref40) {
-    var brt = _ref40.brt,
-        theme = _ref40.theme;
-    return brt ? '\n        border-top-left-radius: ' + getSize(brt, theme) + ';\n        border-top-right-radius: ' + getSize(brt, theme) + ';\n      ' : null;
-  }, function (_ref41) {
-    var brb = _ref41.brb,
-        theme = _ref41.theme;
-    return brb ? '\n        border-bottom-left-radius: ' + getSize(brb, theme) + ';\n        border-bottom-right-radius: ' + getSize(brb, theme) + ';\n      ' : null;
-  }, function (_ref42) {
-    var brtl = _ref42.brtl,
-        theme = _ref42.theme;
-    return brtl ? '\n        border-top-left-radius: ' + getSize(brtl, theme) + ';\n      ' : null;
-  }, function (_ref43) {
-    var brtr = _ref43.brtr,
-        theme = _ref43.theme;
-    return brtr ? '\n        border-top-right-radius: ' + getSize(brtr, theme) + ';\n      ' : null;
-  }, function (_ref44) {
-    var brbr = _ref44.brbr,
-        theme = _ref44.theme;
-    return brbr ? '\n        border-bottom-right-radius: ' + getSize(brbr, theme) + ';\n      ' : null;
-  }, function (_ref45) {
-    var brbl = _ref45.brbl,
-        theme = _ref45.theme;
-    return brbl ? '\n        border-bottom-left-radius: ' + getSize(brbl, theme) + ';\n      ' : null;
-  }, function (_ref46) {
-    var w = _ref46.w,
-        theme = _ref46.theme;
-    return w ? 'width: ' + getSize(w, theme) + ';' : null;
-  }, function (_ref47) {
-    var mw = _ref47.mw,
-        theme = _ref47.theme;
-    return mw ? 'max-width: ' + getSize(mw, theme) + ';' : null;
-  }, function (_ref48) {
-    var h = _ref48.h,
-        theme = _ref48.theme;
-    return h ? 'height: ' + getSize(h, theme) + ';' : null;
-  }, function (_ref49) {
-    var op = _ref49.op,
-        theme = _ref49.theme;
-    return op ? 'opacity: ' + getOpacity(op) + ';' : null;
-  }, function (_ref50) {
-    var cur = _ref50.cur,
-        theme = _ref50.theme;
-    return cur ? 'cursor: ' + getPropsForCurValue(cur) + ';' : null;
-  }, function (_ref51) {
-    var lst = _ref51.lst,
-        theme = _ref51.theme;
-    return lst ? 'list-style-type: ' + getPropsForLSTValue(lst) + ';' : null;
-  });
+var getPropForProps = function getPropForProps(props) {
+  return Object.keys(props).reduce(function (acc, val) {
+    console.log(val, props[val]);
+    return _extends({}, acc, getMarginAndPadding(props, theme), {
+      color: orNull(c, getPropsForColor(c, theme)),
+      backgroundColor: orNull(bg, getPropsForColor(bg, theme)),
+      fontSize: orNull(f, getSize(f, theme)),
+      fontWeight: orNull(fw),
+      fontStyle: orNull(fs, getPropsForFSValue(fs)),
+      fontFamily: orNull(theme.fonts[ff]),
+      letterSpacing: orNull(ls, getPropsForLSValue(ls, theme)),
+      lineHeight: orNull(lh, getPropsForLHValue(lh, theme)),
+      textTransform: orNull(tt, getPropsForTTValue(tt)),
+      textAlign: orNull(ta, getPropsForTAValue(ta)),
+      verticalAlign: orNull(va, getPropsForVAValue(va)),
+      textDecoration: orNull(td, getPropsForTDValue(td)),
+      textDecorationColor: orNull(tdc, getPropsForColor(tdc, theme)),
+      display: orNull(d, getPropsForDValue(d)),
+      flexGrow: orNull(flxg),
+      flexShrink: orNull(flxs),
+      justifyContent: orNull(jc, getPropsForJCValue(jc)),
+      alignContent: orNull(ac, getPropsForACValue(ac)),
+      alignItems: orNull(ai, getPropsForAIValue(ai)),
+      alignSelf: orNull(as, getPropsForASValue(as)),
+      flexWrap: orNull(flxw, getPropsForFlxWValue(flxw)),
+      flexDirection: orNull(flxd, getPropsForFlxDValue(flxd)),
+      flexBasis: orNull(flxb, getPropsForFlxBValue(flxb, theme)),
+      float: orNull(fl, getPropsForFlValue(fl)),
+      position: orNull(pos, getPropsForPosValue(pos)),
+      top: orNull(top, getSize(top, theme)),
+      bottom: orNull(bottom, getSize(bottom, theme)),
+      right: orNull(right, getSize(right, theme)),
+      left: orNull(left, getSize(left, theme)),
+      overflow: orNull(o, getPropsForOValue(o)),
+      overflowX: orNull(ox, getPropsForOValue(ox)),
+      overflowY: orNull(oy, getPropsForOValue(oy)),
+      zIndex: orNull(zi),
+      whiteSpace: orNull(ws, getPropsForWSValue(ws)),
+      borderRadius: orNull(getSize(br, theme)),
+      width: orNull(w, getSize(w, theme)),
+      maxWidth: orNull(getSize(mw, theme)),
+      height: orNull(h, getSize(h, theme)),
+      opacity: orNull(op, getOpacity(op)),
+      cursor: orNull(cur, getPropsForCurValue(cur)),
+      listStyleType: orNull(lst, getPropsForLSTValue(lst))
+    });
+  }, {});
+};
 
+/*
+ * ${({ brl, theme }) =>
+ *   brl
+ *   ? `
+ *     border-top-left-radius: ${getSize(brl, theme)};
+ *     border-bottom-left-radius: ${getSize(brl, theme)};
+ *   `
+ *   : null
+ * }
+ * ${({ brr, theme }) =>
+ *   brr
+ *   ? `
+ *     border-top-right-radius: ${getSize(brr, theme)};
+ *     border-bottom-right-radius: ${getSize(brr, theme)};
+ *   `
+ *   : null
+ * }
+ * ${({ brt, theme }) =>
+ *   brt
+ *   ? `
+ *     border-top-left-radius: ${getSize(brt, theme)};
+ *     border-top-right-radius: ${getSize(brt, theme)};
+ *   `
+ *   : null
+ * }
+ * ${({ brb, theme }) =>
+ *   brb
+ *   ? `
+ *     border-bottom-left-radius: ${getSize(brb, theme)};
+ *     border-bottom-right-radius: ${getSize(brb, theme)};
+ *   `
+ *   : null
+ * }
+ * ${({ brtl, theme }) =>
+ *   brtl
+ *   ? `
+ *     border-top-left-radius: ${getSize(brtl, theme)};
+ *   `
+ *   : null
+ * }
+ * ${({ brtr, theme }) =>
+ *   brtr
+ *   ? `
+ *     border-top-right-radius: ${getSize(brtr, theme)};
+ *   `
+ *   : null
+ * }
+ * ${({ brbr, theme }) =>
+ *   brbr
+ *   ? `
+ *     border-bottom-right-radius: ${getSize(brbr, theme)};
+ *   `
+ *   : null
+ * }
+ * ${({ brbl, theme }) =>
+ *   brbl
+ *   ? `
+ *     border-bottom-left-radius: ${getSize(brbl, theme)};
+ *   `
+ *   : null
+ * }
+ * `;
+ */
+
+var orNull = function orNull(predicate, func) {
+  return predicate ? func ? func : predicate : null;
+};
+
+var Shed = function Shed(_ref2) {
+  var _ref2$component = _ref2.component,
+      component = _ref2$component === undefined ? UnstyledComp : _ref2$component,
+      _ref2$theme = _ref2.theme,
+      theme = _ref2$theme === undefined ? createTheme() : _ref2$theme,
+      props = _objectWithoutProperties(_ref2, ['component', 'theme']);
+
+  var ShedStyled = glamorous(component)(getPropForProps);
   return React.createElement(ShedStyled, props);
 };
 

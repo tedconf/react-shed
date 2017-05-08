@@ -1,11 +1,12 @@
 import React from 'react';
 import Color from 'color';
 import curry from 'curry';
+import get from 'lodash/fp/get';
 import ms from 'modularscale';
 import styled, {
   injectGlobal,
-  withTheme,
 } from 'styled-components';
+import glamorous from 'glamorous';
 
 const stripUnit = val => val.replace(/(r?em|px|pc|ex|ch|ic|lh|rlh|vh|vw|vi|vb|vmin|vmax|mm|q|cm|in|pt)/, '');
 
@@ -309,53 +310,73 @@ const getPropsForMPValue = (prop, value = null, THEME = null) => {
 
   switch (prop) {
     case 'm':
-      return `margin: ${formattedVal};`;
+      return {
+        margin: formattedVal,
+      };
     case 'mx':
-      return (
-        `margin-left: ${formattedVal};
-         margin-right: ${formattedVal};`
-      );
+      return {
+        marginLeft: formattedVal,
+        marginRight: formattedVal,
+      };
     case 'my':
-      return (
-        `margin-top: ${formattedVal};
-         margin-bottom: ${formattedVal};`
-      );
+      return {
+        marginTop: formattedVal,
+        marginBottom: formattedVal,
+      };
     case 'mt':
-      return `margin-top: ${formattedVal};`;
+      return {
+        marginTop: formattedVal,
+      };
     case 'mr':
-      return `margin-right: ${formattedVal};`;
+      return {
+        marginRight: formattedVal,
+      };
     case 'mb':
-      return `margin-bottom: ${formattedVal};`;
+      return {
+        marginBottom: formattedVal,
+      };
     case 'ml':
-      return `margin-left: ${formattedVal};`;
+      return {
+        marginLeft: formattedVal,
+      };
 
     case 'p':
-      return `padding: ${formattedVal};`;
+      return {
+        padding: formattedVal,
+      };
     case 'px':
-      return (
-        `padding-left: ${formattedVal};
-         padding-right: ${formattedVal};`
-      );
+      return {
+        paddingLeft: formattedVal,
+        paddingRight: formattedVal,
+      };
     case 'py':
-      return (
-        `padding-top: ${formattedVal};
-         padding-bottom: ${formattedVal};`
-      );
+      return {
+        paddingTop: formattedVal,
+        paddingBottom: formattedVal,
+      };
     case 'pt':
-      return `padding-top: ${formattedVal};`;
+      return {
+        paddingTop: formattedVal,
+      };
     case 'pr':
-      return `padding-right: ${formattedVal};`;
+      return {
+        paddingRight: formattedVal,
+      };
     case 'pb':
-      return `padding-bottom: ${formattedVal};`;
+      return {
+        paddingBottom: formattedVal,
+      };
     case 'pl':
-      return `padding-left: ${formattedVal};`;
+      return {
+        paddingLeft: formattedVal,
+      };
 
     default:
       return null;
   }
 };
 
-const getPropsForLSTValue = (value) => {
+const getPropsForLSTValue = (value, theme) => {
   isValid('list-style-type')(value);
   switch (value) {
     case 'd':
@@ -699,23 +720,35 @@ const getPropsForVAValue = (value) => {
   isValid('vertical-align')(value);
   switch (value) {
     case 't':
-      return 'vertical-align: top;';
+      return {
+        verticalAlign: 'top',
+      };
     case 'b':
-      return 'vertical-align: bottom;';
+      return {
+        verticalAlign: 'bottom',
+      };
     case 'm':
-      return 'vertical-align: middle;';
+      return {
+        verticalAlign: 'middle',
+      };
     case 'bl':
-      return 'vertical-align: baseline;';
+      return {
+        verticalAlign: 'baseline',
+      };
     case 'c':
-      return `
-        position: relative;
-        top: 50%;
-        transform: translateY(-50%);
-      `;
+      return {
+        position: 'relative',
+        top: '50%',
+        transform: 'translateY(-50%)',
+      };
     case 'i':
-      return 'vertical-align: inherit;';
+      return {
+        verticalAlign: 'inherit',
+      };
     case 'init':
-      return 'vertical-align: initial;';
+      return {
+        verticalAlign: 'initial',
+      };
     default:
       throw new Error(`You must provide a valid value for the vertical-align prop. One of t, b, m, bl, c, i, init, not ${JSON.stringify(value)}`);
   }
@@ -743,7 +776,7 @@ const getPropsForTDValue = (value) => {
   }
 };
 
-const getPropsForLSValue = (value) => {
+const getPropsForLSValue = (value, theme) => {
   isValid('letter-spacing')(value);
   switch (value) {
     case 'n':
@@ -753,6 +786,9 @@ const getPropsForLSValue = (value) => {
     case 'l':
       return '.3em';
     default:
+      if (theme.sizes[`z${value}`]) {
+        return stripUnit(theme.sizes[`z${value}`]);
+      }
       throw new Error(`You must provide a valid value for the letter-spacing prop. One of n, t, l, not ${JSON.stringify(value)}`);
   }
 };
@@ -775,7 +811,6 @@ const getPropsForLHValue = (value, theme) => {
     default:
       if (theme.sizes[`z${value}`]) {
         return stripUnit(theme.sizes[`z${value}`]);
-        ;
       }
       throw new Error(`You must provide a valid value for the line-height prop. One of [scale value], d, t, l, n, i, init, not ${JSON.stringify(value)}`);
   }
@@ -785,28 +820,28 @@ const getPropsForPosValue = (value) => {
   isValid('position')(value);
   switch (value) {
     case 'a':
-      return 'position: absolute;';
+      return { position: 'absolute' };
     case 'r':
-      return 'position: relative;';
+      return { position: 'relative' };
     case 'f':
-      return 'position: fixed;'
+      return { position: 'fixed' };
     case 's':
-      return 'position: static;'
+      return { position: 'static' };
     case 'stick':
-      return 'position: sticky;';
+      return { position: 'sticky' };
     case 'c':
-      return `
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-      `;
+      return {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+      };
     case 'i':
-      return 'position: inherit;';
+      return { position: 'inherit' };
     case 'init':
-      return 'initial;';
+      return { position: 'initial' };
     default:
-      throw new Error(`You must provide a valid value for the position prop. One of a, r, s, stick, c, not ${JSON.stringify(value)}`);
+      throw new Error(`You must provide a valid value for the position prop. One of a, r, s, stick, c, i, init, not ${JSON.stringify(value)}`);
   }
 };
 
@@ -889,280 +924,139 @@ const getOpacity = (value) => {
   return value;
 };
 
+const UnstyledComp = ({ ...props }) => <div {...props} />;
+
+const orNull = (predicate, func) => {
+	console.log(predicate, func);
+	if (predicate) {
+		if (func) {
+			return func
+		}
+		return predicate;
+	}
+	return null;
+};
+
+const getPropForProps = (props, theme) => Object.keys(props).reduce((acc, val) => {
+	const getProp = curry((_, props) => get(_)(props));
+	console.log(getProp('c')(props));
+	return {
+		...acc,
+		...getMarginAndPadding(props, theme),
+		color: orNull(getProp('c'), getPropsForColor(getProp('c'), theme)),
+		backgroundColor: orNull(bg, getPropsForColor(bg, theme)),
+		fontSize: orNull(f, getSize(f, theme)),
+		fontWeight: orNull(fw),
+		fontStyle: orNull(fs, getPropsForFSValue(fs)),
+		fontFamily: orNull(theme.fonts[ff]),
+		letterSpacing: orNull(ls, getPropsForLSValue(ls, theme)),
+		lineHeight: orNull(lh, getPropsForLHValue(lh, theme)),
+		textTransform: orNull(tt, getPropsForTTValue(tt)),
+		textAlign: orNull(ta, getPropsForTAValue(ta)),
+		verticalAlign: orNull(va, getPropsForVAValue(va)),
+		textDecoration: orNull(td, getPropsForTDValue(td)),
+		textDecorationColor: orNull(tdc, getPropsForColor(tdc, theme)),
+		display: orNull(d, getPropsForDValue(d)),
+		flexGrow: orNull(flxg),
+		flexShrink: orNull(flxs),
+		justifyContent: orNull(jc, getPropsForJCValue(jc)),
+		alignContent: orNull(ac, getPropsForACValue(ac)),
+		alignItems: orNull(ai, getPropsForAIValue(ai)),
+		alignSelf: orNull(as, getPropsForASValue(as)),
+		flexWrap: orNull(flxw, getPropsForFlxWValue(flxw)),
+		flexDirection: orNull(flxd, getPropsForFlxDValue(flxd)),
+		flexBasis: orNull(flxb, getPropsForFlxBValue(flxb, theme)),
+		float: orNull(fl, getPropsForFlValue(fl)),
+		position: orNull(pos, getPropsForPosValue(pos)),
+		top: orNull(top, getSize(top, theme)),
+		bottom: orNull(bottom, getSize(bottom, theme)),
+		right: orNull(right, getSize(right, theme)),
+		left: orNull(left, getSize(left, theme)),
+		overflow: orNull(o, getPropsForOValue(o)),
+		overflowX: orNull(ox, getPropsForOValue(ox)),
+		overflowY: orNull(oy, getPropsForOValue(oy)),
+		zIndex: orNull(zi),
+		whiteSpace: orNull(ws, getPropsForWSValue(ws)),
+		borderRadius: orNull(getSize(br, theme)),
+		width: orNull(w, getSize(w, theme)),
+		maxWidth: orNull(getSize(mw, theme)),
+		height: orNull(h, getSize(h, theme)),
+		opacity: orNull(op, getOpacity(op)),
+		cursor: orNull(cur, getPropsForCurValue(cur)),
+		listStyleType: orNull(lst, getPropsForLSTValue(lst)),
+	};
+}, {});
+
+/*
+ * ${({ brl, theme }) =>
+ *   brl
+ *   ? `
+ *     border-top-left-radius: ${getSize(brl, theme)};
+ *     border-bottom-left-radius: ${getSize(brl, theme)};
+ *   `
+ *   : null
+ * }
+ * ${({ brr, theme }) =>
+ *   brr
+ *   ? `
+ *     border-top-right-radius: ${getSize(brr, theme)};
+ *     border-bottom-right-radius: ${getSize(brr, theme)};
+ *   `
+ *   : null
+ * }
+ * ${({ brt, theme }) =>
+ *   brt
+ *   ? `
+ *     border-top-left-radius: ${getSize(brt, theme)};
+ *     border-top-right-radius: ${getSize(brt, theme)};
+ *   `
+ *   : null
+ * }
+ * ${({ brb, theme }) =>
+ *   brb
+ *   ? `
+ *     border-bottom-left-radius: ${getSize(brb, theme)};
+ *     border-bottom-right-radius: ${getSize(brb, theme)};
+ *   `
+ *   : null
+ * }
+ * ${({ brtl, theme }) =>
+ *   brtl
+ *   ? `
+ *     border-top-left-radius: ${getSize(brtl, theme)};
+ *   `
+ *   : null
+ * }
+ * ${({ brtr, theme }) =>
+ *   brtr
+ *   ? `
+ *     border-top-right-radius: ${getSize(brtr, theme)};
+ *   `
+ *   : null
+ * }
+ * ${({ brbr, theme }) =>
+ *   brbr
+ *   ? `
+ *     border-bottom-right-radius: ${getSize(brbr, theme)};
+ *   `
+ *   : null
+ * }
+ * ${({ brbl, theme }) =>
+ *   brbl
+ *   ? `
+ *     border-bottom-left-radius: ${getSize(brbl, theme)};
+ *   `
+ *   : null
+ * }
+ * `;
+ */
+
 const Shed = ({
-  component = 'div',
+  component = UnstyledComp,
   theme = createTheme(),
   ...props,
 }) => {
-  const ShedStyled = styled(component)`
-    ${({ ...props, theme }) => getMarginAndPadding(props, theme)}
-    ${({ c, theme }) =>
-      c
-        ? `color: ${getPropsForColor(c, theme)};`
-        : null
-    }
-    ${({ bg, theme }) =>
-      bg
-        ? `background-color: ${getPropsForColor(bg, theme)};`
-        : null
-    }
-    ${({ f, theme }) =>
-      f
-        ? `font-size: ${getSize(f, theme)};`
-        : null
-    }
-    ${({ fw }) =>
-      fw
-        ? `font-weight: ${fw};`
-        : null
-    }
-    ${({ fs, theme }) =>
-      fs
-        ? `font-style: ${getPropsForFSValue(fs)};`
-        : null
-    }
-    ${({ ff, theme }) =>
-      ff
-        ? `font-family: ${theme.fonts[`${ff}`]};`
-        : null
-    }
-    ${({ ls, theme }) =>
-      ls
-        ? `letter-spacing: ${getPropsForLSValue(ls, theme)};`
-        : null
-    }
-    ${({ lh, theme }) =>
-      lh
-        ? `line-height: ${getPropsForLHValue(lh, theme)};`
-        : null
-    }
-    ${({ tt }) =>
-      tt
-        ? `text-transform: ${getPropsForTTValue(tt)};`
-        : null
-    }
-    ${({ ta }) =>
-      ta
-        ? `text-align: ${getPropsForTAValue(ta)};`
-        : null
-    }
-    ${({ va }) =>
-      va
-        ? `${getPropsForVAValue(va)}`
-        : null
-    }
-    ${({ td }) =>
-      td
-        ? `text-decoration: ${getPropsForTDValue(td)};`
-        : null
-    }
-    ${({ tdc, theme }) =>
-      tdc
-        ? `text-decoration-color: ${getPropsForColor(tdc, theme)};`
-        : null
-    }
-    ${({ d }) =>
-      d
-        ? `display: ${getPropsForDValue(d)};`
-        : null
-    }
-    ${({ flxg }) =>
-      flxg
-        ? `flex-grow: ${flxg};`
-        : null
-    }
-    ${({ flxs }) =>
-      flxs
-        ? `flex-shrink: ${flxs};`
-        : null
-    }
-    ${({ jc }) =>
-      jc
-        ? `justify-content: ${getPropsForJCValue(jc)};`
-        : null
-    }
-    ${({ ac }) =>
-      ac
-        ? `align-content: ${getPropsForACValue(ac)};`
-        : null
-    }
-    ${({ ai }) =>
-      ai
-        ? `align-items: ${getPropsForAIValue(ai)};`
-        : null
-    }
-    ${({ as }) =>
-      as
-        ? `align-self: ${getPropsForASValue(as)};`
-        : null
-    }
-    ${({ flxw }) =>
-      flxw
-        ? `flex-wrap: ${getPropsForFlxWValue(flxw)};`
-        : null
-    }
-    ${({ flxd }) =>
-      flxd
-        ? `flex-direction: ${getPropsForFlxDValue(flxd)};`
-        : null
-    }
-    ${({ flxb, theme }) =>
-      flxb
-        ? `flex-basis: ${getPropsForFlxBValue(flxb, theme)};`
-        : null
-    }
-    ${({ fl }) =>
-      fl
-        ? `float: ${getPropsForFlValue(fl)};`
-        : null
-    }
-    ${({ pos }) => (
-      pos
-        ? `${getPropsForPosValue(pos)};`
-        : null
-    )}
-    ${({ top, theme }) =>
-      top
-        ? `top: ${getSize(top, theme)};`
-        : null
-    }
-    ${({ right, theme }) =>
-      right
-        ? `right: ${getSize(right, theme)};`
-        : null
-    }
-    ${({ bottom, theme }) =>
-      bottom
-        ? `bottom: ${getSize(bottom, theme)};`
-        : null
-    }
-    ${({ left, theme }) =>
-      left
-        ? `left: ${getSize(left, theme)};`
-        : null
-    }
-    ${({ o, theme }) =>
-      o
-        ? `overflow: ${getPropsForOValue(o)};`
-        : null
-    }
-    ${({ ox, theme }) =>
-      ox
-        ? `overflow-x: ${getPropsForOValue(ox)};`
-        : null
-    }
-    ${({ oy, theme }) =>
-      oy
-        ? `overflow-y: ${getPropsForOValue(oy)};`
-        : null
-    }
-    ${({ zi, theme }) =>
-      zi
-        ? `z-index: ${zi};`
-        : null
-    }
-    ${({ ws }) =>
-      ws
-        ? `white-space: ${getPropsForWSValue(ws)};`
-        : null
-    }
-    ${({ br, theme }) =>
-      br
-      ? `border-radius: ${getSize(br, theme)};`
-      : null
-    }
-    ${({ brl, theme }) =>
-      brl
-      ? `
-        border-top-left-radius: ${getSize(brl, theme)};
-        border-bottom-left-radius: ${getSize(brl, theme)};
-      `
-      : null
-    }
-    ${({ brr, theme }) =>
-      brr
-      ? `
-        border-top-right-radius: ${getSize(brr, theme)};
-        border-bottom-right-radius: ${getSize(brr, theme)};
-      `
-      : null
-    }
-    ${({ brt, theme }) =>
-      brt
-      ? `
-        border-top-left-radius: ${getSize(brt, theme)};
-        border-top-right-radius: ${getSize(brt, theme)};
-      `
-      : null
-    }
-    ${({ brb, theme }) =>
-      brb
-      ? `
-        border-bottom-left-radius: ${getSize(brb, theme)};
-        border-bottom-right-radius: ${getSize(brb, theme)};
-      `
-      : null
-    }
-    ${({ brtl, theme }) =>
-      brtl
-      ? `
-        border-top-left-radius: ${getSize(brtl, theme)};
-      `
-      : null
-    }
-    ${({ brtr, theme }) =>
-      brtr
-      ? `
-        border-top-right-radius: ${getSize(brtr, theme)};
-      `
-      : null
-    }
-    ${({ brbr, theme }) =>
-      brbr
-      ? `
-        border-bottom-right-radius: ${getSize(brbr, theme)};
-      `
-      : null
-    }
-    ${({ brbl, theme }) =>
-      brbl
-      ? `
-        border-bottom-left-radius: ${getSize(brbl, theme)};
-      `
-      : null
-    }
-    ${({ w, theme }) =>
-      w
-      ? `width: ${getSize(w, theme)};`
-      : null
-    }
-    ${({ mw, theme }) =>
-      mw
-      ?  `max-width: ${getSize(mw, theme)};`
-      : null
-    }
-    ${({ h, theme }) =>
-      h
-      ? `height: ${getSize(h, theme)};`
-      : null
-    }
-    ${({ op, theme }) =>
-      op
-      ? `opacity: ${getOpacity(op)};`
-      : null
-    }
-    ${({ cur, theme }) =>
-      cur
-      ? `cursor: ${getPropsForCurValue(cur)};`
-      : null
-    }
-    ${({ lst, theme }) =>
-      lst
-      ? `list-style-type: ${getPropsForLSTValue(lst)};`
-      : null
-    }
-  `;
-
+  const ShedStyled = glamorous(component)(getPropForProps(props, theme));
   return <ShedStyled {...props} />;
 };
 
