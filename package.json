@@ -12,27 +12,76 @@
     "babel-plugin-shed": "^1.0.0",
     "color": "1.0.3",
     "modularscale": "^2.0.1",
-    "nwb": "^0.15.6",
+    "nwb": "^0.15.8",
+    "prop-types": "^15.5.10",
     "react": "^15.5.3",
-    "react-dom": "^15.5.3",
-    "styled-components": "~1.4.4"
+    "react-dom": "^15.5.3"
   },
   "peerDependencies": {
-    "react": "^15",
-    "styled-components": "^1"
+    "color": "1.0.3",
+    "react": "^15"
   },
   "scripts": {
     "start": "nwb serve",
-    "build": "nwb build",
+    "build": "nwb build react-component",
     "prepublish": "yarn build"
+  },
+  "eslintConfig": {
+    "env": {
+      "jest": true,
+      "browser": true
+    },
+    "globals": {
+      "it": true,
+      "describe": true,
+      "test": true,
+      "expect": true,
+      "react": true,
+      "mount": true,
+      "shallow": true,
+      "render": true,
+      "React": true
+    },
+    "parser": "babel-eslint",
+    "extends": [
+      "airbnb"
+    ],
+    "rules": {
+      "react/no-unused-prop-types": 0,
+      "no-debugger": 1,
+      "no-mixed-operators": 0,
+      "no-nested-ternary": 0,
+      "no-confusing-arrow": 0,
+      "react/jsx-filename-extension": 0,
+      "import/extensions": 0,
+      "import/no-named-as-default-member": 0,
+      "import/no-named-as-default": 0,
+      "import/no-unresolved": 0,
+      "import/no-extraneous-dependencies": 0,
+      "import/no-absolute-path": 0,
+      "import/no-duplicates": 0,
+      "react/jsx-no-undef": 0,
+      "no-unused-vars": [
+        "error",
+        {
+          "varsIgnorePattern": "Shed"
+        }
+      ]
+    }
   },
   "author": "Vince Speelman",
   "license": "MIT",
   "dependencies": {
+    "babel-eslint": "^7.2.3",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "curry": "^1.2.0",
-    "glamorous": "^3.12.0"
+    "eslint": "3.19.x",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-plugin-import": "2.2.x",
+    "eslint-plugin-jsx-a11y": "5.0.x",
+    "eslint-plugin-react": "^7.0.1",
+    "glamorous": "^3.18.1"
   }
 }
