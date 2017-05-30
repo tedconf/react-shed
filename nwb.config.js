@@ -19,7 +19,6 @@ module.exports = {
         react: 'React',
         'react-dom': 'ReactDOM',
         glamourous: 'Glamorous',
-        color: 'Color',
       },
     },
   },

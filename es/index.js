@@ -4,7 +4,7 @@ import _typeof from 'babel-runtime/helpers/typeof';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Color from 'color';
-import curry from 'curry';
+import curry from 'lodash/fp/curry';
 import get from 'lodash/fp/get';
 import ms from 'modularscale';
 import glamorous from 'glamorous';
@@ -1093,14 +1093,8 @@ var getOpacity = function getOpacity() {
   return value;
 };
 
-var UnstyledComp = function UnstyledComp(_ref) {
-  var props = _objectWithoutProperties(_ref, []);
-
-  return React.createElement('div', props);
-};
-
 var orNull = function orNull(predicate, func) {
-  if (predicate) {
+  if (predicate !== 'undefined') {
     if (func) {
       return func;
     }
@@ -1162,83 +1156,20 @@ var getPropForProps = function getPropForProps(props, theme) {
   }, {});
 };
 
-/*
- * ${({ brl, theme }) =>
- *   brl
- *   ? `
- *     border-top-left-radius: ${getSize(brl, theme)};
- *     border-bottom-left-radius: ${getSize(brl, theme)};
- *   `
- *   : null
- * }
- * ${({ brr, theme }) =>
- *   brr
- *   ? `
- *     border-top-right-radius: ${getSize(brr, theme)};
- *     border-bottom-right-radius: ${getSize(brr, theme)};
- *   `
- *   : null
- * }
- * ${({ brt, theme }) =>
- *   brt
- *   ? `
- *     border-top-left-radius: ${getSize(brt, theme)};
- *     border-top-right-radius: ${getSize(brt, theme)};
- *   `
- *   : null
- * }
- * ${({ brb, theme }) =>
- *   brb
- *   ? `
- *     border-bottom-left-radius: ${getSize(brb, theme)};
- *     border-bottom-right-radius: ${getSize(brb, theme)};
- *   `
- *   : null
- * }
- * ${({ brtl, theme }) =>
- *   brtl
- *   ? `
- *     border-top-left-radius: ${getSize(brtl, theme)};
- *   `
- *   : null
- * }
- * ${({ brtr, theme }) =>
- *   brtr
- *   ? `
- *     border-top-right-radius: ${getSize(brtr, theme)};
- *   `
- *   : null
- * }
- * ${({ brbr, theme }) =>
- *   brbr
- *   ? `
- *     border-bottom-right-radius: ${getSize(brbr, theme)};
- *   `
- *   : null
- * }
- * ${({ brbl, theme }) =>
- *   brbl
- *   ? `
- *     border-bottom-left-radius: ${getSize(brbl, theme)};
- *   `
- *   : null
- * }
- * `;
- */
+var Shed = function Shed(_ref) {
+  var _ref$component = _ref.component,
+      component = _ref$component === undefined ? 'div' : _ref$component,
+      rest = _objectWithoutProperties(_ref, ['component']);
 
-var Shed = function Shed(_ref2) {
-  var _ref2$component = _ref2.component,
-      component = _ref2$component === undefined ? UnstyledComp : _ref2$component,
-      _ref2$theme = _ref2.theme,
-      theme = _ref2$theme === undefined ? createTheme() : _ref2$theme,
-      props = _objectWithoutProperties(_ref2, ['component', 'theme']);
-
-  var ShedStyled = glamorous(component)(getPropForProps(props, theme));
-  return React.createElement(ShedStyled, props);
+  var ShedStyled = glamorous(component)(function (props, theme) {
+    return _extends({}, getPropForProps(props, theme));
+  });
+  return React.createElement(ShedStyled, rest);
 };
 
 process.env.NODE_ENV !== "production" ? Shed.propTypes = {
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.func]),
+  /* eslint-disable react/require-default-props */
   theme: PropTypes.shape({
     sizes: PropTypes.string,
     steps: PropTypes.number,
@@ -1246,5 +1177,9 @@ process.env.NODE_ENV !== "production" ? Shed.propTypes = {
     fonts: PropTypes.object
   })
 } : void 0;
+
+Shed.defaultProps = {
+  component: 'div'
+};
 
 export { Shed as default, createTheme };

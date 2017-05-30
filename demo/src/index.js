@@ -28,7 +28,7 @@ render(
     <div>
       <div.shed
         c="red"
-        bg="black"
+        bg="black.5"
       >
         Testing color: Should have a red foreground and a black background.
       </div.shed>
