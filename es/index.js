@@ -3,7 +3,7 @@ import _extends from 'babel-runtime/helpers/extends';
 import _typeof from 'babel-runtime/helpers/typeof';
 import React from 'react';
 import PropTypes from 'prop-types';
-import Color from 'color';
+import color from 'color-string';
 import curry from 'lodash/fp/curry';
 import get from 'lodash/fp/get';
 import ms from 'modularscale';
@@ -1047,7 +1047,9 @@ var getPropsForColor = function getPropsForColor(value, theme) {
     }
     var alpha = /(.+)(\.\d)/.exec(value);
     if (alpha) {
-      return Color(theme.colors['' + alpha[1]]).alpha(alpha[2]).string();
+      var transparentColor = color.getRgba(theme.colors['' + alpha[1]]);
+      transparentColor[3] = alpha[2];
+      return color.rgbaString(transparentColor);
     }
     return theme.colors[value];
   }
