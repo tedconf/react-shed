@@ -10,6 +10,8 @@
   "devDependencies": {
     "babel-core": "^6.22.1",
     "babel-plugin-shed": "^1.0.0",
+    "glamor": "^2.20.25",
+    "glamorous": "^3.18.1",
     "modularscale": "^2.0.1",
     "nwb": "^0.15.8",
     "prop-types": "^15.5.10",
@@ -17,6 +19,8 @@
     "react-dom": "^15.5.3"
   },
   "peerDependencies": {
+    "glamor": "2.x.x",
+    "glamorous": "3.x.x",
     "react": "^15"
   },
   "scripts": {
@@ -80,7 +84,6 @@
     "eslint-config-airbnb": "^15.0.1",
     "eslint-plugin-import": "2.2.x",
     "eslint-plugin-jsx-a11y": "5.0.x",
-    "eslint-plugin-react": "^7.0.1",
-    "glamorous": "^3.18.1"
+    "eslint-plugin-react": "^7.0.1"
   }
 }
