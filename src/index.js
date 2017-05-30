@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Color from 'color';
-import curry from 'curry';
+import curry from 'lodash/fp/curry';
 import get from 'lodash/fp/get';
 import ms from 'modularscale';
 import glamorous from 'glamorous';
@@ -1081,10 +1081,8 @@ const getOpacity = (value = null) => {
   return value;
 };
 
-const UnstyledComp = ({ ...props }) => <div {...props} />;
-
 const orNull = (predicate, func) => {
-  if (predicate) {
+  if (predicate !== 'undefined') {
     if (func) {
       return func;
     }
@@ -1145,77 +1143,14 @@ const getPropForProps = (props, theme) => Object.keys(props).reduce((acc) => {
   return false;
 }, {});
 
-/*
- * ${({ brl, theme }) =>
- *   brl
- *   ? `
- *     border-top-left-radius: ${getSize(brl, theme)};
- *     border-bottom-left-radius: ${getSize(brl, theme)};
- *   `
- *   : null
- * }
- * ${({ brr, theme }) =>
- *   brr
- *   ? `
- *     border-top-right-radius: ${getSize(brr, theme)};
- *     border-bottom-right-radius: ${getSize(brr, theme)};
- *   `
- *   : null
- * }
- * ${({ brt, theme }) =>
- *   brt
- *   ? `
- *     border-top-left-radius: ${getSize(brt, theme)};
- *     border-top-right-radius: ${getSize(brt, theme)};
- *   `
- *   : null
- * }
- * ${({ brb, theme }) =>
- *   brb
- *   ? `
- *     border-bottom-left-radius: ${getSize(brb, theme)};
- *     border-bottom-right-radius: ${getSize(brb, theme)};
- *   `
- *   : null
- * }
- * ${({ brtl, theme }) =>
- *   brtl
- *   ? `
- *     border-top-left-radius: ${getSize(brtl, theme)};
- *   `
- *   : null
- * }
- * ${({ brtr, theme }) =>
- *   brtr
- *   ? `
- *     border-top-right-radius: ${getSize(brtr, theme)};
- *   `
- *   : null
- * }
- * ${({ brbr, theme }) =>
- *   brbr
- *   ? `
- *     border-bottom-right-radius: ${getSize(brbr, theme)};
- *   `
- *   : null
- * }
- * ${({ brbl, theme }) =>
- *   brbl
- *   ? `
- *     border-bottom-left-radius: ${getSize(brbl, theme)};
- *   `
- *   : null
- * }
- * `;
- */
-
 const Shed = ({
-  component = UnstyledComp,
-  theme = createTheme(),
-  ...props
+  component = 'div',
+  ...rest
 }) => {
-  const ShedStyled = glamorous(component)(getPropForProps(props, theme));
-  return <ShedStyled {...props} />;
+  const ShedStyled = glamorous(component)((props, theme) => ({
+    ...getPropForProps(props, theme),
+  }));
+  return <ShedStyled {...rest} />;
 };
 
 Shed.propTypes = {
@@ -1224,12 +1159,18 @@ Shed.propTypes = {
     PropTypes.element,
     PropTypes.func,
   ]),
+  /* eslint-disable react/require-default-props */
   theme: PropTypes.shape({
     sizes: PropTypes.string,
     steps: PropTypes.number,
     colors: PropTypes.object,
     fonts: PropTypes.object,
   }),
+  /* eslint-enable react/require-default-props */
+};
+
+Shed.defaultProps = {
+  component: 'div',
 };
 
 export {

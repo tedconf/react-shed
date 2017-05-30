@@ -7,6 +7,7 @@ import Shed, {
 
 const TED_THEME = createTheme({
   sizes: 'minor third',
+  steps: 30,
   colors: {
     black: '#111111',
     'gray-dd': '#333333',
