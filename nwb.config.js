@@ -9,7 +9,7 @@ module.exports = {
   },
   webpack: {
     extra: {
-      devtool: 'inline-source-map', // 'source-map', //cheap-eval-source-map
+      devtool: false,
     },
   },
   npm: {

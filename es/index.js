@@ -990,10 +990,11 @@ var getPropsForPosValue = function getPropsForPosValue() {
         return { position: 'sticky' };
       case 'c':
         return {
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0
+          position: 'absolute',
+          top: '0px',
+          right: '0px',
+          bottom: '0px',
+          left: '0px'
         };
       case 'i':
         return { position: 'inherit' };
@@ -1047,9 +1048,9 @@ var getPropsForColor = function getPropsForColor(value, theme) {
     }
     var alpha = /(.+)(\.\d)/.exec(value);
     if (alpha) {
-      var transparentColor = color.getRgba(theme.colors['' + alpha[1]]);
-      transparentColor[3] = alpha[2];
-      return color.rgbaString(transparentColor);
+      var transparentColor = color.get(theme.colors['' + alpha[1]]);
+      transparentColor.value[3] = alpha[2];
+      return color.to.rgb(transparentColor.value);
     }
     return theme.colors[value];
   }
@@ -1122,7 +1123,6 @@ var getPropForProps = function getPropForProps(props, theme) {
         lineHeight: orNull(getProp('lh'), getPropsForLHValue(getProp('lh'), theme)),
         textTransform: orNull(getProp('tt'), getPropsForTTValue(getProp('tt'))),
         textAlign: orNull(getProp('ta'), getPropsForTAValue(getProp('ta'))),
-        verticalAlign: orNull(getProp('va'), getPropsForVAValue(getProp('va'))),
         textDecoration: orNull(getProp('td'), getPropsForTDValue(getProp('td'))),
         textDecorationColor: orNull(getProp('tdc'), getPropsForColor(getProp('tdc'), theme)),
         display: orNull(getProp('d'), getPropsForDValue(getProp('d'))),
@@ -1141,7 +1141,6 @@ var getPropForProps = function getPropForProps(props, theme) {
         flexDirection: orNull(getProp('flxd'), getPropsForFlxDValue(getProp('flxd'))),
         flexBasis: orNull(getProp('flxb'), getPropsForFlxBValue(getProp('flxb'), theme)),
         float: orNull(getProp('fl'), getPropsForFlValue(getProp('fl'))),
-        position: orNull(getProp('pos'), getPropsForPosValue(getProp('pos'))),
         top: orNull(getProp('top'), getSize(getProp('top'), theme)),
         bottom: orNull(getProp('bottom'), getSize(getProp('bottom'), theme)),
         right: orNull(getProp('right'), getSize(getProp('right'), theme)),
@@ -1152,7 +1151,7 @@ var getPropForProps = function getPropForProps(props, theme) {
         zIndex: orNull(getProp('zi')),
         whiteSpace: orNull(getProp('ws'), getPropsForWSValue(getProp('ws'))),
         listStyleType: orNull(getProp('lst'), getPropsForLSTValue(getProp('lst')))
-      }, getBorderRadius(props, theme));
+      }, getBorderRadius(props, theme), orNull(getProp('va'), getPropsForVAValue(getProp('va'))), orNull(getProp('pos'), getPropsForPosValue(getProp('pos'))));
     }
     return false;
   }, {});

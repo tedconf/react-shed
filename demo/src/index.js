@@ -265,6 +265,35 @@ render(
               </li.shed>
             </ul.shed>
           </li.shed>
+
+          <li.shed d="b">
+            <ul.shed
+              pl=".5"
+              lst="n"
+              pos="r"
+            >
+              <li.shed>
+                <div.shed pos="a">
+                  should be absolutely positioned
+                </div.shed>
+              </li.shed>
+              <li.shed>
+                <div.shed pos="r">
+                  should be relatively positioned
+                </div.shed>
+              </li.shed>
+              <li.shed>
+                <div.shed pos="f">
+                  should be fixed positioned
+                </div.shed>
+              </li.shed>
+              <li.shed>
+                <div.shed pos="c">
+                  should be covering the parent
+                </div.shed>
+              </li.shed>
+            </ul.shed>
+          </li.shed>
         </ul.shed>
       </div.shed>
     </div>

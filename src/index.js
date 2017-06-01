@@ -949,10 +949,11 @@ const getPropsForPosValue = (value = null) => {
         return { position: 'sticky' };
       case 'c':
         return {
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
+          position: 'absolute',
+          top: '0px',
+          right: '0px',
+          bottom: '0px',
+          left: '0px',
         };
       case 'i':
         return { position: 'inherit' };
@@ -1004,9 +1005,9 @@ const getPropsForColor = (value, theme) => {
     }
     const alpha = /(.+)(\.\d)/.exec(value);
     if (alpha) {
-      const transparentColor = color.getRgba(theme.colors[`${alpha[1]}`]);
-      transparentColor[3] = alpha[2];
-      return color.rgbaString(transparentColor);
+      const transparentColor = color.get(theme.colors[`${alpha[1]}`]);
+      transparentColor.value[3] = alpha[2];
+      return color.to.rgb(transparentColor.value);
     }
     return theme.colors[value];
   }
@@ -1109,7 +1110,6 @@ const getPropForProps = (props, theme) => Object.keys(props).reduce((acc) => {
       lineHeight: orNull(getProp('lh'), getPropsForLHValue(getProp('lh'), theme)),
       textTransform: orNull(getProp('tt'), getPropsForTTValue(getProp('tt'))),
       textAlign: orNull(getProp('ta'), getPropsForTAValue(getProp('ta'))),
-      verticalAlign: orNull(getProp('va'), getPropsForVAValue(getProp('va'))),
       textDecoration: orNull(getProp('td'), getPropsForTDValue(getProp('td'))),
       textDecorationColor: orNull(getProp('tdc'), getPropsForColor(getProp('tdc'), theme)),
       display: orNull(getProp('d'), getPropsForDValue(getProp('d'))),
@@ -1128,7 +1128,6 @@ const getPropForProps = (props, theme) => Object.keys(props).reduce((acc) => {
       flexDirection: orNull(getProp('flxd'), getPropsForFlxDValue(getProp('flxd'))),
       flexBasis: orNull(getProp('flxb'), getPropsForFlxBValue(getProp('flxb'), theme)),
       float: orNull(getProp('fl'), getPropsForFlValue(getProp('fl'))),
-      position: orNull(getProp('pos'), getPropsForPosValue(getProp('pos'))),
       top: orNull(getProp('top'), getSize(getProp('top'), theme)),
       bottom: orNull(getProp('bottom'), getSize(getProp('bottom'), theme)),
       right: orNull(getProp('right'), getSize(getProp('right'), theme)),
@@ -1140,6 +1139,8 @@ const getPropForProps = (props, theme) => Object.keys(props).reduce((acc) => {
       whiteSpace: orNull(getProp('ws'), getPropsForWSValue(getProp('ws'))),
       listStyleType: orNull(getProp('lst'), getPropsForLSTValue(getProp('lst'))),
       ...getBorderRadius(props, theme),
+      ...orNull(getProp('va'), getPropsForVAValue(getProp('va'))),
+      ...orNull(getProp('pos'), getPropsForPosValue(getProp('pos'))),
     };
   }
   return false;
