@@ -1,6 +1,6 @@
 {
   "name": "react-shed",
-  "version": "2.8.0",
+  "version": "3.0.0-alpha.1",
   "description": "Shed.css as a react styled-component",
   "main": "lib/index.js",
   "files": [
