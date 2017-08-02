@@ -1,10 +1,11 @@
 import React from 'react';
+import omit from 'omit';
 import PropTypes from 'prop-types';
 import Color from 'color';
 import curry from 'curry';
 import get from 'lodash/fp/get';
 import ms from 'modularscale';
-import glamorous from 'glamorous';
+import styled from 'emotion/react';
 
 const stripUnit = val => val.replace(/(r?em|px|pc|ex|ch|ic|lh|rlh|vh|vw|vi|vb|vmin|vmax|mm|q|cm|in|pt)/, '');
 
@@ -1081,8 +1082,6 @@ const getOpacity = (value = null) => {
   return value;
 };
 
-const UnstyledComp = ({ ...props }) => <div {...props} />;
-
 const orNull = (predicate, func) => {
   if (predicate) {
     if (func) {
@@ -1209,13 +1208,83 @@ const getPropForProps = (props, theme) => Object.keys(props).reduce((acc) => {
  * `;
  */
 
+const REJECTED_KEYS = [
+  'ac',
+  'ai',
+  'as',
+  'bg',
+  'bottom',
+  'br',
+  'brb',
+  'brbl',
+  'brbr',
+  'brl',
+  'brr',
+  'brt',
+  'brtl',
+  'brtr',
+  'brx',
+  'bry',
+  'c',
+  'cur',
+  'd',
+  'f',
+  'ff',
+  'fl',
+  'flxb',
+  'flxd',
+  'flxg',
+  'flxs',
+  'flxw',
+  'fs',
+  'fw',
+  'get',
+  'h',
+  'jc',
+  'left',
+  'lh',
+  'ls',
+  'lst',
+  'm',
+  'mb',
+  'ml',
+  'mr',
+  'mt',
+  'mx',
+  'my',
+  'o',
+  'op',
+  'ox',
+  'oy',
+  'p',
+  'pb',
+  'pl',
+  'pos',
+  'pr',
+  'pt',
+  'px',
+  'py',
+  'right',
+  'ta',
+  'td',
+  'tdc',
+  'top',
+  'tt',
+  'va',
+  'w',
+  'ws',
+  'zi',
+];
+
+const removeProps = oldProps => omit(REJECTED_KEYS, oldProps);
+
 const Shed = ({
-  component = UnstyledComp,
+  component = 'div',
   theme = createTheme(),
   ...props
 }) => {
-  const ShedStyled = glamorous(component)(getPropForProps(props, theme));
-  return <ShedStyled {...props} />;
+  const ShedStyled = styled(component)(getPropForProps(props, theme));
+  return <ShedStyled {...removeProps(props)} />;
 };
 
 Shed.propTypes = {

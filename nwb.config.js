@@ -4,12 +4,13 @@ module.exports = {
     runtime: 'helpers',
     cherryPick: 'lodash',
     plugins: [
+      ['emotion/babel'],
       'shed',
     ],
   },
   webpack: {
     extra: {
-      devtool: 'inline-source-map', // 'source-map', //cheap-eval-source-map
+      devtool: false, // 'source-map', //cheap-eval-source-map
     },
   },
   npm: {
@@ -18,7 +19,7 @@ module.exports = {
       externals: {
         react: 'React',
         'react-dom': 'ReactDOM',
-        glamourous: 'Glamorous',
+        emotion: 'Emotion',
         color: 'Color',
       },
     },

@@ -12,18 +12,19 @@
     "babel-plugin-shed": "^1.0.0",
     "color": "1.0.3",
     "modularscale": "^2.0.1",
-    "nwb": "^0.15.8",
+    "nwb": "^0.18",
     "prop-types": "^15.5.10",
     "react": "^15.5.3",
     "react-dom": "^15.5.3"
   },
   "peerDependencies": {
     "color": "1.0.3",
-    "react": "^15"
+    "react": "^15",
+    "emotion": "^6"
   },
   "scripts": {
     "start": "nwb serve",
-    "build": "nwb build react-component",
+    "build": "nwb build",
     "prepublish": "yarn build"
   },
   "eslintConfig": {
@@ -77,11 +78,12 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "curry": "^1.2.0",
+    "emotion": "^6.0.3",
     "eslint": "3.19.x",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-plugin-import": "2.2.x",
     "eslint-plugin-jsx-a11y": "5.0.x",
     "eslint-plugin-react": "^7.0.1",
-    "glamorous": "^3.18.1"
+    "omit": "^1.0.1"
   }
 }

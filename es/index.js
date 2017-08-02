@@ -2,12 +2,13 @@ import _objectWithoutProperties from 'babel-runtime/helpers/objectWithoutPropert
 import _extends from 'babel-runtime/helpers/extends';
 import _typeof from 'babel-runtime/helpers/typeof';
 import React from 'react';
+import omit from 'omit';
 import PropTypes from 'prop-types';
 import Color from 'color';
 import curry from 'curry';
 import get from 'lodash/fp/get';
 import ms from 'modularscale';
-import glamorous from 'glamorous';
+import styled from 'emotion/react';
 
 var stripUnit = function stripUnit(val) {
   return val.replace(/(r?em|px|pc|ex|ch|ic|lh|rlh|vh|vw|vi|vb|vmin|vmax|mm|q|cm|in|pt)/, '');
@@ -1093,12 +1094,6 @@ var getOpacity = function getOpacity() {
   return value;
 };
 
-var UnstyledComp = function UnstyledComp(_ref) {
-  var props = _objectWithoutProperties(_ref, []);
-
-  return React.createElement('div', props);
-};
-
 var orNull = function orNull(predicate, func) {
   if (predicate) {
     if (func) {
@@ -1226,18 +1221,24 @@ var getPropForProps = function getPropForProps(props, theme) {
  * `;
  */
 
-var Shed = function Shed(_ref2) {
-  var _ref2$component = _ref2.component,
-      component = _ref2$component === undefined ? UnstyledComp : _ref2$component,
-      _ref2$theme = _ref2.theme,
-      theme = _ref2$theme === undefined ? createTheme() : _ref2$theme,
-      props = _objectWithoutProperties(_ref2, ['component', 'theme']);
+var REJECTED_KEYS = ['ac', 'ai', 'as', 'bg', 'bottom', 'br', 'brb', 'brbl', 'brbr', 'brl', 'brr', 'brt', 'brtl', 'brtr', 'brx', 'bry', 'c', 'cur', 'd', 'f', 'ff', 'fl', 'flxb', 'flxd', 'flxg', 'flxs', 'flxw', 'fs', 'fw', 'get', 'h', 'jc', 'left', 'lh', 'ls', 'lst', 'm', 'mb', 'ml', 'mr', 'mt', 'mx', 'my', 'o', 'op', 'ox', 'oy', 'p', 'pb', 'pl', 'pos', 'pr', 'pt', 'px', 'py', 'right', 'ta', 'td', 'tdc', 'top', 'tt', 'va', 'w', 'ws', 'zi'];
 
-  var ShedStyled = glamorous(component)(getPropForProps(props, theme));
-  return React.createElement(ShedStyled, props);
+var removeProps = function removeProps(oldProps) {
+  return omit(REJECTED_KEYS, oldProps);
 };
 
-process.env.NODE_ENV !== "production" ? Shed.propTypes = {
+var Shed = function Shed(_ref) {
+  var _ref$component = _ref.component,
+      component = _ref$component === undefined ? 'div' : _ref$component,
+      _ref$theme = _ref.theme,
+      theme = _ref$theme === undefined ? createTheme() : _ref$theme,
+      props = _objectWithoutProperties(_ref, ['component', 'theme']);
+
+  var ShedStyled = styled(component, [getPropForProps(props, theme)], []);
+  return React.createElement(ShedStyled, removeProps(props));
+};
+
+Shed.propTypes = process.env.NODE_ENV !== "production" ? {
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.func]),
   theme: PropTypes.shape({
     sizes: PropTypes.string,
@@ -1245,6 +1246,6 @@ process.env.NODE_ENV !== "production" ? Shed.propTypes = {
     colors: PropTypes.object,
     fonts: PropTypes.object
   })
-} : void 0;
+} : {};
 
 export { Shed as default, createTheme };
