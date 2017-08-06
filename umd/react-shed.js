@@ -1,17 +1,17 @@
 /*!
- * react-shed v2.8.0
+ * react-shed v4.0.0-alpha.1
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("react"), require("color"));
+		module.exports = factory(require("react"), require("color"), require("theming"));
 	else if(typeof define === 'function' && define.amd)
-		define(["react", "color"], factory);
+		define(["react", "color", "theming"], factory);
 	else if(typeof exports === 'object')
-		exports["Shed"] = factory(require("react"), require("color"));
+		exports["Shed"] = factory(require("react"), require("color"), require("theming"));
 	else
-		root["Shed"] = factory(root["React"], root["Color"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_78__, __WEBPACK_EXTERNAL_MODULE_175__) {
+		root["Shed"] = factory(root["React"], root["Color"], root["Theming"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_78__, __WEBPACK_EXTERNAL_MODULE_175__, __WEBPACK_EXTERNAL_MODULE_305__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -3975,7 +3975,7 @@ module.exports = __webpack_require__(135);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Shed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ThemedShed; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createTheme", function() { return createTheme; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Users_vincentspeelman_Projects_shed_react_shed_node_modules_nwb_node_modules_babel_runtime_helpers_objectWithoutProperties__ = __webpack_require__(136);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Users_vincentspeelman_Projects_shed_react_shed_node_modules_nwb_node_modules_babel_runtime_helpers_objectWithoutProperties___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Users_vincentspeelman_Projects_shed_react_shed_node_modules_nwb_node_modules_babel_runtime_helpers_objectWithoutProperties__);
@@ -3999,6 +3999,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_modularscale___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_modularscale__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_emotion_react__ = __webpack_require__(299);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_emotion_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_emotion_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_theming__ = __webpack_require__(305);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_theming___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_theming__);
+
 
 
 
@@ -5248,6 +5251,8 @@ Shed.propTypes = {
     fonts: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.object
   })
 };
+
+var ThemedShed = Object(__WEBPACK_IMPORTED_MODULE_11_theming__["withTheme"])(Shed);
 
 
 
@@ -12672,6 +12677,12 @@ function Umul32(n, m) {
 
 exports.__esModule = true;
 var CHANNEL = exports.CHANNEL = '__emotion__';
+
+/***/ }),
+/* 305 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_305__;
 
 /***/ })
 /******/ ]);

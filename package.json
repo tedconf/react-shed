@@ -19,8 +19,9 @@
   },
   "peerDependencies": {
     "color": "1.0.3",
+    "emotion": "^6",
     "react": "^15",
-    "emotion": "^6"
+    "theming": "^1.1.0"
   },
   "scripts": {
     "start": "nwb serve",
@@ -84,6 +85,7 @@
     "eslint-plugin-import": "2.2.x",
     "eslint-plugin-jsx-a11y": "5.0.x",
     "eslint-plugin-react": "^7.0.1",
-    "omit": "^1.0.1"
+    "omit": "^1.0.1",
+    "theming": "^1.1.0"
   }
 }

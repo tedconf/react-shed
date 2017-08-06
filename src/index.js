@@ -6,6 +6,7 @@ import curry from 'curry';
 import get from 'lodash/fp/get';
 import ms from 'modularscale';
 import styled from 'emotion/react';
+import { withTheme } from 'theming';
 
 const stripUnit = val => val.replace(/(r?em|px|pc|ex|ch|ic|lh|rlh|vh|vw|vi|vb|vmin|vmax|mm|q|cm|in|pt)/, '');
 
@@ -1301,7 +1302,9 @@ Shed.propTypes = {
   }),
 };
 
+const ThemedShed = withTheme(Shed);
+
 export {
-  Shed as default,
+  ThemedShed as default,
   createTheme,
 };

@@ -20,6 +20,7 @@ module.exports = {
         react: 'React',
         'react-dom': 'ReactDOM',
         emotion: 'Emotion',
+        theming: 'Theming',
         color: 'Color',
       },
     },

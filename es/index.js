@@ -9,6 +9,7 @@ import curry from 'curry';
 import get from 'lodash/fp/get';
 import ms from 'modularscale';
 import styled from 'emotion/react';
+import { withTheme } from 'theming';
 
 var stripUnit = function stripUnit(val) {
   return val.replace(/(r?em|px|pc|ex|ch|ic|lh|rlh|vh|vw|vi|vb|vmin|vmax|mm|q|cm|in|pt)/, '');
@@ -1248,4 +1249,6 @@ Shed.propTypes = process.env.NODE_ENV !== "production" ? {
   })
 } : {};
 
-export { Shed as default, createTheme };
+var ThemedShed = withTheme(Shed);
+
+export { ThemedShed as default, createTheme };
