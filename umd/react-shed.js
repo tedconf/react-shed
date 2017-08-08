@@ -1,5 +1,5 @@
 /*!
- * react-shed v4.0.0-alpha.2
+ * react-shed v4.0.0-alpha.3
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -4105,7 +4105,9 @@ var createTheme = function createTheme() {
     delete generatedTheme.sizes['z.0'];
   }
 
-  return generatedTheme;
+  return __WEBPACK_IMPORTED_MODULE_1__Users_vincentspeelman_Projects_shed_react_shed_node_modules_nwb_node_modules_babel_runtime_helpers_extends___default()({}, userTheme, {
+    generatedTheme: generatedTheme
+  });
 };
 
 var getSize = function getSize() {
@@ -5161,70 +5163,6 @@ var getPropForProps = function getPropForProps(props, theme) {
   }, {});
 };
 
-/*
- * ${({ brl, theme }) =>
- *   brl
- *   ? `
- *     border-top-left-radius: ${getSize(brl, theme)};
- *     border-bottom-left-radius: ${getSize(brl, theme)};
- *   `
- *   : null
- * }
- * ${({ brr, theme }) =>
- *   brr
- *   ? `
- *     border-top-right-radius: ${getSize(brr, theme)};
- *     border-bottom-right-radius: ${getSize(brr, theme)};
- *   `
- *   : null
- * }
- * ${({ brt, theme }) =>
- *   brt
- *   ? `
- *     border-top-left-radius: ${getSize(brt, theme)};
- *     border-top-right-radius: ${getSize(brt, theme)};
- *   `
- *   : null
- * }
- * ${({ brb, theme }) =>
- *   brb
- *   ? `
- *     border-bottom-left-radius: ${getSize(brb, theme)};
- *     border-bottom-right-radius: ${getSize(brb, theme)};
- *   `
- *   : null
- * }
- * ${({ brtl, theme }) =>
- *   brtl
- *   ? `
- *     border-top-left-radius: ${getSize(brtl, theme)};
- *   `
- *   : null
- * }
- * ${({ brtr, theme }) =>
- *   brtr
- *   ? `
- *     border-top-right-radius: ${getSize(brtr, theme)};
- *   `
- *   : null
- * }
- * ${({ brbr, theme }) =>
- *   brbr
- *   ? `
- *     border-bottom-right-radius: ${getSize(brbr, theme)};
- *   `
- *   : null
- * }
- * ${({ brbl, theme }) =>
- *   brbl
- *   ? `
- *     border-bottom-left-radius: ${getSize(brbl, theme)};
- *   `
- *   : null
- * }
- * `;
- */
-
 var REJECTED_KEYS = ['ac', 'ai', 'as', 'bg', 'bottom', 'br', 'brb', 'brbl', 'brbr', 'brl', 'brr', 'brt', 'brtl', 'brtr', 'brx', 'bry', 'c', 'cur', 'd', 'f', 'ff', 'fl', 'flxb', 'flxd', 'flxg', 'flxs', 'flxw', 'fs', 'fw', 'get', 'h', 'jc', 'left', 'lh', 'ls', 'lst', 'm', 'mb', 'ml', 'mr', 'mt', 'mx', 'my', 'o', 'op', 'ox', 'oy', 'p', 'pb', 'pl', 'pos', 'pr', 'pt', 'px', 'py', 'right', 'ta', 'td', 'tdc', 'top', 'tt', 'va', 'w', 'ws', 'zi'];
 
 var removeProps = function removeProps(oldProps) {
@@ -5245,11 +5183,16 @@ var Shed = function Shed(_ref) {
 Shed.propTypes = {
   component: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.oneOfType([__WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.string, __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.element, __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.func]),
   theme: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.shape({
-    sizes: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.string,
+    sizes: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.oneOf([__WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.string, __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.object]),
     steps: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.number,
     colors: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.object,
     fonts: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.object
   })
+};
+
+Shed.defaultProps = {
+  theme: createTheme(),
+  component: 'div'
 };
 
 var ThemedShed = Object(__WEBPACK_IMPORTED_MODULE_11_theming__["withTheme"])(Shed);
