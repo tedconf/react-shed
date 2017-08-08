@@ -104,7 +104,10 @@ const createTheme = (
     delete generatedTheme.sizes['z.0'];
   }
 
-  return generatedTheme;
+  return {
+    ...userTheme,
+    generatedTheme,
+  };
 };
 
 const getSize = (value = null, theme) => {
