@@ -106,7 +106,7 @@ const createTheme = (
 
   return {
     ...userTheme,
-    generatedTheme,
+    ...generatedTheme,
   };
 };
 
@@ -1116,7 +1116,7 @@ const getPropForProps = (props, theme) => Object.keys(props).reduce((acc) => {
       textDecorationColor: orNull(getProp('tdc'), getPropsForColor(getProp('tdc'), theme)),
       display: orNull(getProp('d'), getPropsForDValue(getProp('d'))),
       width: orNull(getProp('w'), getSize(getProp('w'), theme)),
-      maxWidth: orNull(getProp('get'), getSize(getProp('mw'), theme)),
+      maxWidth: orNull(getProp('mw'), getSize(getProp('mw'), theme)),
       height: orNull(getProp('h'), getSize(getProp('h'), theme)),
       opacity: orNull(getProp('op'), getOpacity(getProp('op'))),
       cursor: orNull(getProp('cur'), getPropsForCurValue(getProp('cur'))),

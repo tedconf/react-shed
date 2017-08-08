@@ -102,9 +102,7 @@ var createTheme = function createTheme() {
     delete generatedTheme.sizes['z.0'];
   }
 
-  return _extends({}, userTheme, {
-    generatedTheme: generatedTheme
-  });
+  return _extends({}, userTheme, generatedTheme);
 };
 
 var getSize = function getSize() {
@@ -1129,7 +1127,7 @@ var getPropForProps = function getPropForProps(props, theme) {
         textDecorationColor: orNull(getProp('tdc'), getPropsForColor(getProp('tdc'), theme)),
         display: orNull(getProp('d'), getPropsForDValue(getProp('d'))),
         width: orNull(getProp('w'), getSize(getProp('w'), theme)),
-        maxWidth: orNull(getProp('get'), getSize(getProp('mw'), theme)),
+        maxWidth: orNull(getProp('mw'), getSize(getProp('mw'), theme)),
         height: orNull(getProp('h'), getSize(getProp('h'), theme)),
         opacity: orNull(getProp('op'), getOpacity(getProp('op'))),
         cursor: orNull(getProp('cur'), getPropsForCurValue(getProp('cur'))),
