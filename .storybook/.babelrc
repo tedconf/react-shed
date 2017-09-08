@@ -1,0 +1,53 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "modules": false
+      }
+    ],
+    "react",
+    "stage-0"
+  ],
+  "plugins": [
+    "shed",
+    "transform-flow-strip-types",
+    "syntax-flow",
+    "babel-plugin-transform-class-properties",
+    "transform-object-rest-spread",
+    "transform-runtime"
+  ],
+  "env": {
+    "dev": {
+      "plugins": [
+        "react-hot-loader/babel"
+      ]
+    },
+    "production": {
+      "plugins": [
+        "emotion",
+        "shed",
+        "transform-flow-strip-types",
+        "syntax-flow",
+        [
+          "lodash",
+          {
+            "id": [
+              "lodash",
+              "recompose"
+            ]
+          }
+        ],
+        "transform-react-constant-elements",
+        "transform-react-remove-prop-types"
+      ]
+    },
+    "test": {
+      "presets": [
+        "es2015",
+        "react",
+        "stage-0"
+      ]
+    }
+  }
+}

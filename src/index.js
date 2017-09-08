@@ -1,300 +1,22 @@
-import React from 'react';
-import omit from 'omit';
+/* eslint-disable */
+import React, { createElement } from 'react';
+import get from 'ramda/src/prop';
+import omit from 'ramda/src/omit';
+import tap from 'ramda/src/tap';
+import compose from 'ramda/src/compose';
+import length from 'ramda/src/length';
+import lt from 'ramda/src/lt';
+import keys from 'ramda/src/keys';
 import PropTypes from 'prop-types';
 import Color from 'color';
-import curry from 'curry';
-import get from 'lodash/fp/get';
-import ms from 'modularscale';
-import styled from 'emotion/react';
-import { withTheme } from 'theming';
-
-const stripUnit = val => val.replace(/(r?em|px|pc|ex|ch|ic|lh|rlh|vh|vw|vi|vb|vmin|vmax|mm|q|cm|in|pt)/, '');
-
-const isValid = curry((label, val) => {
-  if (!val) {
-    return false;
-  }
-
-  if (typeof val !== 'string') {
-    if (typeof val !== 'number') {
-      throw new Error(`You must provide a valid value for the ${label} prop: A number or string, not ${JSON.stringify(val)} (${typeof val})`);
-    }
-  }
-
-  return true;
-});
-
-const sizes = (scale = 'major second', number = 20) => Array.from([...Array(number)]).reduce((acc, curr, i) => ({
-  ...acc,
-  [`z${i}`]: `${ms((i - 1), scale)}rem`,
-  [`z.${number - i}`]: `${ms((i - number), scale)}rem`,
-  z0: 0,
-  [`z-${i}`]: `-${ms((i - 1), scale)}rem`,
-  [`z-.${number - i}`]: `-${ms((i - number), scale)}rem`,
-}), {});
-
-const createTheme = (
-  userTheme = {
-    sizes: 'major second',
-    steps: 20,
-    colors: {
-      black: '#000000',
-      white: '#ffffff',
-      cyan: 'cyan',
-      magenta: 'magenta',
-      yellow: 'yellow',
-    },
-    fonts: {
-      sans: 'sans-serif',
-      serif: 'serif',
-      mono: 'monospace',
-    },
-  },
-) => {
-  const generatedTheme = {};
-
-  if (userTheme.sizes && typeof userTheme.sizes === 'string') {
-    try {
-      generatedTheme.sizes = sizes(userTheme.sizes, userTheme.steps);
-    } catch (e) {
-      throw new Error(e);
-    }
-  }
-
-  if (userTheme.sizes && typeof userTheme.sizes === 'object') {
-    const sizesHash = Object.keys(userTheme.sizes).reduce((acc, curr) => ({
-      ...acc,
-      [`z${curr}`]: userTheme.sizes[curr],
-    }), {});
-    if (!sizesHash.z0) {
-      sizesHash.z0 = 0;
-    }
-    if (!sizesHash['z.0']) {
-      delete sizesHash['z.0'];
-    }
-    generatedTheme.sizes = sizesHash;
-  }
-
-  if (userTheme.fonts && typeof userTheme.fonts === 'object') {
-    generatedTheme.fonts = userTheme.fonts;
-  }
-
-  if (userTheme.fonts && typeof userTheme.fonts !== 'object') {
-    throw new Error(`fonts object must be provided in the format:
-      {
-        fontName: 'font-family css string',
-      }
-    `);
-  }
-
-  if (userTheme.colors && typeof userTheme.colors === 'object') {
-    generatedTheme.colors = userTheme.colors;
-  }
-
-  if (userTheme.colors && typeof userTheme.colors !== 'object') {
-    throw new Error(`colors object must be provided in the format:
-      {
-        black: '#000000',
-        cyan: 'cyan',
-      }
-    `);
-  }
-
-  if (generatedTheme.sizes['z.0']) {
-    delete generatedTheme.sizes['z.0'];
-  }
-
-  return {
-    ...userTheme,
-    ...generatedTheme,
-  };
-};
-
-const getSize = (value = null, theme) => {
-  if (value) {
-    if (value && value.match && value.match(/^\d+v(min|max|h|w)$/)) {
-      return value;
-    }
-    switch (value) {
-      case '1of12':
-        return `${(1 / 12) * 100}%`;
-      case '1of10':
-        return `${(1 / 10) * 100}%`;
-      case '1of8':
-        return `${(1 / 8) * 100}%`;
-      case '1of6':
-        return `${(1 / 6) * 100}%`;
-      case '2of12':
-        return `${(2 / 12) * 100}%`;
-      case '1of5':
-        return `${(1 / 5) * 100}%`;
-      case '2of10':
-        return `${(2 / 10) * 100}%`;
-      case '1of4':
-        return `${(1 / 4) * 100}%`;
-      case '2of8':
-        return `${(2 / 8) * 100}%`;
-      case '3of12':
-        return `${(3 / 12) * 100}%`;
-      case '3of10':
-        return `${(3 / 10) * 100}%`;
-      case '1of3':
-        return `${(1 / 3) * 100}%`;
-      case '2of6':
-        return `${(2 / 6) * 100}%`;
-      case '4of12':
-        return `${(4 / 12) * 100}%`;
-      case '3of8':
-        return `${(3 / 8) * 100}%`;
-      case '2of5':
-        return `${(2 / 5) * 100}%`;
-      case '4of10':
-        return `${(4 / 10) * 100}%`;
-      case '5of12':
-        return `${(5 / 12) * 100}%`;
-      case '1of2':
-        return `${(1 / 2) * 100}%`;
-      case '2of4':
-        return `${(2 / 4) * 100}%`;
-      case '3of6':
-        return `${(3 / 6) * 100}%`;
-      case '4of8':
-        return `${(4 / 8) * 100}%`;
-      case '5of10':
-        return `${(5 / 10) * 100}%`;
-      case '6of12':
-        return `${(6 / 12) * 100}%`;
-      case '7of12':
-        return `${(7 / 12) * 100}%`;
-      case '3of5':
-        return `${(3 / 5) * 100}%`;
-      case '6of10':
-        return `${(6 / 10) * 100}%`;
-      case '5of8':
-        return `${(5 / 8) * 100}%`;
-      case '2of3':
-        return `${(2 / 3) * 100}%`;
-      case '4of6':
-        return `${(4 / 6) * 100}%`;
-      case '8of12':
-        return `${(8 / 12) * 100}%`;
-      case '7of10':
-        return `${(7 / 10) * 100}%`;
-      case '3of4':
-        return `${(3 / 4) * 100}%`;
-      case '6of8':
-        return `${(6 / 8) * 100}%`;
-      case '9of12':
-        return `${(9 / 12) * 100}%`;
-      case '4of5':
-        return `${(4 / 5) * 100}%`;
-      case '8of10':
-        return `${(8 / 10) * 100}%`;
-      case '9of10':
-        return `${(9 / 10) * 100}%`;
-      case '11of12':
-        return `${(11 / 12) * 100}%`;
-      case '1/12':
-        return `${(1 / 12) * 100}%`;
-      case '1/10':
-        return `${(1 / 10) * 100}%`;
-      case '1/8':
-        return `${(1 / 8) * 100}%`;
-      case '1/6':
-        return `${(1 / 6) * 100}%`;
-      case '2/12':
-        return `${(2 / 12) * 100}%`;
-      case '1/5':
-        return `${(1 / 5) * 100}%`;
-      case '2/10':
-        return `${(2 / 10) * 100}%`;
-      case '1/4':
-        return `${(1 / 4) * 100}%`;
-      case '2/8':
-        return `${(2 / 8) * 100}%`;
-      case '3/12':
-        return `${(3 / 12) * 100}%`;
-      case '3/10':
-        return `${(3 / 10) * 100}%`;
-      case '1/3':
-        return `${(1 / 3) * 100}%`;
-      case '2/6':
-        return `${(2 / 6) * 100}%`;
-      case '4/12':
-        return `${(4 / 12) * 100}%`;
-      case '3/8':
-        return `${(3 / 8) * 100}%`;
-      case '2/5':
-        return `${(2 / 5) * 100}%`;
-      case '4/10':
-        return `${(4 / 10) * 100}%`;
-      case '5/12':
-        return `${(5 / 12) * 100}%`;
-      case '1/2':
-        return `${(1 / 2) * 100}%`;
-      case '2/4':
-        return `${(2 / 4) * 100}%`;
-      case '3/6':
-        return `${(3 / 6) * 100}%`;
-      case '4/8':
-        return `${(4 / 8) * 100}%`;
-      case '5/10':
-        return `${(5 / 10) * 100}%`;
-      case '6/12':
-        return `${(6 / 12) * 100}%`;
-      case '7/12':
-        return `${(7 / 12) * 100}%`;
-      case '3/5':
-        return `${(3 / 5) * 100}%`;
-      case '6/10':
-        return `${(6 / 10) * 100}%`;
-      case '5/8':
-        return `${(5 / 8) * 100}%`;
-      case '2/3':
-        return `${(2 / 3) * 100}%`;
-      case '4/6':
-        return `${(4 / 6) * 100}%`;
-      case '8/12':
-        return `${(8 / 12) * 100}%`;
-      case '7/10':
-        return `${(7 / 10) * 100}%`;
-      case '3/4':
-        return `${(3 / 4) * 100}%`;
-      case '6/8':
-        return `${(6 / 8) * 100}%`;
-      case '9/12':
-        return `${(9 / 12) * 100}%`;
-      case '4/5':
-        return `${(4 / 5) * 100}%`;
-      case '8/10':
-        return `${(8 / 10) * 100}%`;
-      case '9/10':
-        return `${(9 / 10) * 100}%`;
-      case '11/12':
-        return `${(11 / 12) * 100}%`;
-      case 'full':
-        return '100%';
-      case 'a':
-        return 'auto';
-      default: {
-        const formattedVal = (typeof value === 'number' || typeof value === 'string') &&
-          parseFloat(value, 10) < 1
-            ? value.toString().replace('0.', '.')
-            : parseFloat(value, 10).toString();
-
-        const sizeScale = get('sizes')(theme);
-        const newVal = sizeScale[`z${formattedVal}`];
-
-        if (newVal.toString()) {
-          return newVal;
-        }
-
-        throw new Error(`You must provide a valid value for the size prop, not ${JSON.stringify(value)}`);
-      }
-    }
-  }
-  return value;
-};
+import glamorous, { withTheme } from 'glamorous';
+import stripUnit from './strip-unit';
+import isValid from './is-valid';
+import createTheme from './create-theme';
+import cleanProps from './clean-props';
+import getPropsForColor from './get-props-for-color';
+// import getPropsForFSValue from './get-props-for-fs';
+import getSize from './get-size';
 
 const getPropsForMPValue = (prop, value = null, THEME = null) => {
   if (isValid('margin / padding')(value)) {
@@ -387,7 +109,7 @@ const getPropsForMPValue = (prop, value = null, THEME = null) => {
 
 const getPropsForBRValue = (prop, value = null, THEME = null) => {
   if (isValid('border-radius')(value)) {
-    const formattedVal = getSize(value, THEME);
+    const formattedVal = getSize(THEME, value);
     if (THEME.sizes === null) {
       throw new Error('can\'t generate values without theme sizes');
     }
@@ -530,27 +252,6 @@ const getPropsForCurValue = (value = null) => {
         return 'initial';
       default:
         return 'value';
-    }
-  }
-
-  return value;
-};
-
-const getPropsForFSValue = (value = null) => {
-  if (isValid('font-style')(value)) {
-    switch (value) {
-      case 'n':
-        return 'normal';
-      case 'i':
-        return 'italic';
-      case 'o':
-        return 'oblique';
-      case 'inh':
-        return 'inherit';
-      case 'init':
-        return 'inherit';
-      default:
-        throw new Error(`You must provide a valid value for the font-style prop. One of n, i, o, i, init, not ${JSON.stringify(value)}`);
     }
   }
 
@@ -735,7 +436,7 @@ const getPropsForFlxBValue = (value, theme) => {
       case 'init':
         return 'inherit';
       default:
-        getSize(value, theme);
+        getSize(theme, value);
 
         throw new Error(`You must provide a valid value for the flex-basis prop. One of [scale value], a, f, max-c, min-c, fit-c, c, i, init, not ${JSON.stringify(value)}`);
     }
@@ -995,27 +696,6 @@ const getPropsForWSValue = (value = null) => {
   return value;
 };
 
-const getPropsForColor = (value, theme) => {
-  if (isValid('color')(value)) {
-    if (value === 'transparent') {
-      return 'transparent';
-    }
-    if (value === 'currentColor') {
-      return 'currentColor';
-    }
-    if (value === 'inherit') {
-      return 'inherit';
-    }
-    const alpha = /(.+)(\.\d)/.exec(value);
-    if (alpha) {
-      return Color(theme.colors[`${alpha[1]}`]).alpha(alpha[2]).string();
-    }
-    return theme.colors[value];
-  }
-
-  return value;
-};
-
 const getMarginAndPadding = (props, theme) => {
   let newProps = {};
   if (props) {
@@ -1086,6 +766,9 @@ const getOpacity = (value = null) => {
 };
 
 const orNull = (predicate, func) => {
+  if (!predicate) {
+    return null;
+  }
   if (predicate) {
     if (func) {
       return func;
@@ -1095,135 +778,76 @@ const orNull = (predicate, func) => {
   return null;
 };
 
-const getPropForProps = (props, theme) => Object.keys(props).reduce((acc) => {
-  if (props) {
-    const getProp = prop => get(prop)(props);
-    return {
-      ...acc,
-      ...getMarginAndPadding(props, theme),
-      color: orNull(getProp('c'), getPropsForColor(getProp('c'), theme)),
-      backgroundColor: orNull(getProp('bg'), getPropsForColor(getProp('bg'), theme)),
-      fontSize: orNull(getProp('f'), getSize(getProp('f'), theme)),
-      fontWeight: orNull(getProp('fw')),
-      fontStyle: orNull(getProp('fs'), getPropsForFSValue(getProp('fs'))),
-      fontFamily: orNull(get(`fonts.${getProp('ff')}`)(theme)),
-      letterSpacing: orNull(getProp('ls'), getPropsForLSValue(getProp('ls'), theme)),
-      lineHeight: orNull(getProp('lh'), getPropsForLHValue(getProp('lh'), theme)),
-      textTransform: orNull(getProp('tt'), getPropsForTTValue(getProp('tt'))),
-      textAlign: orNull(getProp('ta'), getPropsForTAValue(getProp('ta'))),
-      verticalAlign: orNull(getProp('va'), getPropsForVAValue(getProp('va'))),
-      textDecoration: orNull(getProp('td'), getPropsForTDValue(getProp('td'))),
-      textDecorationColor: orNull(getProp('tdc'), getPropsForColor(getProp('tdc'), theme)),
-      display: orNull(getProp('d'), getPropsForDValue(getProp('d'))),
-      width: orNull(getProp('w'), getSize(getProp('w'), theme)),
-      maxWidth: orNull(getProp('mw'), getSize(getProp('mw'), theme)),
-      height: orNull(getProp('h'), getSize(getProp('h'), theme)),
-      opacity: orNull(getProp('op'), getOpacity(getProp('op'))),
-      cursor: orNull(getProp('cur'), getPropsForCurValue(getProp('cur'))),
-      flexGrow: orNull(getProp('flxg')),
-      flexShrink: orNull(getProp('flxs')),
-      justifyContent: orNull(getProp('jc'), getPropsForJCValue(getProp('jc'))),
-      alignContent: orNull(getProp('ac'), getPropsForACValue(getProp('ac'))),
-      alignItems: orNull(getProp('ai'), getPropsForAIValue(getProp('ai'))),
-      alignSelf: orNull(getProp('as'), getPropsForASValue(getProp('as'))),
-      flexWrap: orNull(getProp('flxw'), getPropsForFlxWValue(getProp('flxw'))),
-      flexDirection: orNull(getProp('flxd'), getPropsForFlxDValue(getProp('flxd'))),
-      flexBasis: orNull(getProp('flxb'), getPropsForFlxBValue(getProp('flxb'), theme)),
-      float: orNull(getProp('fl'), getPropsForFlValue(getProp('fl'))),
-      position: orNull(getProp('pos'), getPropsForPosValue(getProp('pos'))),
-      top: orNull(getProp('top'), getSize(getProp('top'), theme)),
-      bottom: orNull(getProp('bottom'), getSize(getProp('bottom'), theme)),
-      right: orNull(getProp('right'), getSize(getProp('right'), theme)),
-      left: orNull(getProp('left'), getSize(getProp('left'), theme)),
-      overflow: orNull(getProp('o'), getPropsForOValue(getProp('o'))),
-      overflowX: orNull(getProp('ox'), getPropsForOValue(getProp('ox'))),
-      overflowY: orNull(getProp('oy'), getPropsForOValue(getProp('oy'))),
-      zIndex: orNull(getProp('zi')),
-      whiteSpace: orNull(getProp('ws'), getPropsForWSValue(getProp('ws'))),
-      listStyleType: orNull(getProp('lst'), getPropsForLSTValue(getProp('lst'))),
-      ...getBorderRadius(props, theme),
-    };
+const log = tap(console.log);
+
+const getPropForProps = (props, theme) => {
+  if (
+    compose(
+      lt(0),
+      length,
+      keys,
+      omit(['children'])
+    )(props)
+  ) {
+    return Object.keys(props).reduce((acc) => {
+      const getProp = prop => get(prop)(props);
+      return {
+        ...acc,
+        // ...getMarginAndPadding(props, theme),
+        color: orNull(getProp('c'), getPropsForColor(getProp('c'), theme)),
+        backgroundColor: orNull(getProp('bg'), getPropsForColor(getProp('bg'), theme)),
+        fontSize: orNull(getProp('f'), getSize(theme, getProp('f'))),
+        fontWeight: orNull(getProp('fw')),
+        // fontStyle: orNull(getProp('fs'), getPropsForFSValue(getProp('fs'))),
+        // fontFamily: orNull(get(`fonts.${getProp('ff')}`)(theme)),
+        // letterSpacing: orNull(getProp('ls'), getPropsForLSValue(getProp('ls'), theme)),
+        // lineHeight: orNull(getProp('lh'), getPropsForLHValue(getProp('lh'), theme)),
+        // textTransform: orNull(getProp('tt'), getPropsForTTValue(getProp('tt'))),
+        // textAlign: orNull(getProp('ta'), getPropsForTAValue(getProp('ta'))),
+        // verticalAlign: orNull(getProp('va'), getPropsForVAValue(getProp('va'))),
+        // textDecoration: orNull(getProp('td'), getPropsForTDValue(getProp('td'))),
+        // textDecorationColor: orNull(getProp('tdc'), getPropsForColor(getProp('tdc'), theme)),
+        // display: orNull(getProp('d'), getPropsForDValue(getProp('d'))),
+        // width: orNull(getProp('w'), getSize(getProp('w'), theme)),
+        // maxWidth: orNull(getProp('mw'), getSize(getProp('mw'), theme)),
+        // height: orNull(getProp('h'), getSize(getProp('h'), theme)),
+        // opacity: orNull(getProp('op'), getOpacity(getProp('op'))),
+        // cursor: orNull(getProp('cur'), getPropsForCurValue(getProp('cur'))),
+        // flexGrow: orNull(getProp('flxg')),
+        // flexShrink: orNull(getProp('flxs')),
+        // justifyContent: orNull(getProp('jc'), getPropsForJCValue(getProp('jc'))),
+        // alignContent: orNull(getProp('ac'), getPropsForACValue(getProp('ac'))),
+        // alignItems: orNull(getProp('ai'), getPropsForAIValue(getProp('ai'))),
+        // alignSelf: orNull(getProp('as'), getPropsForASValue(getProp('as'))),
+        // flexWrap: orNull(getProp('flxw'), getPropsForFlxWValue(getProp('flxw'))),
+        // flexDirection: orNull(getProp('flxd'), getPropsForFlxDValue(getProp('flxd'))),
+        // flexBasis: orNull(getProp('flxb'), getPropsForFlxBValue(getProp('flxb'), theme)),
+        // float: orNull(getProp('fl'), getPropsForFlValue(getProp('fl'))),
+        // position: orNull(getProp('pos'), getPropsForPosValue(getProp('pos'))),
+        // top: orNull(getProp('top'), getSize(getProp('top'), theme)),
+        // bottom: orNull(getProp('bottom'), getSize(getProp('bottom'), theme)),
+        // right: orNull(getProp('right'), getSize(getProp('right'), theme)),
+        // left: orNull(getProp('left'), getSize(getProp('left'), theme)),
+        // overflow: orNull(getProp('o'), getPropsForOValue(getProp('o'))),
+        // overflowX: orNull(getProp('ox'), getPropsForOValue(getProp('ox'))),
+        // overflowY: orNull(getProp('oy'), getPropsForOValue(getProp('oy'))),
+        // zIndex: orNull(getProp('zi')),
+        // whiteSpace: orNull(getProp('ws'), getPropsForWSValue(getProp('ws'))),
+        // listStyleType: orNull(getProp('lst'), getPropsForLSTValue(getProp('lst'))),
+        // ...getBorderRadius(props, theme),
+      };
+    }, {})
   }
   return false;
-}, {});
-
-const REJECTED_KEYS = [
-  'ac',
-  'ai',
-  'as',
-  'bg',
-  'bottom',
-  'br',
-  'brb',
-  'brbl',
-  'brbr',
-  'brl',
-  'brr',
-  'brt',
-  'brtl',
-  'brtr',
-  'brx',
-  'bry',
-  'c',
-  'cur',
-  'd',
-  'f',
-  'ff',
-  'fl',
-  'flxb',
-  'flxd',
-  'flxg',
-  'flxs',
-  'flxw',
-  'fs',
-  'fw',
-  'get',
-  'h',
-  'jc',
-  'left',
-  'lh',
-  'ls',
-  'lst',
-  'm',
-  'mb',
-  'ml',
-  'mr',
-  'mt',
-  'mx',
-  'my',
-  'o',
-  'op',
-  'ox',
-  'oy',
-  'p',
-  'pb',
-  'pl',
-  'pos',
-  'pr',
-  'pt',
-  'px',
-  'py',
-  'right',
-  'ta',
-  'td',
-  'tdc',
-  'top',
-  'tt',
-  'va',
-  'w',
-  'ws',
-  'zi',
-];
-
-const removeProps = oldProps => omit(REJECTED_KEYS, oldProps);
+};
 
 const Shed = ({
   component = 'div',
-  theme = createTheme(),
-  ...props
+  children,
+  ...rest
 }) => {
-  const ShedStyled = styled(component)(getPropForProps(props, theme));
-  return <ShedStyled {...removeProps(props)} />;
+  const ShedStyled = glamorous(component)(({theme, ...props}) => getPropForProps(props, theme));
+  return <ShedStyled {...rest}>{children}</ShedStyled>;
 };
 
 Shed.propTypes = {
@@ -1233,10 +857,7 @@ Shed.propTypes = {
     PropTypes.func,
   ]),
   theme: PropTypes.shape({
-    sizes: PropTypes.oneOf([
-      PropTypes.string,
-      PropTypes.object,
-    ]),
+    sizes: PropTypes.any,
     steps: PropTypes.number,
     colors: PropTypes.object,
     fonts: PropTypes.object,

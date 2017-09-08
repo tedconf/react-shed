@@ -1,34 +1,178 @@
 {
   "name": "react-shed",
   "version": "4.0.0-alpha.4",
-  "description": "Shed.css as a react styled-component",
+  "description": "Shed.css as a react library",
   "main": "lib/index.js",
   "files": [
     "lib",
     "umd"
   ],
   "devDependencies": {
-    "babel-core": "^6.22.1",
-    "babel-plugin-shed": "^1.0.0",
-    "color": "1.0.3",
-    "modularscale": "^2.0.1",
-    "nwb": "^0.18",
-    "prop-types": "^15.5.10",
-    "react": "^15.5.3",
-    "react-dom": "^15.5.3"
+    "@storybook/addon-centered": "^3.2.7",
+    "@storybook/addon-knobs": "^3.2.8",
+    "@storybook/addon-options": "^3.2.6",
+    "@storybook/addons": "^3.2.6",
+    "@storybook/react": "^3.2.8",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "~7.2.1",
+    "babel-jest": "^21.0.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-flow-react-proptypes": "^5.1.2",
+    "babel-plugin-lodash": "~3.2.11",
+    "babel-plugin-shed": "~1.0.0",
+    "babel-plugin-syntax-dynamic-import": "~6.18.0",
+    "babel-plugin-syntax-flow": "~6.18.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-constant-elements": "^6.23.0",
+    "babel-plugin-transform-react-remove-prop-types": "~0.4.4",
+    "babel-plugin-transform-react-router-optimize": "~1.0.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "~1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-react-optimize": "~1.0.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-runtime": "^6.26.0",
+    "css-loader": "0.14.5",
+    "del": "^3.0.0",
+    "del-cli": "^1.1.0",
+    "enzyme": "^2.9.1",
+    "enzyme-to-json": "~1.5.1",
+    "eslint": "^3.19.0 || ^4.3.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-import-resolver-webpack": "~0.8.0",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-flowtype": "^2.35.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.1.0",
+    "file-loader": "~0.11.1",
+    "flow-bin": "~0.52.0",
+    "flow-typed": "2.1.5",
+    "glamorous": "^4.8.0",
+    "global": "~4.3.1",
+    "html-webpack-plugin": "^2.30.1",
+    "isparta": "~4.0.0",
+    "jest": "^21.0.1",
+    "lodash-webpack-plugin": "~0.11.3",
+    "npm-run-all": "^4.1.1",
+    "offline-plugin": "^4.8.3",
+    "passwd-user": "~2.1.0",
+    "plop": "~1.8.0",
+    "postcss-cssnext": "^3.0.2",
+    "postcss-import": "~10.0.0",
+    "postcss-loader": "~2.0.5",
+    "preload-webpack-plugin": "^2.0.0",
+    "prop-types": "~15.5.10",
+    "ramda": "^0.24.1",
+    "react-addons-test-utils": "^15.6.0",
+    "react-dev-utils": "^4.0.1",
+    "redux-devtools-extension": "~2.13.2",
+    "stats-webpack-plugin": "~0.6.0",
+    "style-loader": "^0.18.2",
+    "webpack": "~3.5.5",
+    "webpack-dev-server": "~2.7.1",
+    "webpack-manifest-plugin": "~1.3.1",
+    "webpack-md5-hash": "~0.0.5",
+    "webpack-merge": "^4.1.0"
   },
   "peerDependencies": {
-    "color": "1.0.3",
-    "emotion": "^6",
-    "react": "^15",
+    "emotion": "7.2.2",
+    "react": "^15.6.1",
     "theming": "^1.1.0"
   },
   "scripts": {
-    "start": "nwb serve",
-    "build": "nwb build",
-    "prepublish": "yarn build"
+    "start": "run-p 'dev' 'storybook'",
+    "dev": "env NODE_ENV=development webpack-dev-server",
+    "build-app": "del dist && env NODE_ENV=production webpack --colors --display-provided-exports --display-used-exports",
+    "build": "run-p 'build-app' 'build-storybook'",
+    "pretest": "yarn lint; yarn lint:typecheck",
+    "lint": "eslint src",
+    "lint:fix": "yarn lint -- --fix",
+    "deploy": "echo 'not conrigured, please edit this task in your package.json'",
+    "lint:typecheck": "flow; test $? -eq 0 -o $? -eq 2",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "storybook": "start-storybook -p 2001",
+    "build-storybook": "mkdir -p dist && build-storybook -o dist/storybook"
+  },
+  "babel": {
+    "presets": [
+      "react",
+      [
+        "env",
+        {
+          "modules": false
+        }
+      ],
+      "stage-0"
+    ],
+    "plugins": [
+      "shed",
+      "syntax-dynamic-import",
+      "syntax-flow",
+      "transform-flow-strip-types",
+      "transform-runtime"
+    ],
+    "env": {
+      "development": {
+        "plugins": [
+          "shed",
+          "react-hot-loader/babel",
+          "syntax-dynamic-import",
+          "syntax-flow",
+          "transform-flow-strip-types",
+          "transform-runtime"
+        ]
+      },
+      "production": {
+        "plugins": [
+          "shed",
+          [
+            "lodash",
+            {
+              "id": [
+                "lodash",
+                "recompose"
+              ]
+            }
+          ],
+          "transform-react-router-optimize"
+        ],
+        "presets": [
+          "react-optimize"
+        ]
+      },
+      "test": {
+        "presets": [
+          "react",
+          [
+            "env",
+            {
+              "modules": false
+            }
+          ],
+          "stage-0"
+        ],
+        "plugins": [
+          "shed",
+          "react-hot-loader/babel",
+          "syntax-dynamic-import",
+          "syntax-flow",
+          "transform-flow-strip-types",
+          "transform-flow-strip-types",
+          "transform-runtime",
+          "transform-es2015-modules-commonjs"
+        ]
+      }
+    }
   },
   "eslintConfig": {
+    "plugins": [
+      "flowtype"
+    ],
     "env": {
       "jest": true,
       "browser": true
@@ -46,10 +190,13 @@
     },
     "parser": "babel-eslint",
     "extends": [
-      "airbnb"
+      "airbnb",
+      "plugin:flowtype/recommended"
     ],
     "rules": {
       "react/no-unused-prop-types": 0,
+      "react/no-danger": 0,
+      "react/require-default-props": 0,
       "no-debugger": 1,
       "no-mixed-operators": 0,
       "no-nested-ternary": 0,
@@ -69,23 +216,26 @@
           "varsIgnorePattern": "Shed"
         }
       ]
+    },
+    "settings": {
+      "import/resolver": {
+        "webpack": {
+          "config": "webpack.config.js"
+        }
+      }
     }
   },
   "author": "Vince Speelman",
   "license": "MIT",
   "dependencies": {
-    "babel-eslint": "^7.2.3",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
+    "babel-runtime": "^6.26.0",
+    "color": "~1.0.0",
     "curry": "^1.2.0",
-    "emotion": "^6.0.3",
-    "eslint": "3.19.x",
-    "eslint-config-airbnb": "^15.0.1",
-    "eslint-plugin-import": "2.2.x",
-    "eslint-plugin-jsx-a11y": "5.0.x",
-    "eslint-plugin-react": "^7.0.1",
+    "emotion": "^7.2.2",
+    "modularscale": "~2.0.1",
     "omit": "^1.0.1",
+    "react-dom": "^15.6.1",
+    "react-hot-loader": "next",
     "theming": "^1.1.0"
   }
 }
