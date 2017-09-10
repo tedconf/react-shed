@@ -25,7 +25,7 @@ const THEME = {
     blue: '#0E1666',
   },
   fonts: {
-    sans: '"Helvetica Neue Custom", system',
+    sans: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
     code: 'Consolas,monaco,monospace',
   },
 };

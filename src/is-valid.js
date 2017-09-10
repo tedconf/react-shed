@@ -6,22 +6,25 @@ import equals from 'ramda/src/equals';
 import anyPass from 'ramda/src/anyPass';
 
 const isValid = (label, val) => {
-  const isValidType = compose(
-    not,
-    anyPass([
-      equals('String'),
-      equals('Number'),
-      equals('Null'),
-    ]),
-  );
-
-  if (isValidType(type(val))) {
-    throw new Error(
-      `You must provide a valid value for the ${label ? `${label} ` : ''}prop: A number or string, not ${JSON.stringify(val)} (${type(val)})`,
+  if (val) {
+    const isValidType = compose(
+      not,
+      anyPass([
+        equals('String'),
+        equals('Number'),
+        equals('Null'),
+      ]),
     );
-  }
 
-  return true;
+    if (isValidType(type(val))) {
+      throw new Error(
+        `You must provide a valid value for the ${label ? `${label} ` : ''}prop: A number or string, not ${JSON.stringify(val)} (${type(val)})`,
+      );
+    }
+
+    return true;
+  }
+  return false;
 };
 
-export default curry(isValid);
+export default curry((label, val) => isValid(label, val));

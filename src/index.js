@@ -2,6 +2,7 @@
 import React, { createElement } from 'react';
 import get from 'ramda/src/prop';
 import omit from 'ramda/src/omit';
+import path from 'ramda/src/path';
 import tap from 'ramda/src/tap';
 import compose from 'ramda/src/compose';
 import length from 'ramda/src/length';
@@ -15,97 +16,13 @@ import isValid from './is-valid';
 import createTheme from './create-theme';
 import cleanProps from './clean-props';
 import getPropsForColor from './get-props-for-color';
-// import getPropsForFSValue from './get-props-for-fs';
+import getPropsForFSValue from './get-props-for-fs';
+import getPropsForLSValue from './get-prop-for-ls';
+import getPropsForLHValue from './get-prop-for-lh';
+import getPropsForTTValue from './get-prop-for-tt';
+import getPropsForTAValue from './get-prop-for-ta';
+import getMarginAndPadding from './get-margin-and-padding';
 import getSize from './get-size';
-
-const getPropsForMPValue = (prop, value = null, THEME = null) => {
-  if (isValid('margin / padding')(value)) {
-    let formattedVal = value;
-    if (THEME.sizes === null) {
-      throw new Error('can\'t generate values without theme sizes');
-    }
-
-    if (prop === 'mx' && value === 'r') {
-      formattedVal = 'calc(-50vw + 50%)';
-    }
-
-    if (value === 'a') {
-      formattedVal = 'auto';
-    }
-
-    if (value !== 'a' && value !== 'r') {
-      formattedVal = getSize(value, THEME);
-    }
-
-    switch (prop) {
-      case 'm':
-        return {
-          margin: formattedVal,
-        };
-      case 'mx':
-        return {
-          marginLeft: formattedVal,
-          marginRight: formattedVal,
-        };
-      case 'my':
-        return {
-          marginTop: formattedVal,
-          marginBottom: formattedVal,
-        };
-      case 'mt':
-        return {
-          marginTop: formattedVal,
-        };
-      case 'mr':
-        return {
-          marginRight: formattedVal,
-        };
-      case 'mb':
-        return {
-          marginBottom: formattedVal,
-        };
-      case 'ml':
-        return {
-          marginLeft: formattedVal,
-        };
-
-      case 'p':
-        return {
-          padding: formattedVal,
-        };
-      case 'px':
-        return {
-          paddingLeft: formattedVal,
-          paddingRight: formattedVal,
-        };
-      case 'py':
-        return {
-          paddingTop: formattedVal,
-          paddingBottom: formattedVal,
-        };
-      case 'pt':
-        return {
-          paddingTop: formattedVal,
-        };
-      case 'pr':
-        return {
-          paddingRight: formattedVal,
-        };
-      case 'pb':
-        return {
-          paddingBottom: formattedVal,
-        };
-      case 'pl':
-        return {
-          paddingLeft: formattedVal,
-        };
-
-      default:
-        return null;
-    }
-  }
-  return value;
-};
 
 const getPropsForBRValue = (prop, value = null, THEME = null) => {
   if (isValid('border-radius')(value)) {
@@ -485,48 +402,6 @@ const getPropsForOValue = (value = null) => {
   return value;
 };
 
-const getPropsForTTValue = (value = null) => {
-  if (isValid('text-transform')(value)) {
-    switch (value) {
-      case 'u':
-        return 'uppercase';
-      case 'c':
-        return 'capitalize';
-      case 'l':
-        return 'lowercase';
-      case 'n':
-        return 'none';
-      case 'i':
-        return 'inherit';
-      case 'init':
-        return 'inherit';
-      default:
-        throw new Error(`You must provide a valid value for the text-transform prop. One of u, c, l, n, i, init, not ${JSON.stringify(value)}`);
-    }
-  }
-
-  return value;
-};
-
-const getPropsForTAValue = (value = null) => {
-  if (isValid('text-align')(value)) {
-    switch (value) {
-      case 'c':
-        return 'center';
-      case 'l':
-        return 'left';
-      case 'r':
-        return 'right';
-      case 'j':
-        return 'justify';
-      default:
-        throw new Error(`You must provide a valid value for the text-align prop. One of c, l, r, j, not ${JSON.stringify(value)}`);
-    }
-  }
-
-  return value;
-};
-
 const getPropsForVAValue = (value = null) => {
   if (isValid('vertical-align')(value)) {
     switch (value) {
@@ -593,52 +468,6 @@ const getPropsForTDValue = (value = null) => {
   return value;
 };
 
-const getPropsForLSValue = (value = null, theme) => {
-  if (isValid('letter-spacing')(value)) {
-    switch (value) {
-      case 'n':
-        return 'normal';
-      case 't':
-        return '-0.05em';
-      case 'l':
-        return '.3em';
-      default:
-        if (theme.sizes[`z${value}`]) {
-          return stripUnit(theme.sizes[`z${value}`]);
-        }
-        throw new Error(`You must provide a valid value for the letter-spacing prop. One of n, t, l, not ${JSON.stringify(value)}`);
-    }
-  }
-
-  return value;
-};
-
-const getPropsForLHValue = (value, theme) => {
-  if (isValid('line-height')(value)) {
-    switch (value) {
-      case 'd':
-        return '1';
-      case 'n':
-        return 'normal';
-      case 't':
-        return stripUnit(theme.sizes.z2);
-      case 'l':
-        return stripUnit(theme.sizes.z4);
-      case 'i':
-        return 'inherit';
-      case 'init':
-        return 'initial';
-      default:
-        if (theme.sizes[`z${value}`]) {
-          return stripUnit(theme.sizes[`z${value}`]);
-        }
-        throw new Error(`You must provide a valid value for the line-height prop. One of [scale value], d, t, l, n, i, init, not ${JSON.stringify(value)}`);
-    }
-  }
-
-  return value;
-};
-
 const getPropsForPosValue = (value = null) => {
   if (isValid('position')(value)) {
     switch (value) {
@@ -694,36 +523,6 @@ const getPropsForWSValue = (value = null) => {
   }
 
   return value;
-};
-
-const getMarginAndPadding = (props, theme) => {
-  let newProps = {};
-  if (props) {
-    Object.keys(props).forEach((prop) => {
-      if ([
-        'm',
-        'mx',
-        'my',
-        'mt',
-        'mr',
-        'mb',
-        'ml',
-        'p',
-        'px',
-        'py',
-        'pt',
-        'pr',
-        'pb',
-        'pl',
-      ].indexOf(prop) > -1) {
-        newProps = {
-          ...newProps,
-          ...getPropsForMPValue(prop, props[prop], theme),
-        };
-      }
-    });
-  }
-  return newProps;
 };
 
 const getBorderRadius = (props, theme) => {
@@ -791,19 +590,20 @@ const getPropForProps = (props, theme) => {
   ) {
     return Object.keys(props).reduce((acc) => {
       const getProp = prop => get(prop)(props);
+      console.log(get(`fonts.${getProp('ff')}`)(theme));
       return {
         ...acc,
-        // ...getMarginAndPadding(props, theme),
+        ...getMarginAndPadding(theme)(props),
         color: orNull(getProp('c'), getPropsForColor(getProp('c'), theme)),
         backgroundColor: orNull(getProp('bg'), getPropsForColor(getProp('bg'), theme)),
         fontSize: orNull(getProp('f'), getSize(theme, getProp('f'))),
         fontWeight: orNull(getProp('fw')),
-        // fontStyle: orNull(getProp('fs'), getPropsForFSValue(getProp('fs'))),
-        // fontFamily: orNull(get(`fonts.${getProp('ff')}`)(theme)),
-        // letterSpacing: orNull(getProp('ls'), getPropsForLSValue(getProp('ls'), theme)),
-        // lineHeight: orNull(getProp('lh'), getPropsForLHValue(getProp('lh'), theme)),
-        // textTransform: orNull(getProp('tt'), getPropsForTTValue(getProp('tt'))),
-        // textAlign: orNull(getProp('ta'), getPropsForTAValue(getProp('ta'))),
+        fontStyle: orNull(getProp('fs'), getPropsForFSValue(getProp('fs'))),
+        fontFamily: orNull(path(['fonts', getProp('ff')])(theme)),
+        letterSpacing: orNull(getProp('ls'), getPropsForLSValue(getProp('ls'), theme)),
+        lineHeight: orNull(getProp('lh'), getPropsForLHValue(theme, getProp('lh'))),
+        textTransform: orNull(getProp('tt'), getPropsForTTValue(getProp('tt'))),
+        textAlign: orNull(getProp('ta'), getPropsForTAValue(getProp('ta'))),
         // verticalAlign: orNull(getProp('va'), getPropsForVAValue(getProp('va'))),
         // textDecoration: orNull(getProp('td'), getPropsForTDValue(getProp('td'))),
         // textDecorationColor: orNull(getProp('tdc'), getPropsForColor(getProp('tdc'), theme)),
