@@ -229,6 +229,7 @@
   "license": "MIT",
   "dependencies": {
     "babel-runtime": "^6.26.0",
+    "css-color-names": "^0.0.4",
     "curry": "^1.2.0",
     "emotion": "^7.2.2",
     "modularscale": "~2.0.1",

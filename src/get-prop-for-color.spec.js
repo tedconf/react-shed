@@ -13,6 +13,7 @@ describe('color', () => {
     },
     colors: {
       red: '#FF3D1E',
+      blue: 'cyan',
     },
   };
   const c = getColor(THEME_FIXTURE);
@@ -39,6 +40,11 @@ describe('color', () => {
   it('handles theme color alpha', () => {
     const actual = c('red.5');
     const expected = 'rgba(255, 61, 30, 0.5)';
+    expect(actual).toBe(expected);
+  });
+  it('handles theme named color alpha', () => {
+    const actual = c('blue.5');
+    const expected = 'rgba(0, 255, 255, 0.5)';
     expect(actual).toBe(expected);
   });
 });

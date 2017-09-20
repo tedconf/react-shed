@@ -1,5 +1,6 @@
 import curry from 'ramda/src/curry';
 import parse from 'pure-color/parse';
+import CSS_NAMES from 'css-color-names';
 import isValid from './is-valid';
 
 const getPropsForColor = (theme, value) => {
@@ -16,7 +17,11 @@ const getPropsForColor = (theme, value) => {
       }
       const alpha = /(.+)(\.\d+)/.exec(value);
       if (alpha) {
-        const colorHash = parse(theme.colors[`${alpha[1]}`]);
+        let colorHash;
+        colorHash = parse(theme.colors[`${alpha[1]}`]);
+        if((theme.colors[`${alpha[1]}`]).charAt(0) !== '#') {
+          colorHash = parse(CSS_NAMES[theme.colors[`${alpha[1]}`]]);
+        }
         return `rgba(${colorHash[0]}, ${colorHash[1]}, ${colorHash[2]}, ${parseFloat(alpha[2], 10)})`;
       }
       return theme.colors[value];
