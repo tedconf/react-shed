@@ -2,20 +2,23 @@
 
 react-shed is a version of [shed.css](http://tedconf.github.io/shed-css/)
 created specifically with react in mind. It implements shed dynamically using
-[styled components](https://styled-components.com/),
-[modularscale](modularscale), and [color](http://ghub.io/color).
+[glamorous](https://glamorous.rocks/),
+[modularscale](modularscale), and [pure-color](https://github.com/WickyNilliams/pure-color).
 
 ## INSTALL
 
 in your project:
-`yarn add react-shed styled-components`
+`yarn add react-shed`
+
+make sure you install the peer dependencies:
+`yarn add react glamorous`
 
 in your app root:
 
 ```jsx
 import React from 'react';
 import { render } from 'react-dom';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'glamorous';
 import Shed, {
   createTheme,
   reset,
@@ -59,7 +62,7 @@ now you can build components using shed.css properties:
   mx="1"
   c="red"
   d="b"
-  w="1of3"
+  w="1/3"
 >
   margin-left and margin-right of '1' on your scale, color of red, display
   block, and width 1of3

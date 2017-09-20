@@ -34,16 +34,6 @@ const config = {
 
 
 const COMMON_CONFIG = {
-  entry: {
-    vendor: [
-      'glamorous',
-      'modularscale',
-      'react',
-      'react-dom',
-      'theming',
-    ],
-  },
-
   output: {
     path: DIST_PATH,
     filename: 'bundle-[name].js',
