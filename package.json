@@ -2,7 +2,8 @@
   "name": "react-shed",
   "version": "4.0.0-alpha.4",
   "description": "Shed.css as a react library",
-  "main": "lib/index.js",
+  "main": "dist/react-shed.min.js",
+  "module": "src/index.js",
   "files": [
     "lib",
     "umd"
