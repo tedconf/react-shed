@@ -1,7 +1,9 @@
+import curry from 'ramda/src/curry';
 import isValid from './is-valid';
 import stripUnit from './strip-unit';
+import createError from './create-error';
 
-const getPropsForLSValue = (value = null, theme) => {
+const getPropsForLSValue = (theme, value = null) => {
   if (isValid('letter-spacing')(value)) {
     switch (value) {
       case 'n':
@@ -10,15 +12,25 @@ const getPropsForLSValue = (value = null, theme) => {
         return '-0.05em';
       case 'l':
         return '.3em';
+      case 'i':
+        return 'inherit';
+      case 'init':
+        return 'initial';
       default:
         if (theme.sizes[`z${value}`]) {
           return stripUnit(theme.sizes[`z${value}`]);
         }
-        throw new Error(`You must provide a valid value for the letter-spacing prop. One of n, t, l, not ${JSON.stringify(value)}`);
+        throw new Error(createError([
+          'n',
+          't',
+          'l',
+          'i',
+          'init',
+        ])(value));
     }
   }
 
   return value;
 };
 
-export default getPropsForLSValue;
+export default curry((theme, value) => getPropsForLSValue(theme, value));

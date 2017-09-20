@@ -1,20 +1,27 @@
 import isValid from './is-valid';
+import createError from './create-error';
 
 const getPropsForFSValue = (value = null) => {
   if (isValid('font-style')(value)) {
     switch (value) {
       case 'n':
         return 'normal';
-      case 'i':
+      case 'it':
         return 'italic';
       case 'o':
         return 'oblique';
-      case 'inh':
+      case 'i':
         return 'inherit';
       case 'init':
-        return 'inherit';
+        return 'initial';
       default:
-        throw new Error(`You must provide a valid value for the font-style prop. One of n, i, o, i, init, not ${JSON.stringify(value)}`);
+        throw new Error(createError([
+          'n',
+          'it',
+          'o',
+          'i',
+          'init',
+        ])(value));
     }
   }
 

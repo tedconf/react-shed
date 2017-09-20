@@ -1,6 +1,7 @@
 import curry from 'ramda/src/curry';
 import isValid from './is-valid';
 import stripUnit from './strip-unit';
+import createError from './create-error';
 
 const getPropsForLHValue = (theme, value) => {
   if (isValid('line-height')(value)) {
@@ -21,7 +22,15 @@ const getPropsForLHValue = (theme, value) => {
         if (theme.sizes[`z${value}`]) {
           return stripUnit(theme.sizes[`z${value}`]);
         }
-        throw new Error(`You must provide a valid value for the line-height prop. One of [scale value], d, t, l, n, i, init, not ${JSON.stringify(value)}`);
+        throw new Error(createError([
+          'scale value',
+          'd',
+          't',
+          'l',
+          'n',
+          'i',
+          'init',
+        ])(value));
     }
   }
 

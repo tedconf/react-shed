@@ -121,4 +121,8 @@ describe('margin and padding prop handling', () => {
     };
     expect(actual).toEqual(expected);
   })
+  it('should throw on unknown value', () => {
+    const actual = () => { mp({ p: 'foo' }); };
+    expect(actual).toThrow(/foo/);
+  })
 });

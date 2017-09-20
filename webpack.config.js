@@ -36,24 +36,10 @@ const config = {
 const COMMON_CONFIG = {
   entry: {
     vendor: [
-      // 'babel-runtime',
-      // 'classnames',
-      'emotion',
+      'glamorous',
       'modularscale',
-      // 'offline-plugin',
       'react',
       'react-dom',
-      // 'react-media',
-      // 'react-redux',
-      // 'react-router',
-      // 'react-router-dom',
-      // 'react-router-redux',
-      // 'react-shed',
-      // 'recompose',
-      // 'redux',
-      // 'redux-action-types-creator',
-      // 'redux-create-reducer',
-      // 'redux-thunk',
       'theming',
     ],
   },
@@ -79,51 +65,6 @@ const COMMON_CONFIG = {
           },
           {
             loader: 'eslint-loader',
-          },
-        ],
-      },
-      {
-        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        include: APP_PATH,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: 'public/fonts/[name].[ext]',
-            },
-          },
-        ],
-      },
-      {
-        test: /\.svg$/,
-        include: APP_PATH,
-        use: [
-          'svg-react-loader',
-        ],
-      },
-      {
-        test: /\.css$/,
-        include: APP_PATH,
-        use: [
-          {
-            loader: 'style-loader',
-            options: {
-              name: `${DIST_PATH}/[path][name].[ext]`,
-            },
-          },
-          {
-            loader: 'css-loader',
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              postcss: wp => ([
-                postcssImport({
-                  addDependencyTo: wp,
-                }),
-                cssnext(),
-              ]),
-            },
           },
         ],
       },

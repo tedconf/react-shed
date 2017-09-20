@@ -1,56 +1,113 @@
-export default (props, theme) => Object.keys(props).reduce((acc) => {
-  if (!props) {
-    return false;
-  }
-  if (props) {
-    const getProp = prop => path([prop])(props);
-    const getPropsForTheme = getPropsForColor(theme); 
-    const getPropsForSize = getSize(theme); 
+import compose from 'ramda/src/compose';
+import curry from 'ramda/src/curry';
+import get from 'ramda/src/prop';
+import keys from 'ramda/src/keys';
+import lt from 'ramda/src/lt';
+import length from 'ramda/src/length';
+import omit from 'ramda/src/omit';
+import path from 'ramda/src/path';
 
-    return {
-      ...acc,
-      ...getMarginAndPadding(props, theme),
-      color: orNull(getProp('c'), getPropsForTheme(getProp('c'))),
-      backgroundColor: orNull(getProp('bg'), getPropsForTheme(getProp('bg'))),
-      fontSize: orNull(getProp('f'), getSize(getProp('f'))),
-      fontWeight: orNull(getProp('fw')),
-      fontStyle: orNull(getProp('fs'), getPropsForFSValue(getProp('fs'))),
-      fontFamily: orNull(path(['fonts', getProp('ff')])(theme)),
-      letterSpacing: orNull(getProp('ls'), getPropsForLSValue(getProp('ls'), theme)),
-      lineHeight: orNull(getProp('lh'), getPropsForLHValue(getProp('lh'), theme)),
-      textTransform: orNull(getProp('tt'), getPropsForTTValue(getProp('tt'))),
-      textAlign: orNull(getProp('ta'), getPropsForTAValue(getProp('ta'))),
-      verticalAlign: orNull(getProp('va'), getPropsForVAValue(getProp('va'))),
-      textDecoration: orNull(getProp('td'), getPropsForTDValue(getProp('td'))),
-      textDecorationColor: orNull(getProp('tdc'), getPropsForTheme(getProp('tdc'))),
-      display: orNull(getProp('d'), getPropsForDValue(getProp('d'))),
-      width: orNull(getProp('w'), getPropsForSize(getProp('w'))),
-      maxWidth: orNull(getProp('mw'), getPropsForSize(getProp('mw'))),
-      height: orNull(getProp('h'), getPropsForSize(getProp('h'))),
-      opacity: orNull(getProp('op'), getOpacity(getProp('op'))),
-      cursor: orNull(getProp('cur'), getPropsForCurValue(getProp('cur'))),
-      flexGrow: orNull(getProp('flxg')),
-      flexShrink: orNull(getProp('flxs')),
-      justifyContent: orNull(getProp('jc'), getPropsForJCValue(getProp('jc'))),
-      alignContent: orNull(getProp('ac'), getPropsForACValue(getProp('ac'))),
-      alignItems: orNull(getProp('ai'), getPropsForAIValue(getProp('ai'))),
-      alignSelf: orNull(getProp('as'), getPropsForASValue(getProp('as'))),
-      flexWrap: orNull(getProp('flxw'), getPropsForFlxWValue(getProp('flxw'))),
-      flexDirection: orNull(getProp('flxd'), getPropsForFlxDValue(getProp('flxd'))),
-      flexBasis: orNull(getProp('flxb'), getPropsForFlxBValue(getProp('flxb'), theme)),
-      float: orNull(getProp('fl'), getPropsForFlValue(getProp('fl'))),
-      position: orNull(getProp('pos'), getPropsForPosValue(getProp('pos'))),
-      top: orNull(getProp('top'), getPropsForSize(getProp('top'))),
-      bottom: orNull(getProp('bottom'), getPropsForSize(getProp('bottom'))),
-      right: orNull(getProp('right'), getPropsForSize(getProp('right'))),
-      left: orNull(getProp('left'), getPropsForSize(getProp('left'))),
-      overflow: orNull(getProp('o'), getPropsForOValue(getProp('o'))),
-      overflowX: orNull(getProp('ox'), getPropsForOValue(getProp('ox'))),
-      overflowY: orNull(getProp('oy'), getPropsForOValue(getProp('oy'))),
-      zIndex: orNull(getProp('zi')),
-      whiteSpace: orNull(getProp('ws'), getPropsForWSValue(getProp('ws'))),
-      listStyleType: orNull(getProp('lst'), getPropsForLSTValue(getProp('lst'))),
-      ...getBorderRadius(props, theme),
-    };
+import getPropForColor from './get-prop-for-color';
+import getPropsForFSValue from './get-prop-for-fs';
+import getPropsForLSValue from './get-prop-for-ls';
+import getPropsForLHValue from './get-prop-for-lh';
+import getPropsForTTValue from './get-prop-for-tt';
+import getPropsForTAValue from './get-prop-for-ta';
+import getPropForTDValue from './get-prop-for-td';
+import getMarginAndPadding from './get-margin-and-padding';
+import getSize from './get-size';
+import getPropsForVAValue from './get-props-for-va';
+import getPropForDValue from './get-prop-for-d';
+import getPropForACValue from './get-prop-for-ac';
+import getPropForAIValue from './get-prop-for-ai';
+import getPropForASValue from './get-prop-for-as';
+import getPropForCurValue from './get-prop-for-cur';
+import getPropForFlxBValue from './get-prop-for-flxb';
+import getBorderRadius from './get-props-for-br';
+import getPropForFlxDValue from './get-prop-for-flxd';
+import getPropForFlxWValue from './get-prop-for-flxw';
+import getPropForFlValue from './get-prop-for-fl';
+import getPropForJCValue from './get-prop-for-jc';
+import getPropForLSTValue from './get-prop-for-lst';
+import getPropForOpValue from './get-prop-for-op';
+import getPropForOValue from './get-prop-for-o';
+import getPropsForPosValue from './get-props-for-pos';
+import getPropForWSValue from './get-prop-for-ws';
+
+const orNull = (predicate, func) => {
+  if (!predicate) {
+    return null;
   }
-}, {});
+  if (predicate) {
+    if (func) {
+      return func;
+    }
+    return predicate;
+  }
+  return null;
+};
+
+const getPropForProps = (theme, props) => {
+  const size = getSize(theme);
+  const color = getPropForColor(theme);
+  if (
+    compose(
+      lt(0),
+      length,
+      keys,
+      omit(['children']),
+    )(props)
+  ) {
+    return Object.keys(props).reduce((acc) => {
+      const getProp = prop => get(prop)(props);
+      return {
+        ...acc,
+        ...getBorderRadius(theme, props),
+        ...getMarginAndPadding(theme)(props),
+        ...orNull(getProp('va'), getPropsForVAValue(getProp('va'))),
+        flexWrap: orNull(getProp('flxw'), getPropForFlxWValue(getProp('flxw'))),
+        float: orNull(getProp('fl'), getPropForFlValue(getProp('fl'))),
+        justifyContent: orNull(getProp('jc'), getPropForJCValue(getProp('jc'))),
+        listStyleType: orNull(getProp('lst'), getPropForLSTValue(getProp('lst'))),
+        opacity: orNull(getProp('op'), getPropForOpValue(getProp('op'))),
+        overflow: orNull(getProp('o'), getPropForOValue(getProp('o'))),
+        overflowX: orNull(getProp('ox'), getPropForOValue(getProp('ox'))),
+        overflowY: orNull(getProp('oy'), getPropForOValue(getProp('oy'))),
+        position: orNull(getProp('pos'), getPropsForPosValue(getProp('pos'))),
+        whiteSpace: orNull(getProp('ws'), getPropForWSValue(getProp('ws'))),
+        alignContent: orNull(getProp('ac'), getPropForACValue(getProp('ac'))),
+        alignItems: orNull(getProp('ai'), getPropForAIValue(getProp('ai'))),
+        alignSelf: orNull(getProp('as'), getPropForASValue(getProp('as'))),
+        backgroundColor: orNull(getProp('bg'), color(getProp('bg'))),
+        bottom: orNull(getProp('bottom'), size(getProp('bottom'))),
+        color: orNull(getProp('c'), color(getProp('c'))),
+        cursor: orNull(getProp('cur'), getPropForCurValue(getProp('cur'))),
+        display: orNull(getProp('d'), getPropForDValue(getProp('d'))),
+        flexBasis: orNull(getProp('flxb'), getPropForFlxBValue(theme, getProp('flxb'))),
+        flexDirection: orNull(getProp('flxd'), getPropForFlxDValue(getProp('flxd'))),
+        flexGrow: orNull(getProp('flxg')),
+        flexShrink: orNull(getProp('flxs')),
+        fontFamily: orNull(path(['fonts', getProp('ff')])(theme)),
+        fontSize: orNull(getProp('f'), size(getProp('f'))),
+        fontStyle: orNull(getProp('fs'), getPropsForFSValue(getProp('fs'))),
+        fontWeight: orNull(getProp('fw')),
+        height: orNull(getProp('h'), size(getProp('h'))),
+        left: orNull(getProp('left'), size(getProp('left'))),
+        letterSpacing: orNull(getProp('ls'), getPropsForLSValue(theme, getProp('ls'))),
+        lineHeight: orNull(getProp('lh'), getPropsForLHValue(theme, getProp('lh'))),
+        maxWidth: orNull(getProp('mw'), size(getProp('mw'))),
+        right: orNull(getProp('right'), size(getProp('right'))),
+        textAlign: orNull(getProp('ta'), getPropsForTAValue(getProp('ta'))),
+        textDecoration: orNull(getProp('td'), getPropForTDValue(getProp('td'))),
+        textDecorationColor: orNull(getProp('tdc'), color(getProp('tdc'))),
+        textTransform: orNull(getProp('tt'), getPropsForTTValue(getProp('tt'))),
+        top: orNull(getProp('top'), size(getProp('top'))),
+        width: orNull(getProp('w'), size(getProp('w'))),
+        zIndex: orNull(getProp('zi')),
+      };
+    }, {});
+  }
+  return false;
+};
+
+export default curry((theme, props) => getPropForProps(theme, props));

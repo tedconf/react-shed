@@ -18,7 +18,12 @@ const isValid = (label, val) => {
 
     if (isValidType(type(val))) {
       throw new Error(
-        `You must provide a valid value for the ${label ? `${label} ` : ''}prop: A number or string, not ${JSON.stringify(val)} (${type(val)})`,
+        `You must provide a valid value for the ${label ? `${label} ` : ''}prop, one of:
+          ✅  number
+          ✅  string
+
+        you provided:
+          ❌  ${JSON.stringify(val)} (${type(val)})}`,
       );
     }
 

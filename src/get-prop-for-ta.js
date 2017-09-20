@@ -1,4 +1,5 @@
 import isValid from './is-valid';
+import createError from './create-error';
 
 const getPropsForTAValue = (value = null) => {
   if (isValid('text-align')(value)) {
@@ -11,8 +12,19 @@ const getPropsForTAValue = (value = null) => {
         return 'right';
       case 'j':
         return 'justify';
+      case 'i':
+        return 'inherit';
+      case 'init':
+        return 'initial';
       default:
-        throw new Error(`You must provide a valid value for the text-align prop. One of c, l, r, j, not ${JSON.stringify(value)}`);
+        throw new Error(createError([
+          'c',
+          'l',
+          'r',
+          'j',
+          'i',
+          'init',
+        ])(value));
     }
   }
 

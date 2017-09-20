@@ -1,4 +1,5 @@
 import isValid from './is-valid';
+import createError from './create-error';
 
 const getPropsForTTValue = (value = null) => {
   if (isValid('text-transform')(value)) {
@@ -14,9 +15,16 @@ const getPropsForTTValue = (value = null) => {
       case 'i':
         return 'inherit';
       case 'init':
-        return 'inherit';
+        return 'initial';
       default:
-        throw new Error(`You must provide a valid value for the text-transform prop. One of u, c, l, n, i, init, not ${JSON.stringify(value)}`);
+        throw new Error(createError([
+          'u',
+          'c',
+          'l',
+          'n',
+          'i',
+          'init',
+        ])(value));
     }
   }
 

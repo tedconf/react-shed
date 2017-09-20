@@ -299,6 +299,112 @@ ta
   ))
 ;
 
+const va = storiesOf('va: vertialAlign', module);
+va.addDecorator(withKnobs);
+
+va
+  .add('sets vertical-alignment', () => (
+    <div.shed
+      bg="red"
+      c="white"
+    >
+      <div.shed
+        css={{
+          display: 'inline-block',
+          witdth: '50%',
+        }}
+        va={
+          select(
+            'va',
+            [
+              't',
+              'b',
+              'm',
+              'bl',
+            ],
+            'm',
+          )
+        }
+      >
+        it renders the verical alignment you have chosen
+      </div.shed>
+      <div.shed
+        css={{
+          display: 'inline-block',
+          witdth: '50%',
+        }}
+        va={
+          select(
+            'va',
+            [
+              't',
+              'b',
+              'm',
+              'bl',
+            ],
+            'm',
+          )
+        }
+      >
+        it renders the text-center you have chosen<br />
+        it renders the text-center you have chosen<br />
+        it renders the text-center you have chosen<br />
+        it renders the text-center you have chosen<br />
+        it renders the text-center you have chosen<br />
+        it renders the text-center you have chosen<br />
+      </div.shed>
+    </div.shed>
+  ))
+  .add('aligns `center`', () => (
+    <div.shed
+      bg="red"
+      c="white"
+      css={{
+        height: '100vh',
+      }}
+    >
+      <div.shed
+        css={{
+          position: 'relative',
+        }}
+        va="c"
+      >
+        it centers vertically
+      </div.shed>
+    </div.shed>
+  ))
+;
+
+const d = storiesOf('d: display', module);
+d.addDecorator(withKnobs);
+
+d
+  .add('sets display', () => (
+    <div.shed
+      bg="red"
+      c="white"
+      d={
+        select(
+          'd',
+          [
+            'b',
+            'i',
+            'ib',
+            't',
+            'tc',
+            'tr',
+            'f',
+            'if',
+            'n',
+          ],
+          'b',
+        )
+      }
+    >
+      it renders the display you have chosen
+    </div.shed>
+  ))
+;
 
 const mp = storiesOf('m|p: margin & padding', module);
 mp.addDecorator(withKnobs);
@@ -314,7 +420,7 @@ mp
       }
     >
       <div>
-        it renders the margin you have chosen
+        it renders the margin you choose
       </div>
     </div.shed>
   ))
@@ -324,9 +430,150 @@ mp
         mx="r"
       >
         <div>
-          it renders the margin you have chosen
+          overrides padding with release
         </div>
       </div.shed>
+    </div.shed>
+  ))
+;
+
+const br = storiesOf('br: border-radius', module);
+br.addDecorator(withKnobs);
+
+br
+  .add('sets radius', () => (
+    <div.shed
+      bg="red"
+      br={
+        number(
+          'br',
+          1,
+        )
+      }
+    >
+      <div>
+        it renders the radius you have chosen
+      </div>
+    </div.shed>
+  ))
+  .add('sets top radius', () => (
+    <div.shed
+      bg="red"
+      brt={
+        number(
+          'brt',
+          1,
+        )
+      }
+    >
+      <div>
+        it renders the radius you have chosen
+      </div>
+    </div.shed>
+  ))
+  .add('sets bottom radius', () => (
+    <div.shed
+      bg="red"
+      brb={
+        number(
+          'brb',
+          1,
+        )
+      }
+    >
+      <div>
+        it renders the radius you have chosen
+      </div>
+    </div.shed>
+  ))
+  .add('sets left radius', () => (
+    <div.shed
+      bg="red"
+      brl={
+        number(
+          'brl',
+          1,
+        )
+      }
+    >
+      <div>
+        it renders the radius you have chosen
+      </div>
+    </div.shed>
+  ))
+  .add('sets right radius', () => (
+    <div.shed
+      bg="red"
+      brr={
+        number(
+          'brr',
+          1,
+        )
+      }
+    >
+      <div>
+        it renders the radius you have chosen
+      </div>
+    </div.shed>
+  ))
+  .add('sets top-left radius', () => (
+    <div.shed
+      bg="red"
+      brtl={
+        number(
+          'brtl',
+          1,
+        )
+      }
+    >
+      <div>
+        it renders the radius you have chosen
+      </div>
+    </div.shed>
+  ))
+  .add('sets top-right radius', () => (
+    <div.shed
+      bg="red"
+      brtr={
+        number(
+          'brtr',
+          1,
+        )
+      }
+    >
+      <div>
+        it renders the radius you have chosen
+      </div>
+    </div.shed>
+  ))
+  .add('sets bottom-right radius', () => (
+    <div.shed
+      bg="red"
+      brbr={
+        number(
+          'brbr',
+          1,
+        )
+      }
+    >
+      <div>
+        it renders the radius you have chosen
+      </div>
+    </div.shed>
+  ))
+  .add('sets bottom-left radius', () => (
+    <div.shed
+      bg="red"
+      brbl={
+        number(
+          'brbl',
+          1,
+        )
+      }
+    >
+      <div>
+        it renders the radius you have chosen
+      </div>
     </div.shed>
   ))
 ;

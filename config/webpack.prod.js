@@ -1,10 +1,7 @@
 const webpack = require('webpack');
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const OfflinePlugin = require('offline-plugin');
 const StatsPlugin = require('stats-webpack-plugin');
-const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const { DIST_PATH, APP_PATH } = require('./paths');
 
 const PRODUCTION_CONFIG = {
@@ -14,11 +11,45 @@ const PRODUCTION_CONFIG = {
     ],
   },
 
+  externals: {
+    'react-dom': {
+      root: 'ReactDOM',
+      commonjs2: 'react-dom',
+      commonjs: 'react-dom',
+      amd: 'react-dom',
+    },
+    'prop-types': {
+      root: 'PropTypes',
+      commonjs2: 'prop-types',
+      commonjs: 'prop-types',
+      amd: 'prop-types',
+    },
+    react: {
+      root: 'React',
+      commonjs2: 'react',
+      commonjs: 'react',
+      amd: 'react',
+    },
+    'glamorous': {
+      root: 'glamorous',
+      commonjs2: 'glamorous',
+      commonjs: 'glamorous',
+      amd: 'glamorous',
+    },
+  },
+
   output: {
     publicPath: '/',
     path: DIST_PATH,
-    filename: '[name]-[chunkhash].bundle.js',
-    chunkFilename: '[name]-[chunkhash].bundle.js',
+    filename: 'react-shed.min.js',
+    umdNamedDefine: true,
+    library: {
+      root: 'ReactShed',
+      amd: 'react-shed',
+      commonjs: 'react-shed',
+      commonjs2: 'react-shed',
+    },
+    libraryTarget: 'umd',
   },
 
   performance: {
@@ -31,11 +62,6 @@ const PRODUCTION_CONFIG = {
     new webpack.LoaderOptionsPlugin({
       minimize: true,
       debug: false,
-    }),
-
-    new LodashModuleReplacementPlugin({
-      currying: true,
-      paths: true,
     }),
 
     new webpack.optimize.OccurrenceOrderPlugin(),
@@ -81,36 +107,7 @@ const PRODUCTION_CONFIG = {
       filename: 'vendor.[chunkhash:6].js',
     }),
 
-    new PreloadWebpackPlugin(),
-
     new webpack.NoEmitOnErrorsPlugin(),
-
-    new OfflinePlugin({
-      safeToUseOptionalCaches: true,
-      caches: {
-        main: [
-          '*.js',
-        ],
-        additional: [
-          ':externals:',
-        ],
-        optional: [
-          ':rest:',
-        ],
-      },
-
-      ServiceWorker: {
-        events: true,
-        navigateFallbackURL: '/',
-      },
-
-      AppCache: {
-        events: true,
-        FALLBACK: {
-          '/': '/index.html',
-        },
-      },
-    }),
 
     new WebpackMd5Hash(),
 
