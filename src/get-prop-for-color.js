@@ -19,7 +19,7 @@ const getPropsForColor = (theme, value) => {
       if (alpha) {
         let colorHash;
         colorHash = parse(theme.colors[`${alpha[1]}`]);
-        if((theme.colors[`${alpha[1]}`]).charAt(0) !== '#') {
+        if ((theme.colors[`${alpha[1]}`]).charAt(0) !== '#') {
           colorHash = parse(CSS_NAMES[theme.colors[`${alpha[1]}`]]);
         }
         return `rgba(${colorHash[0]}, ${colorHash[1]}, ${colorHash[2]}, ${parseFloat(alpha[2], 10)})`;
