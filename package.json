@@ -1,6 +1,6 @@
 {
   "name": "react-shed",
-  "version": "5.0.0-alpha.1",
+  "version": "5.0.0-alpha.2",
   "description": "Shed.css as a react library",
   "main": "dist/react-shed.min.js",
   "files": [
