@@ -1,12 +1,11 @@
 {
   "name": "react-shed",
-  "version": "5.0.0-alpha.0",
+  "version": "5.0.0-alpha.1",
   "description": "Shed.css as a react library",
   "main": "dist/react-shed.min.js",
-  "module": "src/index.js",
   "files": [
-    "lib",
-    "umd"
+    "src",
+    "dist"
   ],
   "devDependencies": {
     "@storybook/addon-centered": "^3.2.7",
@@ -18,13 +17,10 @@
     "babel-eslint": "~7.2.1",
     "babel-jest": "^21.0.0",
     "babel-loader": "^7.1.2",
-    "babel-plugin-flow-react-proptypes": "^5.1.2",
     "babel-plugin-lodash": "~3.2.11",
     "babel-plugin-shed": "~1.0.0",
     "babel-plugin-syntax-dynamic-import": "~6.18.0",
-    "babel-plugin-syntax-flow": "~6.18.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-react-constant-elements": "^6.23.0",
     "babel-plugin-transform-react-remove-prop-types": "~0.4.4",
@@ -44,13 +40,10 @@
     "eslint-config-airbnb": "^15.1.0",
     "eslint-import-resolver-webpack": "~0.8.0",
     "eslint-loader": "^1.9.0",
-    "eslint-plugin-flowtype": "^2.35.1",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.1.0",
     "file-loader": "~0.11.1",
-    "flow-bin": "~0.52.0",
-    "flow-typed": "2.1.5",
     "glamorous": "^4.8.0",
     "global": "~4.3.1",
     "html-webpack-plugin": "^2.30.1",
@@ -79,20 +72,18 @@
     "webpack-merge": "^4.1.0"
   },
   "peerDependencies": {
-    "emotion": "7.2.2",
-    "react": "^15.6.1",
-    "theming": "^1.1.0"
+    "react": ">= ^15.0.0",
+    "glamorous": "~4.0.0"
   },
   "scripts": {
     "start": "run-p 'dev' 'storybook'",
     "dev": "env NODE_ENV=development webpack-dev-server",
     "build-app": "del dist && env NODE_ENV=production webpack --colors --display-provided-exports --display-used-exports",
     "build": "run-p 'build-app' 'build-storybook'",
-    "pretest": "yarn lint; yarn lint:typecheck",
+    "pretest": "yarn lint",
     "lint": "eslint src",
     "lint:fix": "yarn lint -- --fix",
     "deploy": "echo 'not conrigured, please edit this task in your package.json'",
-    "lint:typecheck": "flow; test $? -eq 0 -o $? -eq 2",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
@@ -113,8 +104,6 @@
     "plugins": [
       "shed",
       "syntax-dynamic-import",
-      "syntax-flow",
-      "transform-flow-strip-types",
       "transform-runtime"
     ],
     "env": {
@@ -123,8 +112,6 @@
           "shed",
           "react-hot-loader/babel",
           "syntax-dynamic-import",
-          "syntax-flow",
-          "transform-flow-strip-types",
           "transform-runtime"
         ]
       },
@@ -161,9 +148,6 @@
           "shed",
           "react-hot-loader/babel",
           "syntax-dynamic-import",
-          "syntax-flow",
-          "transform-flow-strip-types",
-          "transform-flow-strip-types",
           "transform-runtime",
           "transform-es2015-modules-commonjs"
         ]
@@ -172,7 +156,6 @@
   },
   "eslintConfig": {
     "plugins": [
-      "flowtype"
     ],
     "env": {
       "jest": true,
@@ -191,8 +174,7 @@
     },
     "parser": "babel-eslint",
     "extends": [
-      "airbnb",
-      "plugin:flowtype/recommended"
+      "airbnb"
     ],
     "rules": {
       "react/no-unused-prop-types": 0,

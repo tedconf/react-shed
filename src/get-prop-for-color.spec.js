@@ -3,8 +3,8 @@ import getColor from './get-prop-for-color';
 describe('color', () => {
   const THEME_FIXTURE = {
     sizes: {
-      ['z-1']: '-1rem',
-      ['z.1']: '.9rem',
+      'z-1': '-1rem',
+      'z.1': '.9rem',
       z0: '0',
       z1: '1rem',
       z2: '2rem',

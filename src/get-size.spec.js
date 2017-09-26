@@ -3,11 +3,11 @@ import getSize from './get-size';
 describe('size matching', () => {
   const theme = {
     sizes: {
-      ['z0']: '0',
-      ['z.1']: '.9rem',
-      ['z-1']: '-1.1rem',
+      z0: '0',
+      'z.1': '.9rem',
+      'z-1': '-1.1rem',
       z1: '1.1rem',
-    }
+    },
   };
   const getThemedSize = getSize(theme);
   it('should return viewport width when given viewport width', () => {
@@ -32,12 +32,12 @@ describe('size matching', () => {
   });
   it('should return a decimal given an `of` ratio', () => {
     const actual = getThemedSize('1of12');
-    const expected = 1 / 12;
+    const expected = `${1 / 12 * 100}%`;
     expect(actual).toBe(expected);
   });
   it('should return a decimal given a `/` ratio', () => {
     const actual = getThemedSize('1/12');
-    const expected = 1 / 12;
+    const expected = `${1 / 12 * 100}%`;
     expect(actual).toBe(expected);
   });
   it('should return `100%` given `full` keyword', () => {
@@ -75,5 +75,3 @@ describe('size matching', () => {
     expect(actual).toThrowError(/foo/);
   });
 });
-
-

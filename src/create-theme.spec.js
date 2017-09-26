@@ -1,8 +1,5 @@
 import keys from 'ramda/src/keys';
-import sizes from './sizes';
-import createTheme, {
-  getSizesHash
-} from './create-theme';
+import createTheme from './create-theme';
 
 describe('theme creation', () => {
   const THEME = createTheme({

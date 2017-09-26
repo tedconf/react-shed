@@ -27,5 +27,3 @@ describe('flex-wrap', () => {
     expect(actual).toEqual(expected);
   });
 });
-
-

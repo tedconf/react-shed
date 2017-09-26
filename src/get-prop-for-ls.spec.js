@@ -3,14 +3,14 @@ import getPropsForLS from './get-prop-for-ls';
 describe('letter spacing', () => {
   const THEME_FIXTURE = {
     sizes: {
-      ['z-1']: '-1rem',
-      ['z.1']: '.9rem',
+      'z-1': '-1rem',
+      'z.1': '.9rem',
       z0: '0',
       z1: '1rem',
       z2: '2rem',
       z3: '3rem',
       z4: '4rem',
-    }
+    },
   };
 
   const getLS = getPropsForLS(THEME_FIXTURE);
@@ -46,6 +46,4 @@ describe('letter spacing', () => {
     expect(actual).toEqual(expected);
   });
 });
-
-
 

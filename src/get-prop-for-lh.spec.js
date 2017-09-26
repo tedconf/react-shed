@@ -3,14 +3,14 @@ import getPropsForLH from './get-prop-for-lh';
 describe('line-height', () => {
   const THEME_FIXTURE = {
     sizes: {
-      ['z-1']: '-1rem',
-      ['z.1']: '.9rem',
+      'z-1': '-1rem',
+      'z.1': '.9rem',
       z0: '0',
       z1: '1rem',
       z2: '2rem',
       z3: '3rem',
       z4: '4rem',
-    }
+    },
   };
 
   const getLH = getPropsForLH(THEME_FIXTURE);
@@ -51,5 +51,3 @@ describe('line-height', () => {
     expect(actual).toEqual(expected);
   });
 });
-
-

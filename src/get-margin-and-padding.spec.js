@@ -2,14 +2,14 @@ import getMarginAndPadding from './get-margin-and-padding';
 
 const THEME_FIXTURE = {
   sizes: {
-    ['z-1']: '-1rem',
-    ['z.1']: '.9rem',
+    'z-1': '-1rem',
+    'z.1': '.9rem',
     z0: '0',
     z1: '1rem',
     z2: '2rem',
     z3: '3rem',
-  }
-}
+  },
+};
 
 describe('margin and padding prop handling', () => {
   const mp = getMarginAndPadding(THEME_FIXTURE);
@@ -62,7 +62,7 @@ describe('margin and padding prop handling', () => {
       margin: 'auto',
     };
     expect(actual).toEqual(expected);
-  })
+  });
   it('should handle `release` value', () => {
     const actual = mp({ mx: 'r' });
     const expected = {
@@ -70,7 +70,7 @@ describe('margin and padding prop handling', () => {
       marginRight: 'calc(-50vw + 50%)',
     };
     expect(actual).toEqual(expected);
-  })
+  });
   it('should handle padding', () => {
     const actual = mp({ p: '1' });
     const expected = { padding: '1rem' };
@@ -120,9 +120,9 @@ describe('margin and padding prop handling', () => {
       padding: 'auto',
     };
     expect(actual).toEqual(expected);
-  })
+  });
   it('should throw on unknown value', () => {
     const actual = () => { mp({ p: 'foo' }); };
     expect(actual).toThrow(/foo/);
-  })
+  });
 });

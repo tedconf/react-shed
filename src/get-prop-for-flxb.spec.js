@@ -2,17 +2,17 @@ import getFlxB from './get-prop-for-flxb';
 
 const THEME_FIXTURE = {
   sizes: {
-    ['z-1']: '-1rem',
-    ['z.1']: '.9rem',
+    'z-1': '-1rem',
+    'z.1': '.9rem',
     z0: '0',
     z1: '1rem',
     z2: '2rem',
     z3: '3rem',
     z4: '4rem',
-  }
+  },
 };
 
-const flxB = getFlxB(THEME_FIXTURE)
+const flxB = getFlxB(THEME_FIXTURE);
 
 describe('flex-basis', () => {
   it('should handle scale values', () => {

@@ -75,5 +75,3 @@ describe('cleans props', () => {
     expect(actual).toEqual(expected);
   });
 });
-
-

@@ -3,8 +3,8 @@ import sizes from './sizes';
 describe('size generation', () => {
   it('should take a scale', () => {
     const actual = sizes('minor second');
-    const expected = `${Math.pow((16/15), 1)}rem`;
-    expect(actual[`z2`]).toBe(expected);
+    const expected = `${(16 / 15) ** 1}rem`;
+    expect(actual.z2).toBe(expected);
   });
   it('should generate the number of values given', () => {
     const actual = sizes('major second', 30);

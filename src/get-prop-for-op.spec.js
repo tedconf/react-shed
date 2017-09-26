@@ -21,5 +21,3 @@ describe('opacity', () => {
     expect(actual).toThrow(/foo/);
   });
 });
-
-

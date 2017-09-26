@@ -1,6 +1,7 @@
 import curry from 'ramda/src/curry';
 import compose from 'ramda/src/compose';
 import keys from 'ramda/src/keys';
+import pathOr from 'ramda/src/pathOr';
 import reduce from 'ramda/src/reduce';
 import isValid from './is-valid';
 import getSize from './get-size';
@@ -24,72 +25,56 @@ const getPropsForMPValue = (prop, value = null, THEME = null) => {
       formattedVal = getSize(THEME)(value);
     }
 
-    switch (prop) {
-      case 'm':
-        return {
-          margin: formattedVal,
-        };
-      case 'mx':
-        return {
-          marginLeft: formattedVal,
-          marginRight: formattedVal,
-        };
-      case 'my':
-        return {
-          marginTop: formattedVal,
-          marginBottom: formattedVal,
-        };
-      case 'mt':
-        return {
-          marginTop: formattedVal,
-        };
-      case 'mr':
-        return {
-          marginRight: formattedVal,
-        };
-      case 'mb':
-        return {
-          marginBottom: formattedVal,
-        };
-      case 'ml':
-        return {
-          marginLeft: formattedVal,
-        };
+    const propsMap = {
+      m: {
+        margin: formattedVal,
+      },
+      mx: {
+        marginLeft: formattedVal,
+        marginRight: formattedVal,
+      },
+      my: {
+        marginTop: formattedVal,
+        marginBottom: formattedVal,
+      },
+      mt: {
+        marginTop: formattedVal,
+      },
+      mr: {
+        marginRight: formattedVal,
+      },
+      mb: {
+        marginBottom: formattedVal,
+      },
+      ml: {
+        marginLeft: formattedVal,
+      },
+      p: {
+        padding: formattedVal,
+      },
+      px: {
+        paddingLeft: formattedVal,
+        paddingRight: formattedVal,
+      },
+      py: {
+        paddingTop: formattedVal,
+        paddingBottom: formattedVal,
+      },
+      pt: {
+        paddingTop: formattedVal,
+      },
+      pr: {
+        paddingRight: formattedVal,
+      },
+      pb: {
+        paddingBottom: formattedVal,
+      },
+      pl: {
+        paddingLeft: formattedVal,
+      },
+    };
 
-      case 'p':
-        return {
-          padding: formattedVal,
-        };
-      case 'px':
-        return {
-          paddingLeft: formattedVal,
-          paddingRight: formattedVal,
-        };
-      case 'py':
-        return {
-          paddingTop: formattedVal,
-          paddingBottom: formattedVal,
-        };
-      case 'pt':
-        return {
-          paddingTop: formattedVal,
-        };
-      case 'pr':
-        return {
-          paddingRight: formattedVal,
-        };
-      case 'pb':
-        return {
-          paddingBottom: formattedVal,
-        };
-      case 'pl':
-        return {
-          paddingLeft: formattedVal,
-        };
-
-      default:
-        return null;
-    }
+    return pathOr(null)([prop])(propsMap);
   }
   return value;
 };

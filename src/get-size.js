@@ -16,7 +16,7 @@ const getSize = (theme, value = null) => {
     const gridRE = /(\d*)(?:of|\/)(\d*)/;
     if (t(gridRE)(value)) {
       return compose(
-        reduce((acc, val) => (acc !== null ? acc / val : val), null),
+        reduce((acc, val) => (acc !== null ? `${(acc / val) * 100}%` : val), null),
         tail,
         match(gridRE),
       )(value);
