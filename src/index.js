@@ -1,9 +1,7 @@
-/* eslint-disable */
-import React, { createElement } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import glamorous, { withTheme } from 'glamorous';
 import createTheme from './create-theme';
-import cleanProps from './clean-props';
 import getPropForProps from './get-prop-for-props';
 
 const Shed = ({
@@ -11,7 +9,14 @@ const Shed = ({
   children,
   ...rest
 }) => {
-  const ShedStyled = glamorous(component)(({theme, ...props}) => getPropForProps(theme, props));
+  const ShedStyled = glamorous(
+    component,
+  )(
+    ({
+      theme,
+      ...props
+    }) => getPropForProps(theme, props),
+  );
   return <ShedStyled {...rest}>{children}</ShedStyled>;
 };
 
@@ -21,6 +26,7 @@ Shed.propTypes = {
     PropTypes.element,
     PropTypes.func,
   ]),
+  children: PropTypes.any,
   theme: PropTypes.shape({
     sizes: PropTypes.any,
     steps: PropTypes.number,

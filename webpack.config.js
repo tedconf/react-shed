@@ -2,8 +2,6 @@ const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
-const cssnext = require('postcss-cssnext');
-const postcssImport = require('postcss-import');
 const pkg = require('./package.json');
 
 const DEVELOPMENT_CONFIG = require('./config/webpack.dev');

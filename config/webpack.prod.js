@@ -30,7 +30,7 @@ const PRODUCTION_CONFIG = {
       commonjs: 'react',
       amd: 'react',
     },
-    'glamorous': {
+    glamorous: {
       root: 'glamorous',
       commonjs2: 'glamorous',
       commonjs: 'glamorous',
