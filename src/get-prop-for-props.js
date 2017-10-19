@@ -49,10 +49,6 @@ const getPropForProps = (theme, props) => {
   ) {
     return Object.keys(props).reduce((acc) => {
       const getProp = prop => get(prop)(props) || null;
-      console.log({
-        props,
-        rendered: getMarginAndPadding(theme)(props),
-      });
       return {
         ...acc,
         ...getBorderRadius(theme, props),

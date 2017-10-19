@@ -1,6 +1,6 @@
 {
   "name": "react-shed",
-  "version": "5.0.0-alpha.2",
+  "version": "5.0.0-alpha.3",
   "description": "Shed.css as a react library",
   "main": "dist/react-shed.min.js",
   "files": [
@@ -79,7 +79,7 @@
     "start": "run-p 'dev' 'storybook'",
     "dev": "env NODE_ENV=development webpack-dev-server",
     "build-app": "del dist && env NODE_ENV=production webpack --colors --display-provided-exports --display-used-exports",
-    "build": "run-p 'build-app' 'build-storybook'",
+    "build": "run-p 'build-app'",
     "pretest": "yarn lint",
     "lint": "eslint src",
     "lint:fix": "yarn lint -- --fix",
@@ -103,7 +103,6 @@
     ],
     "plugins": [
       "shed",
-      "syntax-dynamic-import",
       "transform-runtime"
     ],
     "env": {
@@ -126,10 +125,12 @@
                 "recompose"
               ]
             }
-          ],
-          "transform-react-router-optimize"
+          ]
         ],
         "presets": [
+          "react",
+          "env",
+          "stage-0",
           "react-optimize"
         ]
       },

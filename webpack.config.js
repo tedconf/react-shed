@@ -44,6 +44,7 @@ const COMMON_CONFIG = {
         test: /\.js$/,
         include: [
           APP_PATH,
+          /node_modules\/mq-props/,
         ],
         exclude: [
           /node_modules\/(?!mq-props)/,

@@ -60,7 +60,6 @@ const get = (theme, value) => {
       type,
     )(value)
   ) {
-    console.log(map(x => getSize(theme, x))(value));
     return map(x => getSize(theme, x))(value);
   }
 
