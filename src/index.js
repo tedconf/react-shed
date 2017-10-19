@@ -15,7 +15,7 @@ const Shed = ({
     ({
       theme,
       ...props
-    }) => getPropForProps(theme, props),
+    }) => getPropForProps(theme, props || {}),
   );
   return <ShedStyled {...rest}>{children}</ShedStyled>;
 };

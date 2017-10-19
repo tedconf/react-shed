@@ -97,12 +97,24 @@ f.addDecorator(withKnobs);
 f
   .add('from scale', () => (
     <div.shed
-      f={
+      f={[
         number(
           'f',
           1,
-        )
-      }
+        ),
+        number(
+          'f@sm',
+          '.1',
+        ),
+        number(
+          'f@md',
+          2,
+        ),
+        number(
+          'f@lg',
+          5,
+        ),
+      ]}
     >
       <div>it renders the size you have chosen</div>
     </div.shed>
@@ -137,11 +149,12 @@ fs
         select(
           'fs',
           [
-            'i',
+            'it',
             'o',
             'n',
+            'i',
           ],
-          'i',
+          'it',
         )
       }
     >
@@ -412,12 +425,16 @@ mp.addDecorator(withKnobs);
 mp
   .add('sets margin', () => (
     <div.shed
-      m={
+      m={[
         number(
           'm',
           1,
-        )
-      }
+        ),
+        number(
+          'm@lg',
+          2,
+        ),
+      ]}
     >
       <div>
         it renders the margin you choose
@@ -444,12 +461,24 @@ br
   .add('sets radius', () => (
     <div.shed
       bg="red"
-      br={
+      br={[
         number(
           'br',
           1,
-        )
-      }
+        ),
+        number(
+          'br@sm',
+          .1,
+        ),
+        number(
+          'br@md',
+          .3,
+        ),
+        number(
+          'br@lg',
+          0,
+        ),
+      ]}
     >
       <div>
         it renders the radius you have chosen

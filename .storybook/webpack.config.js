@@ -13,6 +13,9 @@ module.exports = {
       {
         test: /\.js$/,
         include: APP_PATH,
+        exclude: [
+          /node_modules\/(?!mq-props)/,
+        ],
         use: [
           'babel-loader',
           'eslint-loader',

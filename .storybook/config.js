@@ -28,6 +28,11 @@ const THEME = {
     sans: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
     code: 'Consolas,monaco,monospace',
   },
+  mqs: [
+    'min-width: 600px',
+    'min-width: 960px',
+    'min-width: 1200px',
+  ],
 };
 
 

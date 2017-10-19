@@ -1,4 +1,5 @@
 import curry from 'ramda/src/curry';
+import mqProps from 'mq-props';
 import keys from 'ramda/src/keys';
 import reduce from 'ramda/src/reduce';
 import compose from 'ramda/src/compose';
@@ -22,6 +23,7 @@ const WHITELIST = [
 ];
 
 const getPropsForBRValue = (THEME, prop, value = null) => {
+  const mq = mqProps(THEME.mqs || []);
   if (isValid('border-radius')(value)) {
     const formattedVal = getSize(THEME, value);
     if (THEME.sizes === null) {
@@ -31,43 +33,43 @@ const getPropsForBRValue = (THEME, prop, value = null) => {
     switch (prop) {
       case 'br':
         return {
-          borderRadius: formattedVal,
+          ...mq('borderRadius')(formattedVal),
         };
       case 'brl':
         return {
-          borderTopLeftRadius: formattedVal,
-          borderBottomLeftRadius: formattedVal,
+          ...mq('borderTopLeftRadius')(formattedVal),
+          ...mq('borderBottomLeftRadius')(formattedVal),
         };
       case 'brr':
         return {
-          borderTopRightRadius: formattedVal,
-          borderBottomRightRadius: formattedVal,
+          ...mq('borderTopRightRadius')(formattedVal),
+          ...mq('borderBottomRightRadius')(formattedVal),
         };
       case 'brt':
         return {
-          borderTopLeftRadius: formattedVal,
-          borderTopRightRadius: formattedVal,
+          ...mq('borderTopLeftRadius')(formattedVal),
+          ...mq('borderTopRightRadius')(formattedVal),
         };
       case 'brb':
         return {
-          borderBottomLeftRadius: formattedVal,
-          borderBottomRightRadius: formattedVal,
+          ...mq('borderBottomLeftRadius')(formattedVal),
+          ...mq('borderBottomRightRadius')(formattedVal),
         };
       case 'brtr':
         return {
-          borderTopRightRadius: formattedVal,
+          ...mq('borderTopRightRadius')(formattedVal),
         };
       case 'brbr':
         return {
-          borderBottomRightRadius: formattedVal,
+          ...mq('borderBottomRightRadius')(formattedVal),
         };
       case 'brbl':
         return {
-          borderBottomLeftRadius: formattedVal,
+          ...mq('borderBottomLeftRadius')(formattedVal),
         };
       case 'brtl':
         return {
-          borderTopLeftRadius: formattedVal,
+          ...mq('borderTopLeftRadius')(formattedVal),
         };
 
       default:

@@ -4,8 +4,10 @@ import tail from 'ramda/src/tail';
 import match from 'ramda/src/match';
 import t from 'ramda/src/test';
 import path from 'ramda/src/path';
+import map from 'ramda/src/map';
 import curry from 'ramda/src/curry';
 import type from 'ramda/src/type';
+import equals from 'ramda/src/equals';
 
 const getSize = (theme, value = null) => {
   if (value) {
@@ -51,4 +53,18 @@ const getSize = (theme, value = null) => {
   return false;
 };
 
-export default curry((theme, size) => getSize(theme, size));
+const get = (theme, value) => {
+  if (
+    compose(
+      equals('Array'),
+      type,
+    )(value)
+  ) {
+    console.log(map(x => getSize(theme, x))(value));
+    return map(x => getSize(theme, x))(value);
+  }
+
+  return getSize(theme, value);
+};
+
+export default curry((theme, size) => get(theme, size));

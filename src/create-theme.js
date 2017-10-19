@@ -22,6 +22,11 @@ const createTheme = (
       serif: 'serif',
       mono: 'monospace',
     },
+    mqs: [
+      'min-width: 600px',
+      'min-width: 960px',
+      'min-width: 1200px',
+    ],
   },
 ) => {
   const generatedTheme = {};
@@ -76,6 +81,7 @@ const createTheme = (
     sizes: {
       ...omit(['z.0', 'z-0', 'z-.0'])(generatedTheme.sizes),
     },
+    mqs: userTheme.mqs,
   };
 };
 

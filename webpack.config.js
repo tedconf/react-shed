@@ -42,8 +42,12 @@ const COMMON_CONFIG = {
     rules: [
       {
         test: /\.js$/,
-        include: APP_PATH,
-        exclude: NODE_MODULES_PATH,
+        include: [
+          APP_PATH,
+        ],
+        exclude: [
+          /node_modules\/(?!mq-props)/,
+        ],
         use: [
           {
             loader: 'babel-loader',

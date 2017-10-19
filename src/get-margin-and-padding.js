@@ -1,4 +1,5 @@
 import curry from 'ramda/src/curry';
+import mqProps from 'mq-props';
 import compose from 'ramda/src/compose';
 import keys from 'ramda/src/keys';
 import pathOr from 'ramda/src/pathOr';
@@ -7,6 +8,7 @@ import isValid from './is-valid';
 import getSize from './get-size';
 
 const getPropsForMPValue = (prop, value = null, THEME = null) => {
+  const mq = mqProps(THEME.mqs || []);
   if (isValid('margin / padding')(value)) {
     let formattedVal = value;
     if (THEME.sizes === null) {
@@ -27,50 +29,50 @@ const getPropsForMPValue = (prop, value = null, THEME = null) => {
 
     const propsMap = {
       m: {
-        margin: formattedVal,
+        ...mq('margin')(formattedVal),
       },
       mx: {
-        marginLeft: formattedVal,
-        marginRight: formattedVal,
+        ...mq('marginLeft')(formattedVal),
+        ...mq('marginRight')(formattedVal),
       },
       my: {
-        marginTop: formattedVal,
-        marginBottom: formattedVal,
+        ...mq('marginTop')(formattedVal),
+        ...mq('marginBottom')(formattedVal),
       },
       mt: {
-        marginTop: formattedVal,
+        ...mq('marginTop')(formattedVal),
       },
       mr: {
-        marginRight: formattedVal,
+        ...mq('marginRight')(formattedVal),
       },
       mb: {
-        marginBottom: formattedVal,
+        ...mq('marginBottom')(formattedVal),
       },
       ml: {
-        marginLeft: formattedVal,
+        ...mq('marginLeft')(formattedVal),
       },
       p: {
-        padding: formattedVal,
+        ...mq('padding')(formattedVal),
       },
       px: {
-        paddingLeft: formattedVal,
-        paddingRight: formattedVal,
+        ...mq('paddingLeft')(formattedVal),
+        ...mq('paddingRight')(formattedVal),
       },
       py: {
-        paddingTop: formattedVal,
-        paddingBottom: formattedVal,
+        ...mq('paddingTop')(formattedVal),
+        ...mq('paddingBottom')(formattedVal),
       },
       pt: {
-        paddingTop: formattedVal,
+        ...mq('paddingTop')(formattedVal),
       },
       pr: {
-        paddingRight: formattedVal,
+        ...mq('paddingRight')(formattedVal),
       },
       pb: {
-        paddingBottom: formattedVal,
+        ...mq('paddingBottom')(formattedVal),
       },
       pl: {
-        paddingLeft: formattedVal,
+        ...mq('paddingLeft')(formattedVal),
       },
     };
 

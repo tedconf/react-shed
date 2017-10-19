@@ -17,11 +17,16 @@ describe('theme creation', () => {
       serif: 'Georgia',
       mono: 'Input',
     },
+    mqs: [
+      'min-width: 600px',
+      'min-width: 960px',
+      'min-width: 1200px',
+    ],
   });
 
   it('should return a theme object', () => {
     const actual = keys(THEME);
-    const expected = ['sizes', 'colors', 'fonts'];
+    const expected = ['sizes', 'colors', 'fonts', 'mqs'];
     expect(actual).toEqual(expected);
   });
 

@@ -10,12 +10,16 @@ describe('value validation', () => {
     const actual = isValid(1);
     expect(actual).toBe(true);
   });
+  it('should accept arrays', () => {
+    const actual = test(['1px', '2px']);
+    expect(actual).toBe(true);
+  });
   it('should reject object', () => {
     const actual = () => isValid({});
     expect(actual).toThrowError(/\{\}/);
   });
   it('should reject function', () => {
-    const actual = () => isValid(() => undefined);
-    expect(actual).toThrowError(/Function/);
+    const actual = () => isValid(() => { void(0); });
+    expect(actual).toThrow();
   });
 });

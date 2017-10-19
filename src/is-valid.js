@@ -1,6 +1,7 @@
 import curry from 'ramda/src/curry';
 import type from 'ramda/src/type';
 import compose from 'ramda/src/compose';
+import map from 'ramda/src/map';
 import not from 'ramda/src/not';
 import equals from 'ramda/src/equals';
 import anyPass from 'ramda/src/anyPass';
@@ -10,6 +11,19 @@ const isValid = (label, val) => {
     const isValidType = compose(
       not,
       anyPass([
+        compose(
+          map(
+            compose(
+              anyPass([
+                equals('String'),
+                equals('String'),
+                equals('Number'),
+                equals('Null'),
+              ]),
+            ),
+          ),
+          equals('Array'),
+        ),
         equals('String'),
         equals('Number'),
         equals('Null'),
