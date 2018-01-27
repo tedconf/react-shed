@@ -3,7 +3,7 @@
 react-shed is a version of [shed.css](http://tedconf.github.io/shed-css/)
 created specifically with react in mind. It implements shed dynamically using
 [styled components](https://styled-components.com/),
-[modularscale](modularscale), and [color](http://ghub.io/color).
+[modularscale](https://github.com/KyleAMathews/modularscale), and [color](http://ghub.io/color).
 
 ## INSTALL
 
