@@ -15,7 +15,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "color-string": "^1.5.2",
-    "eslint": "3.19.x",
+    "eslint": "4.18.x",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-plugin-import": "2.2.x",
     "eslint-plugin-jsx-a11y": "5.0.x",
